@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <string name="facebook_app_name">Guadalupe-Conexão</string>
+  <string name="facebook_app_id">697018100910035</string>
+  <string name="fb_login_protocol_scheme">fb697018100910035</string>
+</resources>

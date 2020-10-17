@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:Utils="clr-namespace:Guadalupe.Conexao.App.Utils"
+             xmlns:Converter="clr-namespace:Guadalupe.Conexao.App.Converters"
+             xmlns:Behaviors="clr-namespace:Guadalupe.Conexao.App.Behaviors"
+             x:Class="Guadalupe.Conexao.App.View.AutenticationView"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="20" 
+                     VerticalOptions="CenterAndExpand" 
+                     BackgroundColor="White">
+
+            <Image Source="conexao.png" />
+
+            <Entry Text="{Binding Email.Value}" 
+                   Placeholder="Digite seu e-mail" 
+                   Keyboard="Email" 
+                   HorizontalTextAlignment="Center" >
+                <Entry.Behaviors>
+                    <Behaviors:EntryValidatorBehavior IsTouched="{Binding Email.IsTouched }"></Behaviors:EntryValidatorBehavior>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                   IsVisible="{Binding Email.ShowError}" />
+            
+            <Button Text="Entrar com o E-mail" 
+                    Command="{Binding OnLoginEmailCommand }"
+                    HeightRequest="45"
+                    TextColor="White"
+                    BackgroundColor="Orange" 
+                    IsEnabled="{Binding Email.IsValid}"/>
+
+            <Button Text="Entrar com Facebook"
+                        Command="{Binding OnLoginFacebookCommand}"
+                        FontFamily="{StaticResource Icon}"
+                        HeightRequest="45"
+                        TextColor="White"
+                        BackgroundColor="#4768AD"
+                        />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:Converter="clr-namespace:Guadalupe.Conexao.App.Converters"
+             x:Class="Guadalupe.Conexao.App.View.ValidateCodeView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" 
+            HorizontalOptions="CenterAndExpand">
+            
+            <Label Text="{Binding Message}" 
+                   IsVisible="{Binding HasMessage} " />
+            
+            <!--<Label Text="Digite o código que foi enviado no seu e-mail."/>-->
+
+            <!-- Form Control -->
+            <Entry Text="{Binding Code.Value}" Placeholder="Digite o código que foi enviado no seu e-mail!" />
+
+            <Label Text="{Binding Code.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                   IsVisible="{Binding Code.ShowError}" />
+            <!-- End Form Control -->
+            
+            <Button Text="Validar e Entrar" 
+                    Command="{Binding OnValidateCodeCommand}"/>
+
+            <Label Text="Não lembra seu código? clique para reenviar!" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

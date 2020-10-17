@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+            xmlns:Utils="clr-namespace:Guadalupe.Conexao.App.Utils"
+             x:Class="Guadalupe.Conexao.App.View.MainView"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:pages="clr-namespace:Guadalupe.Conexao.App.View"
+            NavigationPage.HasNavigationBar="False"
+            android:TabbedPage.ToolbarPlacement="Bottom">
+
+    <pages:HomeView Title="Noticias">
+        <pages:HomeView.IconImageSource>
+            <FontImageSource 
+                FontFamily="{StaticResource Icon}"
+                Glyph="{StaticResource icon-home}"
+                Size="16"/>
+        </pages:HomeView.IconImageSource>
+    </pages:HomeView>
+
+    <pages:NotificationView Title="Notificações">
+        <pages:NotificationView.IconImageSource>
+            <FontImageSource 
+                FontFamily="{StaticResource Icon}"
+                Glyph="{StaticResource icon-user}"
+                Size="16"/>
+        </pages:NotificationView.IconImageSource>
+    </pages:NotificationView>
+
+    <pages:ProfileNavView Title="Perfil" >
+        <pages:ProfileNavView.IconImageSource>
+            <FontImageSource 
+                FontFamily="{StaticResource Icon}"
+                Glyph="{StaticResource icon-user}"
+                Size="16"/>
+        </pages:ProfileNavView.IconImageSource>
+    </pages:ProfileNavView>
+</TabbedPage>
