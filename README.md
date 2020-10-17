@@ -8,7 +8,7 @@ entregar um feed de notícias interativo, atualizado dinamicamente com as inform
 Habitar um formulário para captar algumas informações da comunidade.
 
 ## Development server
-
+Nesse primeiro momento iremos manter o APP e API no mesmo repositório/solução, para utilizar apenas um VS para codificação.
 
 ### Icones
 Para gerar e manter os icónes está sendo utilizando o portal do: [Fontello](https://fontello.com/)
