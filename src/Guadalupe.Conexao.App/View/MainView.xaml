@@ -24,7 +24,7 @@
         <pages:NotificationView.IconImageSource>
             <FontImageSource 
                 FontFamily="{StaticResource Icon}"
-                Glyph="{StaticResource icon-user}"
+                Glyph="{StaticResource icon-bell}"
                 Size="16"/>
         </pages:NotificationView.IconImageSource>
     </pages:NotificationView>

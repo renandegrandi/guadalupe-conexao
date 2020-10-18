@@ -19,6 +19,7 @@ namespace Guadalupe.Conexao.App.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             FacebookClientManager.Initialize(this);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
 
             base.OnCreate(savedInstanceState);
 

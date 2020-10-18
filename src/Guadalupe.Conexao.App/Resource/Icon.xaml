@@ -8,5 +8,11 @@
 
     <x:String x:Key="icon-home">&#xE800;</x:String>
     <x:String x:Key="icon-user">&#xE801;</x:String>
+    <x:String x:Key="icon-facebook-official">&#xF230;</x:String>
+    <x:String x:Key="icon-bell">&#x2302;</x:String>
+    <x:String x:Key="icon-bell-alt">&#xF0F3;</x:String>
+    <x:String x:Key="icon-bell-off">&#xF1F6;</x:String>
+    <x:String x:Key="icon-bell-off-empty">&#xF1F7;</x:String>
+    <x:String x:Key="icon-edit">&#xE0BF;</x:String>
 
 </ResourceDictionary>

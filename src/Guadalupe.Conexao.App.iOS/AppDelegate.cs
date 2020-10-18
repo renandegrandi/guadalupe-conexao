@@ -26,6 +26,7 @@ namespace Guadalupe.Conexao.App.iOS
             global::Xamarin.Forms.Forms.Init();
 
             FacebookClientManager.Initialize(app, options);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
             LoadApplication(new App());
 
