@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Guadalupe.Conexao.App.Dto
+namespace Guadalupe.Conexao.App.Repository.DTO
 {
     public class FacebookDto
     {

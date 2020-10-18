@@ -1,6 +1,6 @@
-﻿using Guadalupe.Conexao.App.Dto;
-using Guadalupe.Conexao.App.Extensions;
+﻿using Guadalupe.Conexao.App.Extensions;
 using Guadalupe.Conexao.App.Model;
+using Guadalupe.Conexao.App.Repository.DTO;
 using Guadalupe.Conexao.App.Validation;
 using Guadalupe.Conexao.App.View;
 using Newtonsoft.Json;
