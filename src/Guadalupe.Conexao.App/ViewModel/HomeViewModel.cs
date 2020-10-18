@@ -1,6 +1,8 @@
 ﻿using Guadalupe.Conexao.App.Model;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Guadalupe.Conexao.App.ViewModel
@@ -9,8 +11,16 @@ namespace Guadalupe.Conexao.App.ViewModel
     {
         #region Propriedades
 
-        public IReadOnlyCollection<Notice> News { get; set; }
+        public bool IsRefreshing { get; private set; }
+        public IReadOnlyCollection<Notice> News { get; private set; }
+        public ICommand RefreshNews => new Command(async () =>
+        {
+            await Task.Delay(3000);
 
+            IsRefreshing = false;
+            this.OnPropertyChanged(nameof(IsRefreshing));
+        });
+        
         #endregion
 
         #region Construtores
