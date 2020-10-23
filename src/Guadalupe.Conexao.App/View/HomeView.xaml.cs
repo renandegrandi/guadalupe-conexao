@@ -1,4 +1,5 @@
-﻿using Guadalupe.Conexao.App.ViewModel;
+﻿using Guadalupe.Conexao.App.Repository;
+using Guadalupe.Conexao.App.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace Guadalupe.Conexao.App.View
         public HomeView()
         {
             InitializeComponent();
-            BindingContext = new HomeViewModel(Navigation);
+            BindingContext = new HomeViewModel(Navigation, new NoticeRepository());
         }
     }
 }

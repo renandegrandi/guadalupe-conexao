@@ -1,21 +1,34 @@
-﻿using Guadalupe.Conexao.App.Model;
+﻿using Guadalupe.Conexao.App.Extensions;
+using Guadalupe.Conexao.App.Model;
+using Guadalupe.Conexao.App.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using static Guadalupe.Conexao.App.Repository.DTO.NewDto;
 
 namespace Guadalupe.Conexao.App.ViewModel
 {
-    public class HomeViewModel : ViewModel
+    sealed class HomeViewModel : ViewModel, IDisposable
     {
-        #region Propriedades
+        #region Dependencies
 
+        private readonly INoticeRepository _noticeRepository;
+        private readonly CancellationToken _cancelationToken;
+
+        #endregion
+
+        #region Properties
+        public DateTime? LastUpdate { get; set; }
+        public string Message { get; set; }
         public bool IsRefreshing { get; private set; }
         public IReadOnlyCollection<Notice> News { get; private set; }
-        public ICommand RefreshNews => new Command(async () =>
+        public ICommand RefreshNewsCommandAsync => new Command(async () =>
         {
-            await Task.Delay(3000);
+            await UpdateAndRefreshViewCommandAsync();
 
             IsRefreshing = false;
             this.OnPropertyChanged(nameof(IsRefreshing));
@@ -24,40 +37,79 @@ namespace Guadalupe.Conexao.App.ViewModel
         #endregion
 
         #region Construtores
-        public HomeViewModel(INavigation navigation) : base(navigation)
+        public HomeViewModel(INavigation navigation, INoticeRepository noticeRepository) : base(navigation)
         {
-            var missaoGuadalupe = new User
-            {
-                Id = Guid.NewGuid(),
-                Image = "profile.jpg",
-                Name = "Missão Guadalupe"
-            };
+            _cancelationToken = new CancellationToken();
+            _noticeRepository = noticeRepository;
 
-            News = new List<Notice>
-            {
-                new Notice {
-                    Id = Guid.NewGuid(),
-                    Message = @"🤩 Bom dia com alegria e muito amor no coração, porque hoje é Dia das Crianças, é Dia de Nossa Senhora Aparecida e é dia de GRUPO DE ORAÇÃO!!!" +
-                        @"🙏🏻Nem precisamos dizer que vai ser lindo, né? A convidada dessa noite é a Lidy Souza. Ela vai falar sobre a “Vida Missionária de Maria”, e está preparando tudo com muito carinho. " +
-                        @"🙌🏻Esperamos você, às 20h, na Igreja Maceno. O número de pessoas permitido é limitado e será por ordem de chegada. " +
-                        @"😉Convide a família e os amigos. A transmissão ao vivo pelo YouTube também continua. " +
-                        @"🌐Link: https://bit.ly/3gHcMzL (inscreva-se no nosso canal do YouTube. Link direto na bio.)",
-                    Image = "notice.jpg",
-                    Date= DateTime.Now,
-                    PostedBy = missaoGuadalupe
-                },                
-                new Notice {
-                    Id = Guid.NewGuid(),
-                    Message = "😴 Soninho dos pequenos protegido e abençoado com a Naninha da Nossa Senhora de Guadalupe.",
-                    Image = "notice.jpg",
-                    Date = DateTime.Now,
-                    PostedBy = missaoGuadalupe
-                },
+            News = _noticeRepository.GetAsync(_cancelationToken).Result;
 
-            };
+            UpdateAndRefreshViewCommandAsync()
+                .SafeFireAndForget(false);
+        }
+
+        public void Dispose()
+        {
+            _cancelationToken.ThrowIfCancellationRequested();
         }
         #endregion
 
+        #region Private Method
+
+        private async Task UpdateAndRefreshViewCommandAsync() 
+        {
+            try
+            {
+                var newsUpdated = await _noticeRepository.GetByDateAsync(this.LastUpdate, _cancelationToken);
+
+                var idDeletedNews = newsUpdated.Where((n) => n.State.Equals(States.Removed))
+                    .Select((n) => n.Id)
+                    .ToArray();
+
+                await _noticeRepository.RemoveAsync(idDeletedNews, _cancelationToken);
+
+                var idUpdatedNews = newsUpdated.Where((n) => n.State.Equals(States.Modified))
+                    .Select((n) => n.Id)
+                    .ToArray();
+
+                var noticesToUpdated = await _noticeRepository.GetAsync(idUpdatedNews, _cancelationToken);
+
+                //TODO: Por enquanto não vou implementar as atualizações de noticias, não vamos ter atualização de feeds.
+
+                var newNotices = newsUpdated
+                    .Where((n) => !noticesToUpdated.Any((notice) => notice.Id == n.Id))
+                    .ToList();
+
+                var noticesToInclude = newNotices.Union(newsUpdated.Where((n) => n.State == States.Included))
+                    .Select((n) => new Notice
+                    {
+                        Id = n.Id,
+                        Posted = n.Posted,
+                        Image = n.Image,
+                        Message = n.Message,
+                        PostedBy = new Person
+                        {
+                            Id = n.PostedBy.Id,
+                            Image = n.PostedBy.Profile,
+                            Name = n.PostedBy.Name
+                        }
+                    })
+                    .ToList();
+
+                await _noticeRepository.InsertAsync(noticesToInclude, _cancelationToken);
+
+                News = await _noticeRepository.GetAsync(_cancelationToken);
+
+                OnPropertyChanged(nameof(this.News));
+            }
+            catch (Exception)
+            {
+                this.Message = "Falha para carregaro aplicativo!";
+                OnPropertyChanged(nameof(this.Message));
+            }
+        }
+
+        #endregion
 
     }
 }

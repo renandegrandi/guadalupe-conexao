@@ -9,7 +9,7 @@
              x:Class="Guadalupe.Conexao.App.View.HomeView">
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}" 
-                     Command="{Binding RefreshNews}">
+                     Command="{Binding RefreshNewsCommandAsync}">
             <CollectionView ItemsSource="{Binding News}" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

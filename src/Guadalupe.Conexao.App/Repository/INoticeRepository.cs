@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Guadalupe.Conexao.App.Repository
 {
-    public interface INewRepository
+    public interface INoticeRepository
     {
         Task<List<NewDto>> GetByDateAsync(DateTime? last, CancellationToken cancellationToken);
         Task<List<Notice>> GetAsync(CancellationToken cancellationToken);
