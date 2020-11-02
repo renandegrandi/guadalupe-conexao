@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using AutoMapper;
+using Guadalupe.Conexao.Api.Config;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Guadalupe.Conexao.Api
 {
@@ -29,7 +25,27 @@ namespace Guadalupe.Conexao.Api
         {
             services
                 .AddControllers();
-            
+
+            services.Configure<AuthenticationConfig>(Configuration.GetSection(AuthenticationConfig.Key));
+            var authenticationConfig = Configuration.GetValue<AuthenticationConfig>(AuthenticationConfig.Key);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer((options) =>
+                {
+                    var key = Encoding.ASCII.GetBytes(authenticationConfig.Jwt.SymmetricKey);
+
+                    options.Authority = authenticationConfig.Jwt.Authority;
+                    options.Audience = authenticationConfig.Jwt.Audience;
+
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = true,
+                        ValidateAudience = true
+                    };
+                });
+
             services
                 .AddAutoMapper(typeof(Startup));
         }
