@@ -1,5 +1,6 @@
 using AutoMapper;
 using Guadalupe.Conexao.Api.Config;
+using Guadalupe.Conexao.Api.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +24,9 @@ namespace Guadalupe.Conexao.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+                .AddRepositories();
+
             services
                 .AddControllers();
 

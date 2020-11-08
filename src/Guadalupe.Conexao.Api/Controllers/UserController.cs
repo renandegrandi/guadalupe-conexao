@@ -52,7 +52,7 @@ namespace Guadalupe.Conexao.Api.Controllers
                 SecurityAlgorithms.HmacSha256Signature);
 
             var claims = new Claim[] {
-                new Claim(ClaimTypes.Name, user.Email)
+                new Claim(ClaimTypes.Name, user.Person.Email)
             };
 
             var now = DateTime.Now;
@@ -64,6 +64,43 @@ namespace Guadalupe.Conexao.Api.Controllers
 
         #endregion
 
+        /// <summary>
+        /// Responsável por gerar um novo código de acesso e enviar para o e-mail que foi solicitado.
+        /// A função irá verificar se o email já está cadastrado na nossa base de dados se não encontrar irá gerar um novo registro de usuário e pessoa, disparando um novo código a cada requisição para o e-mail do solicitante.
+        /// </summary>
+        /// <param name="email">Email que deseja receber um novo código de acesso.</param>
+        [HttpPut]
+        [Route("{email}/send_code")]
+        public async Task<IActionResult> SendNewCodeByEmailAsync([FromRoute(Name = "email")]string email) 
+        {
+            var user = await _userRepository.GetByEmailAsync(email, HttpContext.RequestAborted);
+
+            var newUser = user == null;
+
+            if (newUser)
+            {
+                var person = await _userRepository.GetPersonByEmailAsync(email, HttpContext.RequestAborted);
+
+                if (person == null)
+                    person = new Person(email);
+
+                user = new User(person);
+
+                await _userRepository.AddAsync(user, HttpContext.RequestAborted);
+            }
+            else 
+            {
+                user.RegenerateCodeAccess();
+            }
+
+            //TODO: Realizar a implementação do envio de e-mail.
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Método responsável por gerar um token de acesso para a aplicação.
+        /// </summary>
         [HttpPost]
         [Route("/token")]
         public async Task<IActionResult> AuthenticationAsync([FromBody]AuthenticationDto authentication)
@@ -73,20 +110,35 @@ namespace Guadalupe.Conexao.Api.Controllers
             switch (authentication.GrantType)
             {
                 case GrantTypes.password:
-                    user = await _userRepository.GetByEmailAsync(authentication.Username);
+
+                    user = await _userRepository.GetByEmailAsync(authentication.Username, HttpContext.RequestAborted);
 
                     if (user == null) 
                     {
                         return Unauthorized(new AuthenticationErroDto
                         {
                             Erro = OAuthError.invalid_client,
-                            Descricao = "Email ou código invalido!"
+                            Descricao = $"O Email: {authentication.Username}, não está cadastrado!"
                         });
                     }
 
+                    var codigoInvalido = !user.CodeAccess.Equals(authentication.Password);
+
+                    if (codigoInvalido) 
+                    {
+                        return Unauthorized(new AuthenticationErroDto
+                        {
+                            Erro = OAuthError.invalid_client,
+                            Descricao = $"O Código informado está invalido!"
+                        });
+                    }
+
+
+                    //TODO: Realizar a implementação de um time-out para expirar códigos muito antigos.
+
                     break;
                 case GrantTypes.refresh_token:
-                    user = await _userRepository.GetByRefreshTokenAsync(authentication.RefreshToken);
+                    user = await _userRepository.GetByRefreshTokenAsync(authentication.RefreshToken, HttpContext.RequestAborted);
 
                     if (user == null)
                     {
@@ -110,7 +162,7 @@ namespace Guadalupe.Conexao.Api.Controllers
 
             var refreshToken = Guid.NewGuid().ToString();
 
-            await _userRepository.SaveRefreshTokenAsync(user.Id, refreshToken);
+            await _userRepository.SaveRefreshTokenAsync(user.Id, refreshToken, HttpContext.RequestAborted);
 
             return Ok(new AuthenticationTokenDto { 
                 AccessToken = accessToken,
@@ -130,11 +182,17 @@ namespace Guadalupe.Conexao.Api.Controllers
         {
             Guid user = Guid.NewGuid();
 
-            var notices = await _userRepository.GetLastNoticesAsync(user, lastUpdate);
+            var notices = await _userRepository.GetLastNoticesAsync(user, lastUpdate, HttpContext.RequestAborted);
 
             var noticesMapped = _mapper.Map<List<NoticeDto>>(notices);
 
             return Ok(noticesMapped);
+        }
+
+        [HttpGet()]
+        public IActionResult teste() 
+        {
+            return Ok();
         }
     }
 }
