@@ -25,7 +25,7 @@ namespace Guadalupe.Conexao.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddRepositories();
+                .AddRepositories(Configuration);
 
             services
                 .AddControllers();

@@ -9,7 +9,7 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
         {
             builder
                 .ToTable("person")
-                .HasKey("id");
+                .HasKey((b) => b.Id);
 
             builder.Property((b) => b.Id)
                 .ValueGeneratedNever()

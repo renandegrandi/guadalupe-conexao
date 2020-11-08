@@ -22,23 +22,32 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<User> User { get; set; }
 
+        #endregion
+
         public Task<int> CommitAsync(CancellationToken cancellationToken)
         {
             return base.SaveChangesAsync(cancellationToken);
         }
-
         public Task<int> CommitAsync()
         {
             return base.SaveChangesAsync();
         }
+        void IUnitOfWork.Attach(object input)
+        {
+            this.Attach(input);
+        }
+        void IUnitOfWork.Add(object input) 
+        {
+            this.Add(input);
+        }
 
-        #endregion
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             modelBuilder.ApplyConfiguration(new Configurations.Person());
             modelBuilder.ApplyConfiguration(new Configurations.User());
         }
+
 
     }
 }

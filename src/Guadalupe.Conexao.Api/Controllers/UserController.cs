@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -71,11 +72,13 @@ namespace Guadalupe.Conexao.Api.Controllers
         /// <param name="email">Email que deseja receber um novo código de acesso.</param>
         [HttpPut]
         [Route("{email}/send_code")]
-        public async Task<IActionResult> SendNewCodeByEmailAsync([FromRoute(Name = "email")]string email) 
+        public async Task<IActionResult> SendNewCodeByEmailAsync([FromRoute(Name = "email"), EmailAddress]string email) 
         {
             var user = await _userRepository.GetByEmailAsync(email, HttpContext.RequestAborted);
 
             var newUser = user == null;
+
+            var unitOfWork = _userRepository.UnitOfWork;
 
             if (newUser)
             {
@@ -83,15 +86,19 @@ namespace Guadalupe.Conexao.Api.Controllers
 
                 if (person == null)
                     person = new Person(email);
+                else
+                    unitOfWork.Attach(person);
 
                 user = new User(person);
 
-                await _userRepository.AddAsync(user, HttpContext.RequestAborted);
+                unitOfWork.Add(user);
             }
             else 
             {
                 user.RegenerateCodeAccess();
             }
+
+            await unitOfWork.CommitAsync(HttpContext.RequestAborted);
 
             //TODO: Realizar a implementação do envio de e-mail.
 

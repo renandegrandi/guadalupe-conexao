@@ -13,6 +13,5 @@ namespace Guadalupe.Conexao.Api.Domain
         Task<User> GetByRefreshTokenAsync(string refreshToken, CancellationToken cancellationToken);
         Task<Person> GetPersonByEmailAsync(string email, CancellationToken cancellationToken);
         Task SaveRefreshTokenAsync(Guid user, string refreshToken, CancellationToken cancellationToken);
-        Task AddAsync(User user, CancellationToken cancellationToken);
     }
 }

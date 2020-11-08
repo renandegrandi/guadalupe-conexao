@@ -13,7 +13,9 @@ namespace Guadalupe.Conexao.Api.Domain
 
         #region Constructor
 
-        public User(Person person) : base()
+        private User() : base() { }
+
+        public User(Person person) : this()
         {
             Person = person;
             CodeAccess = "AAAA";

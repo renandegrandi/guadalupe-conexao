@@ -1,7 +1,9 @@
 ﻿using Guadalupe.Conexao.Api.Core.Data;
 using Guadalupe.Conexao.Api.Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -38,7 +40,12 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Repositories
 
         public Task<User> GetByEmailAsync(string email, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _context
+                .User
+                .AsNoTracking()
+                .Include((c) => c.Person)
+                .Where((c) => c.Person.Email.Equals(email))
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
         public Task<User> GetByRefreshTokenAsync(string refreshToken, CancellationToken cancellationToken)
@@ -53,7 +60,11 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Repositories
 
         public Task<Person> GetPersonByEmailAsync(string email, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _context
+                .Person
+                .AsNoTracking()
+                .Where((c) => c.Email.Equals(email))
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
         public Task SaveRefreshTokenAsync(Guid user, string refreshToken, CancellationToken cancellationToken)
