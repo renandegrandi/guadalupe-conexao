@@ -1,5 +1,6 @@
 ﻿using Guadalupe.Conexao.Api.Core.Data;
 using Guadalupe.Conexao.Api.Domain;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -69,7 +70,12 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Repositories
 
         public Task SaveRefreshTokenAsync(Guid user, string refreshToken, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var @params = new List<SqlParameter> {
+                new SqlParameter("@refresh_token", refreshToken),
+                new SqlParameter("@id", user)
+            };
+
+            return _context.Database.ExecuteSqlRawAsync($"UPDATE [user] SET refresh_token = @refresh_token WHERE id = @id", @params, cancellationToken);
         }
     }
 }

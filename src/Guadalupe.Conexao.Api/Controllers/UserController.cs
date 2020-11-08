@@ -4,6 +4,7 @@ using Guadalupe.Conexao.Api.Domain;
 using Guadalupe.Conexao.Api.Models.V1;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -43,11 +44,11 @@ namespace Guadalupe.Conexao.Api.Controllers
 
         #region Private Methods
 
-        public string GenerateToken(User user)
+        public string GenerateToken(User user, DateTime date)
         {
             var key = Encoding.ASCII.GetBytes(_authentication.Jwt.SymmetricKey);
 
-            var expires = DateTime.UtcNow.AddHours(2);
+            
 
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), 
                 SecurityAlgorithms.HmacSha256Signature);
@@ -56,9 +57,9 @@ namespace Guadalupe.Conexao.Api.Controllers
                 new Claim(ClaimTypes.Name, user.Person.Email)
             };
 
-            var now = DateTime.Now;
+            var expires = date.AddHours(2);
 
-            var jwt = new JwtSecurityToken(null, _authentication.Jwt.Audience, claims, now, expires, signingCredentials);
+            var jwt = new JwtSecurityToken(null, _authentication.Jwt.Audience, claims, date, expires, signingCredentials);
 
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
@@ -70,8 +71,7 @@ namespace Guadalupe.Conexao.Api.Controllers
         /// A função irá verificar se o email já está cadastrado na nossa base de dados se não encontrar irá gerar um novo registro de usuário e pessoa, disparando um novo código a cada requisição para o e-mail do solicitante.
         /// </summary>
         /// <param name="email">Email que deseja receber um novo código de acesso.</param>
-        [HttpPut]
-        [Route("{email}/send_code")]
+        [HttpPut("{email}/send_code")]
         public async Task<IActionResult> SendNewCodeByEmailAsync([FromRoute(Name = "email"), EmailAddress]string email) 
         {
             var user = await _userRepository.GetByEmailAsync(email, HttpContext.RequestAborted);
@@ -109,8 +109,7 @@ namespace Guadalupe.Conexao.Api.Controllers
         /// <summary>
         /// Método responsável por gerar um token de acesso para a aplicação.
         /// </summary>
-        [HttpPost]
-        [Route("/token")]
+        [HttpPost("token")]
         public async Task<IActionResult> AuthenticationAsync([FromBody]AuthenticationDto authentication)
         {
             User user = null;
@@ -166,15 +165,19 @@ namespace Guadalupe.Conexao.Api.Controllers
                     });
             }
 
-            var accessToken = GenerateToken(user);
+            var now = DateTime.Now;
+
+            var accessToken = GenerateToken(user, now);
 
             var refreshToken = Guid.NewGuid().ToString();
 
             await _userRepository.SaveRefreshTokenAsync(user.Id, refreshToken, HttpContext.RequestAborted);
 
+            var expiresIn = now.AddHours(2).Millisecond.ToString();
+
             return Ok(new AuthenticationTokenDto { 
                 AccessToken = accessToken,
-                ExpiresIn = TimeSpan.FromHours(2).ToString(),
+                ExpiresIn = expiresIn,
                 RefreshToken = refreshToken,
             });
         }
@@ -183,9 +186,8 @@ namespace Guadalupe.Conexao.Api.Controllers
         /// Retorna as últimas noticias para o usuário de acordo com a data da última solicitação de atualização.
         /// </summary>
         /// <param name="lastUpdate">Data da última solicitação de atualização de noticias</param>
-        [HttpGet]
+        [HttpGet("notices")]
         [Authorize]
-        [Route("notices")]
         public async Task<IActionResult> GetNoticesByLastUpdateAsync([FromQuery(Name = "last_update")] DateTime? lastUpdate)
         {
             Guid user = Guid.NewGuid();
@@ -195,12 +197,6 @@ namespace Guadalupe.Conexao.Api.Controllers
             var noticesMapped = _mapper.Map<List<NoticeDto>>(notices);
 
             return Ok(noticesMapped);
-        }
-
-        [HttpGet()]
-        public IActionResult teste() 
-        {
-            return Ok();
         }
     }
 }

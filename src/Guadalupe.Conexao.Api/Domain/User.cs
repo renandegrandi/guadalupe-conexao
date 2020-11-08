@@ -8,6 +8,7 @@ namespace Guadalupe.Conexao.Api.Domain
 
         public Person Person { get; private set; }
         public string CodeAccess { get; private set; }
+        public string RefreshToken { get; private set; }
 
         #endregion
 

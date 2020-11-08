@@ -21,6 +21,10 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
                 .HasMaxLength(100)
                 .HasColumnName("code_access");
 
+            builder.Property((b) => b.RefreshToken)
+                .HasMaxLength(255)
+                .HasColumnName("refresh_token");
+
             builder.Property((b) => b.Registration)
                 .IsRequired()
                 .HasDefaultValueSql("getdate()")
