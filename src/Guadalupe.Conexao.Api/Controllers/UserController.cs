@@ -95,6 +95,7 @@ namespace Guadalupe.Conexao.Api.Controllers
             }
             else 
             {
+                unitOfWork.Attach(user);
                 user.RegenerateCodeAccess();
             }
 
