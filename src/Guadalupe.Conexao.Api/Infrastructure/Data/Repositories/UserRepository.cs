@@ -54,11 +54,6 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<Notice>> GetLastNoticesAsync(Guid user, DateTime? lastUpdate, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<Person> GetPersonByEmailAsync(string email, CancellationToken cancellationToken)
         {
             return _context

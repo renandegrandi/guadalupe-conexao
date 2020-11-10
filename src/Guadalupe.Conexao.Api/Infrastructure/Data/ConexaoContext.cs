@@ -24,6 +24,7 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data
 
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Notice> Notice { get; set; }
 
         #endregion
 
@@ -74,6 +75,7 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data
         {
             modelBuilder.ApplyConfiguration(new Configurations.Person());
             modelBuilder.ApplyConfiguration(new Configurations.User());
+            modelBuilder.ApplyConfiguration(new Configurations.Notice());
         }
 
 

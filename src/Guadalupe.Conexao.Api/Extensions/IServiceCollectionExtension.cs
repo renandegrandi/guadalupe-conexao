@@ -23,6 +23,7 @@ namespace Guadalupe.Conexao.Api.Extensions
             });
 
             service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<INoticeRepository, NoticeRepository>();
 
             ConexaoSeedData.Initialize(service.BuildServiceProvider());
 

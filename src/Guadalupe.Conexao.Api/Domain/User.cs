@@ -1,4 +1,5 @@
 ﻿using Guadalupe.Conexao.Api.Core.DomainObject;
+using System;
 
 namespace Guadalupe.Conexao.Api.Domain
 {
@@ -6,6 +7,7 @@ namespace Guadalupe.Conexao.Api.Domain
     {
         #region Propriedades
 
+        public Guid IdPerson { get; set; }
         public Person Person { get; private set; }
         public string CodeAccess { get; private set; }
         public string RefreshToken { get; private set; }
@@ -19,6 +21,7 @@ namespace Guadalupe.Conexao.Api.Domain
         public User(Person person) : this()
         {
             Person = person;
+            IdPerson = person.Id;
             CodeAccess = "AAAA";
         }
 

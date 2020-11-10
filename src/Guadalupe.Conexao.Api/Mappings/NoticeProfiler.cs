@@ -5,11 +5,12 @@ using Dto = Guadalupe.Conexao.Api.Models.V1;
 
 namespace Guadalupe.Conexao.Api.Mappings
 {
-    public class NoticeProfiler : Profile
+    sealed class NoticeProfiler : Profile
     {
         public NoticeProfiler()
         {
             CreateMap<Domain.Notice, Dto.NoticeDto>()
+                .ForMember((dto) => dto.PostedBy, opt => opt.MapFrom((domain) => domain.PostedBy))
                 .ForMember((dto) => dto.Posted, opt => opt.MapFrom((domain) => domain.Registration))
                 .ForMember((dto) => dto.State, opt => opt.MapFrom<StateResolver>());
         }

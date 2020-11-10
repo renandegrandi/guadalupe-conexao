@@ -3,14 +3,14 @@ using System;
 
 namespace Guadalupe.Conexao.Api.Domain
 {
-    public class Notice : Entity
+    public class Notice : Entity, IAggregateRoot
     {
         #region Properties
 
         public string Message { get; private set; }
         public string Image { get; private set; }
         public Guid IdPostedBy { get; private set; }
-        public User PostedBy { get; private set; }
+        public Person PostedBy { get; private set; }
 
         #endregion
 
@@ -18,14 +18,14 @@ namespace Guadalupe.Conexao.Api.Domain
 
         private Notice() : base() { }
 
-        public Notice(string message, User postedBy) : this()
+        public Notice(string message, Person postedBy) : this()
         {
             Message = message;
             PostedBy = postedBy;
             IdPostedBy = postedBy.Id;
         }
 
-        public Notice(string message, string image, User postedBy)  : this(message, postedBy)
+        public Notice(string message, string image, Person postedBy)  : this(message, postedBy)
         {
             Image = image;
         }

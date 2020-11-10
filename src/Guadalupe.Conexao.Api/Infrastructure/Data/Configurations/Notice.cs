@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
 {
-    public class User : IEntityTypeConfiguration<Domain.User>
+    public class Notice : IEntityTypeConfiguration<Domain.Notice>
     {
-        public void Configure(EntityTypeBuilder<Domain.User> builder)
+        public void Configure(EntityTypeBuilder<Domain.Notice> builder)
         {
             builder
-                .ToTable("user")
+                .ToTable("notice")
                 .HasKey((b) => b.Id);
 
             builder.Property((b) => b.Id)
@@ -17,15 +17,19 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
                 .HasColumnType("UNIQUEIDENTIFIER")
                 .HasColumnName("id");
 
-            builder.Property((b) => b.CodeAccess)
+            builder.Property((b) => b.Message)
                 .IsUnicode(false)
-                .HasMaxLength(100)
-                .HasColumnName("code_access");
+                .IsRequired()
+                .HasColumnName("message");
 
-            builder.Property((b) => b.RefreshToken)
+            builder.Property((b) => b.Image)
                 .IsUnicode(false)
                 .HasMaxLength(255)
-                .HasColumnName("refresh_token");
+                .HasColumnName("image_url");
+
+            builder.Property((b) => b.IdPostedBy)
+                .HasColumnName("id_posted_by")
+                .IsRequired();
 
             builder.Property((b) => b.Registration)
                 .IsRequired()
@@ -41,14 +45,9 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
                 .HasColumnType("datetime")
                 .HasColumnName("removal_date");
 
-            builder.Property((b) => b.IdPerson)
-                .IsRequired()
-                .HasColumnType("UNIQUEIDENTIFIER")
-                .HasColumnName("id_person");
-
-            builder.HasOne((b) => b.Person)
-                .WithOne()
-                .HasForeignKey<Domain.User>((b) => b.IdPerson);
+            builder.HasOne((b) => b.PostedBy)
+                .WithMany()
+                .HasForeignKey((b) => b.IdPostedBy);
         }
     }
 }

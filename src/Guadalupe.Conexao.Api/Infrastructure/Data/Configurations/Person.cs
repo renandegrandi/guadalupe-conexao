@@ -20,10 +20,12 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
             builder.Property((b) => b.Email)
                 .IsRequired()
                 .HasColumnName("email")
+                .IsUnicode(false)
                 .HasMaxLength(255);
 
             builder.Property((b) => b.Nome)
                 .HasColumnName("nome")
+                .IsUnicode(false)
                 .HasMaxLength(255);
 
             builder.Property((b) => b.Registration)
@@ -39,7 +41,6 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
             builder.Property((b) => b.Removal)
                 .HasColumnType("datetime")
                 .HasColumnName("removal_date");
-
         }
     }
 }

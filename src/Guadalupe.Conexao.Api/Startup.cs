@@ -31,22 +31,21 @@ namespace Guadalupe.Conexao.Api
                 .AddControllers();
 
             services.Configure<AuthenticationConfig>(Configuration.GetSection(AuthenticationConfig.Key));
-            var authenticationConfig = Configuration.GetValue<AuthenticationConfig>(AuthenticationConfig.Key);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer((options) =>
                 {
-                    var key = Encoding.ASCII.GetBytes(authenticationConfig.Jwt.SymmetricKey);
+                    var key = Encoding.ASCII.GetBytes(Configuration["Authentication:Jwt:SymmetricKey"]);
 
-                    options.Authority = authenticationConfig.Jwt.Authority;
-                    options.Audience = authenticationConfig.Jwt.Audience;
+                    //options.Authority = Configuration["Authentication:Jwt:Authority"];
+                    //options.Audience = Configuration["Authentication:Jwt:Audience"];
 
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(key),
-                        ValidateIssuer = true,
-                        ValidateAudience = true
+                        ValidateIssuer = false,
+                        ValidateAudience = false
                     };
                 });
 
@@ -66,6 +65,7 @@ namespace Guadalupe.Conexao.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
