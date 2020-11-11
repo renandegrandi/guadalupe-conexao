@@ -1,4 +1,7 @@
-﻿using Guadalupe.Conexao.App.Validation;
+﻿using Guadalupe.Conexao.App.Repository;
+using Guadalupe.Conexao.App.Repository.DTO;
+using Guadalupe.Conexao.App.Validation;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -7,18 +10,23 @@ namespace Guadalupe.Conexao.App.ViewModel
 {
     sealed class ValidateCodeViewModel: ViewModel
     {
-        #region Dependencias
-        private string InternalCode { get; set; }
+        #region Dependencies
+
+        private readonly CancellationToken _cancellationToken;
 
         #endregion
 
-        public ValidateCodeViewModel(INavigation navigation, string code) : base(navigation)
+        #region Constructor
+        public ValidateCodeViewModel(INavigation navigation, string email) : base(navigation)
         {
+            _cancellationToken = new CancellationToken();
+            Email = email;
+
             Code = new ValidatableObject<string>(new IsNotNullOrEmptyRule("É necessário informar o código que foi enviado no seu email."));
-
-            InternalCode = code;
         }
+        #endregion
 
+        public string Email { get; private set; }
         public ValidatableObject<string> Code { get; set; }
         public string Message { get; set; }
         public bool HasMessage { 
@@ -27,25 +35,28 @@ namespace Guadalupe.Conexao.App.ViewModel
                 return !string.IsNullOrWhiteSpace(Message);
             } 
         }
-
         public ICommand OnSendNewCodeCommand => new Command(async () =>
         {
             await Task.CompletedTask;
         });
         public ICommand OnValidateCodeCommand => new Command(async () =>
         {
-            if (!Code.Equals(InternalCode)) 
+            try
             {
-                Message = "Código ínvalido!";
+                await ConexaoHttpClient.AuthenticationAsync(new AuthenticationDto { 
+                     GrantType = AuthenticationDto.GrantTypes.password,
+                     Username = this.Email,
+                     Password = this.Code.Value
+                }, this._cancellationToken);
+
+            }
+            catch (System.Exception ex)
+            {
+                Message = ex.Message;
 
                 OnPropertyChanged(nameof(Message));
                 OnPropertyChanged(nameof(HasMessage));
             }
-
-            //TODO: Verificar se será necessário validar no servidor o código do usuário.
-            //TODO: Implementar entrada no aplicativo.
-
-            await Task.CompletedTask;
         });
     }
 }

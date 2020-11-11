@@ -1,9 +1,8 @@
-﻿using Guadalupe.Conexao.Api.Core;
-using System;
+﻿using System;
 
-namespace Guadalupe.Conexao.Api.Models.V1
+namespace Guadalupe.Conexao.App.Repository.DTO
 {
-    public class PersonDto : IDto
+    public class PersonDto 
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

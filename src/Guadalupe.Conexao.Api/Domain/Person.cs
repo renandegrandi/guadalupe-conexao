@@ -6,7 +6,7 @@ namespace Guadalupe.Conexao.Api.Domain
     {
         #region Properties
 
-        public string Nome { get; private set; }
+        public string Name { get; private set; }
         public string Email { get; private set; }
 
         #endregion

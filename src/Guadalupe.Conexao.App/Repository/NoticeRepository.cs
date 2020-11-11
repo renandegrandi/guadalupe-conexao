@@ -11,11 +11,11 @@ namespace Guadalupe.Conexao.App.Repository
 {
     sealed class NoticeRepository : INoticeRepository
     {
-        private static UserDto missao = new UserDto
+        private static PersonDto missao = new PersonDto
         {
             Id = Guid.NewGuid(),
             Name = "Missão Guadalupe",
-            Profile = "profile.jpg"
+            Email = "profile.jpg"
         };
 
         public NoticeRepository() 
@@ -50,11 +50,11 @@ namespace Guadalupe.Conexao.App.Repository
                 .ToListAsync();
         }
 
-        public Task<List<NewDto>> GetByDateAsync(DateTime? last, CancellationToken cancellationToken)
+        public Task<List<NoticeDto>> GetByDateAsync(DateTime? last, CancellationToken cancellationToken)
         {
-            return Task.FromResult(new List<NewDto>
+            return Task.FromResult(new List<NoticeDto>
             {
-                new NewDto 
+                new NoticeDto 
                 {
                     Id = Guid.NewGuid(),
                     Message = @"🤩 Bom dia com alegria e muito amor no coração, porque hoje é Dia das Crianças, é Dia de Nossa Senhora Aparecida e é dia de GRUPO DE ORAÇÃO!!!" +
@@ -65,7 +65,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Image = "notice.jpg",
                     Posted = DateTime.Now,
                     PostedBy = missao,
-                    State = NewDto.States.Included
+                    State = NoticeDto.UserNoticeState.Included
                 }
             });
         }

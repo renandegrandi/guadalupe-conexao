@@ -23,7 +23,7 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
                 .IsUnicode(false)
                 .HasMaxLength(255);
 
-            builder.Property((b) => b.Nome)
+            builder.Property((b) => b.Name)
                 .HasColumnName("nome")
                 .IsUnicode(false)
                 .HasMaxLength(255);

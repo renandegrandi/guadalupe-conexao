@@ -8,10 +8,10 @@ namespace Guadalupe.Conexao.App.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ValidateCodeView : ContentPage
     {
-        public ValidateCodeView(string code)
+        public ValidateCodeView(string email)
         {
             InitializeComponent();
-            BindingContext = new ValidateCodeViewModel(Navigation, code);
+            BindingContext = new ValidateCodeViewModel(Navigation, email);
         }
     }
 }

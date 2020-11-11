@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using static Guadalupe.Conexao.App.Repository.DTO.NewDto;
+using static Guadalupe.Conexao.App.Repository.DTO.NoticeDto;
 
 namespace Guadalupe.Conexao.App.ViewModel
 {
@@ -62,13 +62,13 @@ namespace Guadalupe.Conexao.App.ViewModel
             {
                 var newsUpdated = await _noticeRepository.GetByDateAsync(this.LastUpdate, _cancelationToken);
 
-                var idDeletedNews = newsUpdated.Where((n) => n.State.Equals(States.Removed))
+                var idDeletedNews = newsUpdated.Where((n) => n.State.Equals(UserNoticeState.Removed))
                     .Select((n) => n.Id)
                     .ToArray();
 
                 await _noticeRepository.RemoveAsync(idDeletedNews, _cancelationToken);
 
-                var idUpdatedNews = newsUpdated.Where((n) => n.State.Equals(States.Modified))
+                var idUpdatedNews = newsUpdated.Where((n) => n.State.Equals(UserNoticeState.Modified))
                     .Select((n) => n.Id)
                     .ToArray();
 
@@ -80,7 +80,7 @@ namespace Guadalupe.Conexao.App.ViewModel
                     .Where((n) => !noticesToUpdated.Any((notice) => notice.Id == n.Id))
                     .ToList();
 
-                var noticesToInclude = newNotices.Union(newsUpdated.Where((n) => n.State == States.Included))
+                var noticesToInclude = newNotices.Union(newsUpdated.Where((n) => n.State == UserNoticeState.Included))
                     .Select((n) => new Notice
                     {
                         Id = n.Id,
@@ -90,7 +90,7 @@ namespace Guadalupe.Conexao.App.ViewModel
                         PostedBy = new Person
                         {
                             Id = n.PostedBy.Id,
-                            Image = n.PostedBy.Profile,
+                            Image = "",
                             Name = n.PostedBy.Name
                         }
                     })

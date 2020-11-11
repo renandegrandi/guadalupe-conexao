@@ -1,6 +1,4 @@
-﻿using Guadalupe.Conexao.App.Extensions;
-using Guadalupe.Conexao.App.Repository;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Guadalupe.Conexao.App
 {
@@ -10,7 +8,7 @@ namespace Guadalupe.Conexao.App
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new View.MainView());
+            MainPage = new NavigationPage(new View.AutenticationView());
         }
 
         protected override void OnStart()

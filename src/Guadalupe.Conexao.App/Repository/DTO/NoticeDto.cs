@@ -2,7 +2,7 @@
 
 namespace Guadalupe.Conexao.App.Repository.DTO
 {
-    public class NewDto
+    public class NoticeDto
     {
         #region Properties
 
@@ -10,14 +10,15 @@ namespace Guadalupe.Conexao.App.Repository.DTO
         public string Message { get; set; }
         public string Image { get; set; }
         public DateTime Posted { get; set; }
-        public UserDto PostedBy { get; set; }
-        public States State { get; set; }
+        public Guid IdPostedBy { get; set; }
+        public PersonDto PostedBy { get; set; }
+        public UserNoticeState State { get; set; }
 
         #endregion
 
         #region Enums
 
-        public enum States
+        public enum UserNoticeState
         {
             Included,
             Modified,
