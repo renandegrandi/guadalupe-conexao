@@ -13,5 +13,8 @@ namespace Guadalupe.Conexao.Api.Models.V1
 
         [JsonPropertyName("refresh_token")]
         public string RefreshToken { get; set; }
+
+        [JsonPropertyName("user_info")]
+        public PersonDto UserInfo { get; set; }
     }
 }

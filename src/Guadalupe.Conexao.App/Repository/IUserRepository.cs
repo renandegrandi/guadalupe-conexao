@@ -1,8 +1,11 @@
-﻿using Guadalupe.Conexao.App.Repository.DTO;
-using System.Threading;
+﻿using Guadalupe.Conexao.App.Model;
 using System.Threading.Tasks;
 
 namespace Guadalupe.Conexao.App.Repository
 {
-    public interface IUserRepository { }
+    public interface IUserRepository 
+    {
+        Task SaveAsync(User user);
+        Task<User> GetAsync();
+    }
 }

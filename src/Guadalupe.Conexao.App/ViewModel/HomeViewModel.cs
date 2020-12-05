@@ -42,7 +42,10 @@ namespace Guadalupe.Conexao.App.ViewModel
             _cancelationToken = new CancellationToken();
             _noticeRepository = noticeRepository;
 
-            News = _noticeRepository.GetAsync(_cancelationToken).Result;
+            News = _noticeRepository.GetAsync()
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
 
             UpdateAndRefreshViewCommandAsync()
                 .SafeFireAndForget(false);
@@ -66,13 +69,13 @@ namespace Guadalupe.Conexao.App.ViewModel
                     .Select((n) => n.Id)
                     .ToArray();
 
-                await _noticeRepository.RemoveAsync(idDeletedNews, _cancelationToken);
+                await _noticeRepository.RemoveAsync(idDeletedNews);
 
                 var idUpdatedNews = newsUpdated.Where((n) => n.State.Equals(UserNoticeState.Modified))
                     .Select((n) => n.Id)
                     .ToArray();
 
-                var noticesToUpdated = await _noticeRepository.GetAsync(idUpdatedNews, _cancelationToken);
+                var noticesToUpdated = await _noticeRepository.GetAsync(idUpdatedNews);
 
                 //TODO: Por enquanto não vou implementar as atualizações de noticias, não vamos ter atualização de feeds.
 
@@ -96,9 +99,9 @@ namespace Guadalupe.Conexao.App.ViewModel
                     })
                     .ToList();
 
-                await _noticeRepository.InsertAsync(noticesToInclude, _cancelationToken);
+                await _noticeRepository.InsertAsync(noticesToInclude);
 
-                News = await _noticeRepository.GetAsync(_cancelationToken);
+                News = await _noticeRepository.GetAsync();
 
                 OnPropertyChanged(nameof(this.News));
             }

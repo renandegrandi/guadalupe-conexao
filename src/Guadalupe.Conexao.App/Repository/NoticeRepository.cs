@@ -1,6 +1,5 @@
 ﻿using Guadalupe.Conexao.App.Model;
 using Guadalupe.Conexao.App.Repository.DTO;
-using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,29 +17,14 @@ namespace Guadalupe.Conexao.App.Repository
             Email = "profile.jpg"
         };
 
-        public NoticeRepository() 
-        {
-            if (!Database.DB.TableMappings.Any(m => m.MappedType.Name == typeof(Notice).Name))
-            {
-                var tables = new Task[] 
-                {
-                    Database.DB.CreateTableAsync<Person>(),
-                    Database.DB.CreateTableAsync<Notice>()
-                };
+        public NoticeRepository() { }
 
-                Task.WhenAll(tables)
-                    .ConfigureAwait(false)
-                    .GetAwaiter()
-                    .GetResult();
-            }
-        }
-
-        public Task<List<Notice>> GetAsync(CancellationToken cancellationToken)
+        public Task<List<Notice>> GetAsync()
         {
             return Database.DB.Table<Notice>().ToListAsync();
         }
 
-        public Task<List<Notice>> GetAsync(Guid[] ids, CancellationToken cancellationToken)
+        public Task<List<Notice>> GetAsync(Guid[] ids)
         {
             if (!ids.Any())
                 return Task.FromResult(new List<Notice>());
@@ -70,12 +54,12 @@ namespace Guadalupe.Conexao.App.Repository
             });
         }
 
-        public Task InsertAsync(List<Notice> notices, CancellationToken cancellationToken)
+        public Task InsertAsync(List<Notice> notices)
         {
             return Database.DB.InsertAllAsync(notices, typeof(Notice), true);
         }
 
-        public Task RemoveAsync(Guid[] ids, CancellationToken cancellationToken)
+        public Task RemoveAsync(Guid[] ids)
         {
             if (!ids.Any()) return Task.CompletedTask;
 
@@ -89,7 +73,7 @@ namespace Guadalupe.Conexao.App.Repository
             return Task.WhenAll(tasks);
         }
 
-        public Task UpdateAsync(List<Notice> notices, CancellationToken cancellationToken)
+        public Task UpdateAsync(List<Notice> notices)
         {
             return Database.DB.UpdateAllAsync(notices, true);
         }

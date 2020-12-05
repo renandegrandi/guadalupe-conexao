@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading;
 using Xamarin.Forms;
 
 namespace Guadalupe.Conexao.App.ViewModel
@@ -10,12 +11,14 @@ namespace Guadalupe.Conexao.App.ViewModel
         #region Dependencies
 
         public readonly INavigation _navigation;
+        public readonly CancellationToken _cancellationToken;
 
         #endregion
 
         protected ViewModel(INavigation navigation)
         {
             _navigation = navigation;
+            _cancellationToken = new CancellationToken();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

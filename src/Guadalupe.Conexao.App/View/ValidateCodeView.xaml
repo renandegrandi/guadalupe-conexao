@@ -5,32 +5,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:Converter="clr-namespace:Guadalupe.Conexao.App.Converters"
-             x:Class="Guadalupe.Conexao.App.View.ValidateCodeView">
+             xmlns:Behaviors="clr-namespace:Guadalupe.Conexao.App.Behaviors"
+             x:Class="Guadalupe.Conexao.App.View.ValidateCodeView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" 
-            HorizontalOptions="CenterAndExpand">
+        
+        <StackLayout Padding="20" 
+                     VerticalOptions="CenterAndExpand">
             
             <Label Text="{Binding Message}" 
                    IsVisible="{Binding HasMessage} " />
-            
-            <!--<Label Text="Digite o código que foi enviado no seu e-mail."/>-->
 
-            <!-- Form Control -->
-            <Entry Text="{Binding Code.Value}" Placeholder="Digite o código que foi enviado no seu e-mail!" />
+            <Entry Text="{Binding Code.Value}" 
+                   Placeholder="Digite seu código de acesso"
+                   Keyboard="Text"
+                   HorizontalTextAlignment="Center" >
+                <Entry.Behaviors>
+                    <Behaviors:EntryValidatorBehavior IsTouched="{Binding Code.IsTouched }"></Behaviors:EntryValidatorBehavior>
+                </Entry.Behaviors>
+            </Entry>
 
             <Label Text="{Binding Code.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                    IsVisible="{Binding Code.ShowError}" />
-            <!-- End Form Control -->
-            
-            <Button Text="Validar e Entrar" 
-                    Command="{Binding OnValidateCodeCommand}"/>
 
-            <Label Text="Não lembra seu código? clique para reenviar!" />
+            <Button Text="Validar e Entrar" 
+                    Command="{Binding OnValidateCodeCommand}"
+                    TextColor="White"
+                    BackgroundColor="Orange" 
+                    IsEnabled="{Binding Code.IsValid}"/>
+
+            <Button Text="Não lembra seu código? clique para reenviar!"
+                Command="{Binding OnSendNewCodeCommand}" >
+            </Button>
+            
 
         </StackLayout>
     </ContentPage.Content>

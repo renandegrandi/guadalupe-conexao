@@ -10,10 +10,10 @@ namespace Guadalupe.Conexao.App.Repository
     public interface INoticeRepository
     {
         Task<List<NoticeDto>> GetByDateAsync(DateTime? last, CancellationToken cancellationToken);
-        Task<List<Notice>> GetAsync(CancellationToken cancellationToken);
-        Task<List<Notice>> GetAsync(Guid[] ids, CancellationToken cancellationToken);
-        Task RemoveAsync(Guid[] ids, CancellationToken cancellationToken);
-        Task InsertAsync(List<Notice> notices, CancellationToken cancellationToken);
-        Task UpdateAsync(List<Notice> notices, CancellationToken cancellationToken);
+        Task<List<Notice>> GetAsync();
+        Task<List<Notice>> GetAsync(Guid[] ids);
+        Task RemoveAsync(Guid[] ids);
+        Task InsertAsync(List<Notice> notices);
+        Task UpdateAsync(List<Notice> notices);
     }
 }

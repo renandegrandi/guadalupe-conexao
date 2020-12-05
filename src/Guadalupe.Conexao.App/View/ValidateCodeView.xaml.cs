@@ -11,7 +11,7 @@ namespace Guadalupe.Conexao.App.View
         public ValidateCodeView(string email)
         {
             InitializeComponent();
-            BindingContext = new ValidateCodeViewModel(Navigation, email);
+            BindingContext = new ValidateCodeViewModel(Navigation, App.UserRepository, App.SessionService, email);
         }
     }
 }

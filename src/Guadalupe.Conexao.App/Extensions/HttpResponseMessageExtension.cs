@@ -1,4 +1,6 @@
 ﻿using Guadalupe.Conexao.App.Model;
+using Guadalupe.Conexao.App.Repository;
+using Guadalupe.Conexao.App.Repository.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,10 +24,9 @@ namespace Guadalupe.Conexao.App.Extensions
                     return default;
                 case HttpStatusCode.Created:
                     throw new NotImplementedException("Método Created not implemented!");
-                    //var id = response.Headers.GetIdByLocation();
-                    //return (T)Convert.ChangeType(id, typeof(T));
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedAccessException();
+                    var authenticationError = JsonConvert.DeserializeObject<AuthenticationErroDto>(content);
+                    throw new DomainException(authenticationError.Descricao);
                 case HttpStatusCode.BadRequest:
 
                     var erros = JsonConvert.DeserializeObject<IDictionary<string, string[]>>(content);
@@ -39,7 +40,7 @@ namespace Guadalupe.Conexao.App.Extensions
 
                     throw new DomainException(string.Join(",", messages));
                 default:
-                    throw new DomainException("Houve algum problema na comunicação com a API-Legacy");
+                    throw new DomainException(ConexaoHttpClient.PrettyMessage);
             }
         }
     }

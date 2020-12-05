@@ -1,4 +1,5 @@
-﻿using Guadalupe.Conexao.Api.Config;
+﻿using AutoMapper;
+using Guadalupe.Conexao.Api.Config;
 using Guadalupe.Conexao.Api.Domain;
 using Guadalupe.Conexao.Api.Models.V1;
 using Microsoft.AspNetCore.Mvc;
@@ -21,16 +22,19 @@ namespace Guadalupe.Conexao.Api.Controllers
 
         private readonly IUserRepository _userRepository;
         private readonly AuthenticationConfig _authentication;
+        private readonly IMapper _mapper;
 
         #endregion
 
         #region Constructor
 
         public UserController(IUserRepository userRepository,
-            IOptions<AuthenticationConfig> autenticationConfig)
+            IOptions<AuthenticationConfig> autenticationConfig,
+            IMapper mapper)
         {
             _userRepository = userRepository;
             _authentication = autenticationConfig.Value;
+            _mapper = mapper;
         }
 
         #endregion
@@ -120,7 +124,7 @@ namespace Guadalupe.Conexao.Api.Controllers
                         });
                     }
 
-                    var codigoInvalido = !user.CodeAccess.Equals(authentication.Password);
+                    var codigoInvalido = !user.CodeAccess.Equals(authentication.Password.ToUpper());
 
                     if (codigoInvalido)
                     {
@@ -166,11 +170,14 @@ namespace Guadalupe.Conexao.Api.Controllers
 
             var expiresIn = now.AddHours(2).Millisecond.ToString();
 
+            var personMapping = _mapper.Map<PersonDto>(user.Person);
+
             return Ok(new AuthenticationTokenDto
             {
                 AccessToken = accessToken,
                 ExpiresIn = expiresIn,
                 RefreshToken = refreshToken,
+                UserInfo = personMapping
             });
         }
     }

@@ -1,10 +1,19 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel;
 
 namespace Guadalupe.Conexao.App.Repository.DTO
 {
     public class AuthenticationDto
     {
+        #region Constructor
+
+        public AuthenticationDto()
+        {
+            GrantType = GrantTypes.password;
+        }
+
+
+        #endregion
+
         #region Properties
 
         [JsonProperty("username")]
@@ -13,9 +22,8 @@ namespace Guadalupe.Conexao.App.Repository.DTO
         [JsonProperty("password")]
         public string Password { get; set; }
 
-        [JsonConverter(typeof(StringConverter))]
         [JsonProperty("grant_type")]
-        public GrantTypes GrantType { get; set; } = GrantTypes.password;
+        public GrantTypes GrantType { get; set; } 
 
         [JsonProperty("refresh_token")]
         public string RefreshToken { get; set; }

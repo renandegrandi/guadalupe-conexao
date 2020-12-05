@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿
 using Foundation;
+using Guadalupe.Conexao.App.Repository;
 using Plugin.FacebookClient;
 using UIKit;
 
@@ -26,6 +24,12 @@ namespace Guadalupe.Conexao.App.iOS
             global::Xamarin.Forms.Forms.Init();
 
             FacebookClientManager.Initialize(app, options);
+
+            Database.InitializeAsync()
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
+
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
             LoadApplication(new App());

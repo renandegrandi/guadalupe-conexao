@@ -4,9 +4,8 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Java.Security;
+using Guadalupe.Conexao.App.Repository;
 using Plugin.FacebookClient;
-using System;
 
 namespace Guadalupe.Conexao.App.Droid
 {
@@ -19,6 +18,12 @@ namespace Guadalupe.Conexao.App.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             FacebookClientManager.Initialize(this);
+
+            Database.InitializeAsync()
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
+
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
 
             base.OnCreate(savedInstanceState);
