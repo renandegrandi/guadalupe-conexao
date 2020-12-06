@@ -57,6 +57,9 @@ namespace Guadalupe.Conexao.App.ViewModel
             foreach (var notice in News.Where((a) => !string.IsNullOrEmpty(a.Image)))
             {
                 notice.Image = $"{Configuration.Assets}{notice.Image}";
+
+                if (notice.PostedBy != null && !notice.PostedBy.ProfileImage.StartsWith(Configuration.Assets))
+                    notice.PostedBy.ProfileImage = $"{Configuration.Assets}{notice.PostedBy.ProfileImage}";
             }
 
             UpdateAndRefreshViewCommandAsync()
@@ -110,12 +113,8 @@ namespace Guadalupe.Conexao.App.ViewModel
                         Posted = n.Posted,
                         Image = n.Image,
                         Message = n.Message,
-                        PostedBy = new Person
-                        {
-                            Id = n.PostedBy.Id,
-                            ProfileImage = "",
-                            Name = n.PostedBy.Name
-                        }
+                        IdPostedBy = n.IdPostedBy,
+                        PostedBy = new Person(n.PostedBy.Id, n.PostedBy.Email, n.PostedBy.ProfileImage, n.PostedBy.Name)
                     })
                     .ToList();
 
@@ -128,6 +127,9 @@ namespace Guadalupe.Conexao.App.ViewModel
                 foreach (var notice in News.Where((a) => !string.IsNullOrEmpty(a.Image)))
                 {
                     notice.Image = $"{Configuration.Assets}{notice.Image}";
+
+                    if(notice.PostedBy != null && !notice.PostedBy.ProfileImage.StartsWith(Configuration.Assets))
+                        notice.PostedBy.ProfileImage = $"{Configuration.Assets}{notice.PostedBy.ProfileImage}";
                 }
 
                 OnPropertyChanged(nameof(this.News));

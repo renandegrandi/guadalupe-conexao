@@ -19,6 +19,9 @@ namespace Guadalupe.Conexao.App.Model
         [Column("name")]
         public string Name { get; set; }
 
+        [Column("email")]
+        public string Email { get; set; }
+
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<Notice> Notices { get; set; }
 
@@ -28,11 +31,12 @@ namespace Guadalupe.Conexao.App.Model
 
         public Person() { }
 
-        public Person(Guid id, string image, string name): this()
+        public Person(Guid id, string email, string image, string name): this()
         {
             Id = id;
             ProfileImage = image;
             Name = name;
+            Email = email;
         }
 
         #endregion

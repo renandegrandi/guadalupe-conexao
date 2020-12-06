@@ -32,6 +32,11 @@ namespace Guadalupe.Conexao.App.Repository
                 .DeleteAllAsync<User>()
                 .ConfigureAwait(false);
 
+            await Database
+                .DB
+                .InsertOrReplaceAsync(user.Person, typeof(Person))
+                .ConfigureAwait(false);
+
             await Database.DB.InsertAsync(user, typeof(User))
                 .ConfigureAwait(false);
         }

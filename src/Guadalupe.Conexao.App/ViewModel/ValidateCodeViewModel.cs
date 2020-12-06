@@ -78,6 +78,7 @@ namespace Guadalupe.Conexao.App.ViewModel
                 }, _cancellationToken);
 
                 var person = new Person(apiAuth.UserInfo.Id,
+                    apiAuth.UserInfo.Email,
                     apiAuth.UserInfo.ProfileImage,
                     apiAuth.UserInfo.Name);
 

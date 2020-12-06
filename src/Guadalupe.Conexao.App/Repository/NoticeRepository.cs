@@ -51,9 +51,19 @@ namespace Guadalupe.Conexao.App.Repository
                 .ToListAsync();
         }
 
-        public Task InsertAsync(List<Notice> notices)
+        public async Task InsertAsync(List<Notice> notices)
         {
-            return Database.DB.InsertAllAsync(notices, typeof(Notice), true);
+            var persons = notices.Select((p) => p.PostedBy).ToArray();
+
+            foreach (var person in persons)
+            {
+                await Database.DB.InsertOrReplaceAsync(person, typeof(Person))
+                    .ConfigureAwait(false);
+            }
+
+            if(notices.Any())
+                await Database.DB.InsertAllAsync(notices, typeof(Notice), true)
+                    .ConfigureAwait(false);
         }
 
         public Task RemoveAsync(Guid[] ids)
