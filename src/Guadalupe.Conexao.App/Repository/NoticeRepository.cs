@@ -8,12 +8,37 @@ namespace Guadalupe.Conexao.App.Repository
 {
     sealed class NoticeRepository : INoticeRepository
     {
-        public Task<List<Notice>> GetAsync()
+        public async Task<List<Notice>> GetAsync()
         {
-            return Database
+            var notices = await Database
                 .DB
                 .Table<Notice>()
-                .ToListAsync();
+                .OrderByDescending((q) => q.Posted)
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            if (notices.Any()) 
+            {
+                var idPersons = notices
+                    .GroupBy((p) => p.IdPostedBy)
+                    .Select((p) => p.Key)
+                    .ToArray();
+
+                var persons = await Database
+                    .DB
+                    .Table<Person>()
+                    .Where((q) => idPersons.Contains(q.Id))
+                    .ToListAsync()
+                    .ConfigureAwait(false);
+
+                foreach (var notice in notices)
+                {
+                    notice.PostedBy = persons
+                        .FirstOrDefault((p) => p.Id == notice.IdPostedBy);
+                }
+            }
+
+            return notices;
         }
 
         public Task<List<Notice>> GetAsync(Guid[] ids)

@@ -43,7 +43,7 @@ namespace Guadalupe.Conexao.Api.Controllers
         [HttpGet("last_updated")]
         public async Task<IActionResult> GetLastNoticeAsync([FromQuery(Name = "data_hora")]DateTime? dataHora) 
         {
-            var notices = await _noticeRepository.GetLastNoticesAsync(dataHora.Value, HttpContext.RequestAborted);
+            var notices = await _noticeRepository.GetLastNoticesAsync(dataHora, HttpContext.RequestAborted);
 
             var mapped = _mapper.Map<List<NoticeDto>>(notices);
 

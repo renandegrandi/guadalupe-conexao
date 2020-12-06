@@ -19,8 +19,8 @@ namespace Guadalupe.Conexao.App.Model
         [Column("posted")]
         public DateTime Posted { get; set; }
 
-        [ForeignKey(typeof(Person), Name = "idPostedBy")]
-        public int IdPostedBy { get; set; }
+        [ForeignKey(typeof(Person)), Column("id_posted_by")]
+        public Guid IdPostedBy { get; set; }
         
         [ManyToOne]
         public Person PostedBy { get; set; }
