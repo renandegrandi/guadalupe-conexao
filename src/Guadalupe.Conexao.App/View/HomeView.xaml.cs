@@ -10,7 +10,7 @@ namespace Guadalupe.Conexao.App.View
         public HomeView()
         {
             InitializeComponent();
-            BindingContext = new HomeViewModel(Navigation, App.NoticeRepository);
+            BindingContext = new HomeViewModel(Navigation, App.NoticeRepository, App.SessionService, App.UserRepository);
         }
     }
 }

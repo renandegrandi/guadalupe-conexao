@@ -1,6 +1,8 @@
 ﻿using Guadalupe.Conexao.App.Extensions;
 using Guadalupe.Conexao.App.Model;
 using Guadalupe.Conexao.App.Repository;
+using Guadalupe.Conexao.App.Service;
+using Guadalupe.Conexao.App.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +19,19 @@ namespace Guadalupe.Conexao.App.ViewModel
         #region Dependencies
 
         private readonly INoticeRepository _noticeRepository;
-        private readonly CancellationToken _cancelationToken;
+        private readonly ISessionService _sessionService;
+        private readonly IUserRepository _userRepository;
 
         #endregion
 
         #region Properties
-        public DateTime? LastUpdate { get; set; }
-        public string Message { get; set; }
+        public string Message { get; private set; }
         public bool IsRefreshing { get; private set; }
         public IReadOnlyCollection<Notice> News { get; private set; }
         public ICommand RefreshNewsCommandAsync => new Command(async () =>
         {
-            await UpdateAndRefreshViewCommandAsync();
+            await UpdateAndRefreshViewCommandAsync()
+                .ConfigureAwait(false);
 
             IsRefreshing = false;
             this.OnPropertyChanged(nameof(IsRefreshing));
@@ -37,15 +40,24 @@ namespace Guadalupe.Conexao.App.ViewModel
         #endregion
 
         #region Construtores
-        public HomeViewModel(INavigation navigation, INoticeRepository noticeRepository) : base(navigation)
+        public HomeViewModel(INavigation navigation, 
+            INoticeRepository noticeRepository,
+            ISessionService sessionService,
+            IUserRepository userRepository) : base(navigation)
         {
-            _cancelationToken = new CancellationToken();
             _noticeRepository = noticeRepository;
+            _sessionService = sessionService;
+            _userRepository = userRepository;
 
             News = _noticeRepository.GetAsync()
                 .ConfigureAwait(false)
                 .GetAwaiter()
                 .GetResult();
+
+            foreach (var notice in News.Where((a) => !string.IsNullOrEmpty(a.Image)))
+            {
+                notice.Image = $"{Configuration.Assets}{notice.Image}";
+            }
 
             UpdateAndRefreshViewCommandAsync()
                 .SafeFireAndForget(false);
@@ -53,7 +65,7 @@ namespace Guadalupe.Conexao.App.ViewModel
 
         public void Dispose()
         {
-            _cancelationToken.ThrowIfCancellationRequested();
+            _cancellationToken.ThrowIfCancellationRequested();
         }
         #endregion
 
@@ -63,19 +75,27 @@ namespace Guadalupe.Conexao.App.ViewModel
         {
             try
             {
-                var newsUpdated = await _noticeRepository.GetByDateAsync(this.LastUpdate, _cancelationToken);
+                var user = _sessionService.GetUser();
+
+                var newsUpdated = await ConexaoHttpClient.GetByDateAsync(user.NoticeLastUpdate, _cancellationToken);
+
+                user.SetNoticeUpdated();
+
+                await _userRepository.UpdateAsync(user);
 
                 var idDeletedNews = newsUpdated.Where((n) => n.State.Equals(UserNoticeState.Removed))
                     .Select((n) => n.Id)
                     .ToArray();
 
-                await _noticeRepository.RemoveAsync(idDeletedNews);
+                await _noticeRepository.RemoveAsync(idDeletedNews)
+                    .ConfigureAwait(false);
 
                 var idUpdatedNews = newsUpdated.Where((n) => n.State.Equals(UserNoticeState.Modified))
                     .Select((n) => n.Id)
                     .ToArray();
 
-                var noticesToUpdated = await _noticeRepository.GetAsync(idUpdatedNews);
+                var noticesToUpdated = await _noticeRepository.GetAsync(idUpdatedNews)
+                    .ConfigureAwait(false);
 
                 //TODO: Por enquanto não vou implementar as atualizações de noticias, não vamos ter atualização de feeds.
 
@@ -93,21 +113,32 @@ namespace Guadalupe.Conexao.App.ViewModel
                         PostedBy = new Person
                         {
                             Id = n.PostedBy.Id,
-                            Image = "",
+                            ProfileImage = "",
                             Name = n.PostedBy.Name
                         }
                     })
                     .ToList();
 
-                await _noticeRepository.InsertAsync(noticesToInclude);
+                await _noticeRepository.InsertAsync(noticesToInclude)
+                    .ConfigureAwait(false);
 
-                News = await _noticeRepository.GetAsync();
+                News = await _noticeRepository.GetAsync()
+                    .ConfigureAwait(false);
+
+                foreach (var notice in News.Where((a) => !string.IsNullOrEmpty(a.Image)))
+                {
+                    notice.Image = $"{Configuration.Assets}{notice.Image}";
+                }
 
                 OnPropertyChanged(nameof(this.News));
             }
-            catch (Exception)
+            catch (UnauthorizedException) 
             {
-                this.Message = "Falha para carregaro aplicativo!";
+                await _navigation.PushAsync(new AutenticationView());
+            }
+            catch (Exception ex)
+            {
+                this.Message = ConexaoHttpClient.PrettyMessage;
                 OnPropertyChanged(nameof(this.Message));
             }
         }

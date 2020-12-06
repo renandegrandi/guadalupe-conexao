@@ -51,7 +51,12 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Repositories
 
         public Task<User> GetByRefreshTokenAsync(string refreshToken, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _context
+                .User
+                .AsNoTracking()
+                .Include((c) => c.Person)
+                .Where((c) => c.RefreshToken == refreshToken)
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
         public Task<Person> GetPersonByEmailAsync(string email, CancellationToken cancellationToken)

@@ -7,5 +7,7 @@ namespace Guadalupe.Conexao.App.Repository
     {
         Task SaveAsync(User user);
         Task<User> GetAsync();
+
+        Task UpdateAsync(User user);
     }
 }

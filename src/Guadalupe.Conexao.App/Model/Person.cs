@@ -13,8 +13,8 @@ namespace Guadalupe.Conexao.App.Model
         [PrimaryKey, Column("id")]
         public Guid Id { get; set; }
 
-        [Column("image")]
-        public string Image { get; set; }
+        [Column("profile_image")]
+        public string ProfileImage { get; set; }
 
         [Column("name")]
         public string Name { get; set; }
@@ -31,7 +31,7 @@ namespace Guadalupe.Conexao.App.Model
         public Person(Guid id, string image, string name): this()
         {
             Id = id;
-            Image = image;
+            ProfileImage = image;
             Name = name;
         }
 

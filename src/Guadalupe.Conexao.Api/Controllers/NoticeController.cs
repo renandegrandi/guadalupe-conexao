@@ -39,11 +39,11 @@ namespace Guadalupe.Conexao.Api.Controllers
         /// <summary>
         /// Retorna as últimas noticias cadastradas de acordo com a´última data/hora de atualização do usuário.
         /// </summary>
-        /// <param name="lastupdated">Data/Hora da última solicitação de notificações.</param>
+        /// <param name="dataHora">Data/Hora da última solicitação de notificações.</param>
         [HttpGet("last_updated")]
-        public async Task<IActionResult> GetLastNoticeAsync([FromQuery(Name = "last")]DateTime? lastupdated) 
+        public async Task<IActionResult> GetLastNoticeAsync([FromQuery(Name = "data_hora")]DateTime? dataHora) 
         {
-            var notices = await _noticeRepository.GetLastNoticesAsync(lastupdated, HttpContext.RequestAborted);
+            var notices = await _noticeRepository.GetLastNoticesAsync(dataHora.Value, HttpContext.RequestAborted);
 
             var mapped = _mapper.Map<List<NoticeDto>>(notices);
 

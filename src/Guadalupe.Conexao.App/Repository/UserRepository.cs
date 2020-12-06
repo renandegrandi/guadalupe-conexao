@@ -5,12 +5,25 @@ namespace Guadalupe.Conexao.App.Repository
 {
     public class UserRepository : IUserRepository
     {
-        public Task<User> GetAsync()
+        public async Task<User> GetAsync()
         {
-            return Database
+            var user = await Database
                 .DB
                 .Table<User>()
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
+
+            if(user != null) 
+            {
+                user.Person = await Database
+                    .DB
+                    .Table<Person>()
+                    .Where((p) => p.Id == user.IdPerson)
+                    .FirstOrDefaultAsync()
+                    .ConfigureAwait(false);
+            }
+
+            return user;
         }
         public async Task SaveAsync(User user)
         {
@@ -21,6 +34,12 @@ namespace Guadalupe.Conexao.App.Repository
 
             await Database.DB.InsertAsync(user, typeof(User))
                 .ConfigureAwait(false);
+        }
+        public async Task UpdateAsync(User user) 
+        {
+            await Database
+                .DB
+                .UpdateAsync(user);
         }
     }
 }

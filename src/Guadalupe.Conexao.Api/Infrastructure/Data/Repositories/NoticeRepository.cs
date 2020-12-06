@@ -45,8 +45,15 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Repositories
                 .Include((n) => n.PostedBy)
                 .AsQueryable();
 
-            if (lastUpdate.HasValue)
-                query = query.Where((n) => n.Registration > lastUpdate || n.Modification > lastUpdate || n.Removal >= lastUpdate);
+            if (lastUpdate.HasValue) 
+            {
+                var universalTime = lastUpdate.Value.ToUniversalTime();
+
+                query = query.Where((n) => n.Registration > universalTime ||
+                    (n.Modification != null && n.Modification > universalTime) ||
+                    (n.Removal != null && n.Removal >= universalTime));
+            }
+
 
             return query.ToListAsync(cancellationToken);
         }

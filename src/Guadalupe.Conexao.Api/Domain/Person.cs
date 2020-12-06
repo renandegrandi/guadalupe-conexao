@@ -8,6 +8,7 @@ namespace Guadalupe.Conexao.Api.Domain
 
         public string Name { get; private set; }
         public string Email { get; private set; }
+        public string ProfileImage { get; private set; }
 
         #endregion
 
@@ -21,5 +22,12 @@ namespace Guadalupe.Conexao.Api.Domain
         }
 
         #endregion
+
+        public Person AdicionarProfileImage(string image) 
+        {
+            ProfileImage = image;
+
+            return this;
+        }
     }
 }

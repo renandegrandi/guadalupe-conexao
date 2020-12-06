@@ -78,7 +78,7 @@ namespace Guadalupe.Conexao.App.ViewModel
                 }, _cancellationToken);
 
                 var person = new Person(apiAuth.UserInfo.Id,
-                    "",
+                    apiAuth.UserInfo.ProfileImage,
                     apiAuth.UserInfo.Name);
 
                 var user = new User(person, apiAuth.AccessToken, apiAuth.RefreshToken);
@@ -89,7 +89,7 @@ namespace Guadalupe.Conexao.App.ViewModel
 
                 await _navigation.PushAsync(new MainView());
             }
-            catch (DomainException ex)
+            catch (UnauthorizedException ex)
             {
                 Message = ex.Message;
 

@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Assets\Imagens\" />
     <Folder Include="Params\" />
   </ItemGroup>
 

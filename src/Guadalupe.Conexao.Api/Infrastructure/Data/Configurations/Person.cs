@@ -28,6 +28,10 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
                 .IsUnicode(false)
                 .HasMaxLength(255);
 
+            builder.Property((b) => b.ProfileImage)
+                .HasColumnName("profile_image")
+                .IsUnicode(false);
+
             builder.Property((b) => b.Registration)
                 .IsRequired()
                 .HasDefaultValueSql("getdate()")

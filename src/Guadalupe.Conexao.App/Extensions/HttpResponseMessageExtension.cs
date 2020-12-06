@@ -25,8 +25,11 @@ namespace Guadalupe.Conexao.App.Extensions
                 case HttpStatusCode.Created:
                     throw new NotImplementedException("Método Created not implemented!");
                 case HttpStatusCode.Unauthorized:
-                    var authenticationError = JsonConvert.DeserializeObject<AuthenticationErroDto>(content);
-                    throw new DomainException(authenticationError.Descricao);
+                    var authenticationError = string.IsNullOrWhiteSpace(content) ? 
+                        new AuthenticationErroDto() : 
+                        JsonConvert.DeserializeObject<AuthenticationErroDto>(content);
+
+                    throw new UnauthorizedException(authenticationError.Descricao);
                 case HttpStatusCode.BadRequest:
 
                     var erros = JsonConvert.DeserializeObject<IDictionary<string, string[]>>(content);

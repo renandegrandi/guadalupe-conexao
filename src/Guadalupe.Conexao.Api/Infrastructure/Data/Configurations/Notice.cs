@@ -24,7 +24,6 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
 
             builder.Property((b) => b.Image)
                 .IsUnicode(false)
-                .HasMaxLength(255)
                 .HasColumnName("image_url");
 
             builder.Property((b) => b.IdPostedBy)
