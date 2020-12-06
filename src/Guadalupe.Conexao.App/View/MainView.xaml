@@ -15,19 +15,19 @@
         <pages:HomeView.IconImageSource>
             <FontImageSource 
                 FontFamily="{StaticResource Icon}"
-                Glyph="{StaticResource icon-home}"
+                Glyph="{StaticResource icon-newspaper}"
                 Size="16"/>
         </pages:HomeView.IconImageSource>
     </pages:HomeView>
 
-    <pages:NotificationView Title="Notificações">
+    <!--<pages:NotificationView Title="Notificações">
         <pages:NotificationView.IconImageSource>
             <FontImageSource 
                 FontFamily="{StaticResource Icon}"
                 Glyph="{StaticResource icon-bell}"
                 Size="16"/>
         </pages:NotificationView.IconImageSource>
-    </pages:NotificationView>
+    </pages:NotificationView>-->
 
     <pages:ProfileNavView Title="Perfil" >
         <pages:ProfileNavView.IconImageSource>

@@ -1,9 +1,6 @@
 
 .icon-bell:before { content: '\2302'; } /* '⌂' */
-.icon-edit:before { content: '\e0bf'; } /* '' */
-.icon-home:before { content: '\e800'; } /* '' */
+.icon-newspaper:before { content: '\e800'; } /* '' */
 .icon-user:before { content: '\e801'; } /* '' */
-.icon-bell-alt:before { content: '\f0f3'; } /* '' */
-.icon-bell-off:before { content: '\f1f6'; } /* '' */
-.icon-bell-off-empty:before { content: '\f1f7'; } /* '' */
+.icon-edit:before { content: '\e802'; } /* '' */
 .icon-facebook-official:before { content: '\f230'; } /* '' */

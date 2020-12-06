@@ -40,7 +40,7 @@
                             </StackLayout>
                             <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="End">
                                 <Label Text="{StaticResource icon-edit}" FontFamily="{StaticResource Icon}" FontSize="16" VerticalTextAlignment="Center" />
-                                <Label Text="{Binding Date, StringFormat='{0: dddd, dd MMMM yyyy}'}" VerticalTextAlignment="Center" />
+                                <Label Text="{Binding Posted, StringFormat='{0: dddd, dd MMMM yyyy}'}" VerticalTextAlignment="Center" />
                             </StackLayout>
                             <StackLayout Grid.Row="3" Grid.Column="0">
                                 <Label Text="{Binding Message}" LineBreakMode="TailTruncation" MaxLines="3" ></Label>
