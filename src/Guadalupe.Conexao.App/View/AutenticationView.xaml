@@ -4,11 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:Utils="clr-namespace:Guadalupe.Conexao.App.Utils"
              xmlns:Converter="clr-namespace:Guadalupe.Conexao.App.Converters"
              xmlns:Behaviors="clr-namespace:Guadalupe.Conexao.App.Behaviors"
              x:Class="Guadalupe.Conexao.App.View.AutenticationView"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
@@ -16,8 +16,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="20" 
-                     VerticalOptions="CenterAndExpand" 
-                     BackgroundColor="White">
+                     VerticalOptions="CenterAndExpand" >
 
             <Image Source="conexao.png" />
 
@@ -40,13 +39,13 @@
                     BackgroundColor="Orange" 
                     IsEnabled="{Binding Email.IsValid}"/>
 
-            <Button Text="Entrar com Facebook"
+            <!--<Button Text="Entrar com Facebook"
                         Command="{Binding OnLoginFacebookCommand}"
                         FontFamily="{StaticResource Icon}"
                         HeightRequest="45"
                         TextColor="White"
                         BackgroundColor="#4768AD"
-                        />
+                        />-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
