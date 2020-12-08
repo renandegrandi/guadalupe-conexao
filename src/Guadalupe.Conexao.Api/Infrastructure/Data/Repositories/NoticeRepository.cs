@@ -54,8 +54,10 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Repositories
                     (n.Removal != null && n.Removal >= universalTime));
             }
 
-
-            return query.ToListAsync(cancellationToken);
+            return query
+                .OrderBy((n) => n.Registration)
+                .Take(20)
+                .ToListAsync(cancellationToken);
         }
     }
 }

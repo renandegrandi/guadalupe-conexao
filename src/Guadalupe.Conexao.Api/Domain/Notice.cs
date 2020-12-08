@@ -31,5 +31,12 @@ namespace Guadalupe.Conexao.Api.Domain
         }
 
         #endregion
+
+        public new Notice ModifyRegistrationDate(DateTime date) 
+        {
+            base.ModifyRegistrationDate(date);
+
+            return this;
+        }
     }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "229657282515",
+    "project_id": "guadalupe-conexao",
+    "storage_bucket": "guadalupe-conexao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229657282515:android:57afa6d1dd395e0b5ed126",
+        "android_client_info": {
+          "package_name": "com.guadalupe.conexao.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229657282515-f99unuovbf347pvslgsr3df0g3jjmb4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUSyYPIxyp_0epZFzae8XkQD8Eu7wivDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229657282515-f99unuovbf347pvslgsr3df0g3jjmb4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

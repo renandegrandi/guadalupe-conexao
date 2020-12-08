@@ -21,6 +21,14 @@ namespace Guadalupe.Conexao.Api.Domain
             Email = email;
         }
 
+
+        public Person(string email, string name) : this()
+        {
+            Email = email;
+            Name = name;
+        }
+        
+
         #endregion
 
         public Person AdicionarProfileImage(string image) 

@@ -22,5 +22,10 @@ namespace Guadalupe.Conexao.Api.Core.DomainObject
         }
 
         #endregion
+
+        protected void ModifyRegistrationDate(DateTime date)
+        {
+            Registration = date;
+        }
     }
 }
