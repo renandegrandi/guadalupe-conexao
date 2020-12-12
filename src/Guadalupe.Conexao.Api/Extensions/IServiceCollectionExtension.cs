@@ -1,6 +1,7 @@
 ﻿using Guadalupe.Conexao.Api.Domain;
 using Guadalupe.Conexao.Api.Infrastructure.Data;
 using Guadalupe.Conexao.Api.Infrastructure.Data.Repositories;
+using Guadalupe.Conexao.Api.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,15 +14,12 @@ namespace Guadalupe.Conexao.Api.Extensions
         {
             service.AddDbContextPool<ConexaoContext>((contextOptions) =>
             {
-
                 //TODO: Filtrar para habilitar somente em DEV.
                 contextOptions.EnableSensitiveDataLogging();
-
-                contextOptions.UseSqlServer(configuration.GetConnectionString("ConexaoDatabase"), (sqlOptions) => { 
-                
-                });
+                contextOptions.UseSqlServer(configuration.GetConnectionString("ConexaoDatabase"));
             });
 
+            service.AddScoped<IIdentityService, IdentityService>();
             service.AddScoped<IUserRepository, UserRepository>();
             service.AddScoped<INoticeRepository, NoticeRepository>();
 

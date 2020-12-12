@@ -26,11 +26,9 @@ namespace Guadalupe.Conexao.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddRepositories(Configuration);
-
-            services
-                .AddControllers();
+            services.AddRepositories(Configuration);
+            services.AddHttpContextAccessor();
+            services.AddControllers();
 
             services.Configure<AuthenticationConfig>(Configuration.GetSection(AuthenticationConfig.Key));
 

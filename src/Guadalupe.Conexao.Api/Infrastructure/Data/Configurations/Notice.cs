@@ -17,6 +17,11 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
                 .HasColumnType("UNIQUEIDENTIFIER")
                 .HasColumnName("id");
 
+            builder.Property((b) => b.Title)
+                .IsUnicode(false)
+                .IsRequired()
+                .HasColumnName("title");
+
             builder.Property((b) => b.Message)
                 .IsUnicode(false)
                 .IsRequired()

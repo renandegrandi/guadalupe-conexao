@@ -1,0 +1,207 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.custom-file-upload {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 50px 30px;
+    border: 2px dashed #ccc;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.custom-file-upload[layout="col"] {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+    border: 2px dashed #ccc;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    min-height: 265px;
+}
+
+.custom-file-upload[layout="col"] .file-upload-new {
+    padding: 20px;
+}
+
+.custom-file-upload input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 200px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.custom-file-upload div i {
+    color: #888;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.custom-file-upload div p {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    color: #000;
+}
+
+.custom-file-upload[layout="col"] div p {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #000;
+}
+
+.custom-file-upload div ul {
+    margin: 40px 0 0 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+.custom-file-upload div ul:before {
+    content: "Regras para Arquivo:";
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    position: absolute;
+    top: -17px;
+    left: 0;
+    width: 100%;
+}
+
+.custom-file-upload div ul li {
+    margin: 1px;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.1);
+    list-style: none;
+    display: inline-block;
+    background-color: #fff;
+}
+
+.custom-file-upload .file-upload-preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.custom-file-upload[layout="col"] .file-upload-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    position: relative;
+    min-height: 297px;
+}
+
+.custom-file-upload .file-upload-preview img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.custom-file-upload[layout="col"] .file-upload-preview img {
+    border-radius: 8px;
+}
+
+.custom-file-upload .file-upload-preview .nome {
+    font-size: 16px;
+    margin: 8px;
+    text-align: left;
+    border-radius: 4px;
+}
+
+.custom-file-upload[layout="col"] .file-upload-preview .nome {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: 5px auto 30px auto;
+    font-size: 12px;
+    padding: 0 10px;
+}

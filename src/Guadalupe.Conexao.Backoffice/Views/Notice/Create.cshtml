@@ -1,0 +1,52 @@
+﻿@model NoticeViewModel;
+
+@if (String.IsNullOrEmpty(ViewBag.Message) == false)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </div>
+}
+
+<form asp-controller="Notice" asp-action="Create" enctype="multipart/form-data" method="POST">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-12">
+            <div class="form-group">
+                <label for="Title">Titulo</label>
+                <input type="text" asp-for="Title" class="form-control">
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div class="form-group">
+                <label for="Message">Mensagem</label>
+                <textarea class="form-control" asp-for="Message" rows="3"></textarea>
+                <span asp-validation-for="Message"></span>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-12">
+            <div class="custom-file-upload" layout="col">
+                <div class="file-upload-new" style="display:none;">
+                    <i aria-hidden="true" class="fa fa-camera"></i>
+                    <p>
+                        Arraste e solte o arquivo aqui ou clique para selecionar.
+                    </p>
+                    <ul>
+                        <li><b>500px</b> x <b>500px</b></li>
+                        <li><b>JPG</b> ou <b>PNG</b></li>
+                        <li><b>Fundo Branco</b></li>
+                    </ul>
+                    <input type="file" asp-for="ImageFile" />
+                </div>
+                <div class="file-upload-preview" style="display:none;">
+                    <div>
+                        @*@if (!string.IsNullOrEmpty(item.image_url))
+                        {
+                            <img src="@api.helper.constants.GetStaticProductImgMini(item.image_url)?cache=@api.helper.constants.DateNow.Ticks" />
+                        }*@
+                        <span class="nome"></span>
+                    </div>
+                    <button type="button" class="btn btn-primary waves-effect bgm-gray waves-effect">Trocar Imagem</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

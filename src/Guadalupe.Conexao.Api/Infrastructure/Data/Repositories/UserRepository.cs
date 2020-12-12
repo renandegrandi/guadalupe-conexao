@@ -77,5 +77,12 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Repositories
 
             return _context.Database.ExecuteSqlRawAsync($"UPDATE [user] SET refresh_token = @refresh_token WHERE id = @id", @params, cancellationToken);
         }
+
+        public Task<Person> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return _context.Person.Where((p) => p.Id == id)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }

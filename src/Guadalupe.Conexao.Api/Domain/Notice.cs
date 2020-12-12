@@ -7,6 +7,7 @@ namespace Guadalupe.Conexao.Api.Domain
     {
         #region Properties
 
+        public string Title { get; private set; }
         public string Message { get; private set; }
         public string Image { get; private set; }
         public Guid IdPostedBy { get; private set; }
@@ -18,19 +19,33 @@ namespace Guadalupe.Conexao.Api.Domain
 
         private Notice() : base() { }
 
-        public Notice(string message, Person postedBy) : this()
+        public Notice(string title, string message) : this()
         {
+            Title = title;
             Message = message;
-            PostedBy = postedBy;
-            IdPostedBy = postedBy.Id;
         }
 
-        public Notice(string message, string image, Person postedBy)  : this(message, postedBy)
+        public Notice(string title, string message, string image)  : this(title, message)
         {
             Image = image;
         }
 
         #endregion
+
+        public Notice AddPostedBy(Person postedBy) 
+        {
+            PostedBy = postedBy;
+            IdPostedBy = postedBy.Id;
+
+            return this;
+        }
+
+        public Notice AddImage(string image) 
+        {
+            Image = image;
+
+            return this;
+        }
 
         public new Notice ModifyRegistrationDate(DateTime date) 
         {

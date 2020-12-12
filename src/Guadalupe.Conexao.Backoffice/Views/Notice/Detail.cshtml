@@ -1,0 +1,37 @@
+﻿@model NoticeViewModel 
+
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="btn btn-primary" href="@Url.Action("Index")">Listar</a>
+        <form class="d-flex" asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <button class="btn btn-danger" type="submit">Deletar</button>
+        </form>
+    </div>
+</nav>
+
+<div class="row" style="margin-top: 1rem;">
+    <div class="col-md-6 col-lg-6 col-sm-12">
+        <div class="form-group">
+            <label for="Title">Titulo</label>
+            <input disabled type="text" asp-for="Title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="Message">Mensagem</label>
+            <textarea disabled class="form-control" asp-for="Message" rows="10"></textarea>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-sm-12">
+        <div class="custom-file-upload" layout="col">
+            <div class="file-upload-preview" style="display:none;">
+                <div>
+                    @if (!string.IsNullOrEmpty(Model.Image))
+                    {
+                        <img src="@UrlHelper.GetImagePath(Model.Image)" />
+                    }
+                    <span class="nome"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
