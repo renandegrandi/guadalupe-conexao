@@ -24,5 +24,13 @@ namespace Guadalupe.Conexao.App.Model
         
         [ManyToOne]
         public Person PostedBy { get; set; }
+
+        [Ignore]
+        public string PathImage { 
+            get 
+            {
+                return $"{Configuration.Assets}{Image}";
+            }
+        }
     }
 }

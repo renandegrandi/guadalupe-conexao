@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using static Guadalupe.Conexao.App.Repository.DTO.NoticeDto;
 
 namespace Guadalupe.Conexao.App.ViewModel
@@ -36,7 +37,17 @@ namespace Guadalupe.Conexao.App.ViewModel
             IsRefreshing = false;
             this.OnPropertyChanged(nameof(IsRefreshing));
         });
-        
+        public ICommand ImageTappedCommandAsync => new Command<Guid>(async (Guid notice) =>
+        {
+            try
+            {
+                await _navigation.PushModalAsync(new NoticeView(notice));
+            }
+            catch (Exception ex)
+            {
+                Log.Warning("HomeViewModel", ex.Message);
+            }
+        });
         #endregion
 
         #region Construtores
@@ -53,14 +64,6 @@ namespace Guadalupe.Conexao.App.ViewModel
                 .ConfigureAwait(false)
                 .GetAwaiter()
                 .GetResult();
-
-            foreach (var notice in News.Where((a) => !string.IsNullOrEmpty(a.Image)))
-            {
-                notice.Image = $"{Configuration.Assets}{notice.Image}";
-
-                if (notice.PostedBy != null && !notice.PostedBy.ProfileImage.StartsWith(Configuration.Assets))
-                    notice.PostedBy.ProfileImage = $"{Configuration.Assets}{notice.PostedBy.ProfileImage}";
-            }
 
             UpdateAndRefreshViewCommandAsync()
                 .SafeFireAndForget(false);
@@ -124,14 +127,6 @@ namespace Guadalupe.Conexao.App.ViewModel
                 News = await _noticeRepository.GetAsync()
                     .ConfigureAwait(false);
 
-                foreach (var notice in News.Where((a) => !string.IsNullOrEmpty(a.Image)))
-                {
-                    notice.Image = $"{Configuration.Assets}{notice.Image}";
-
-                    if(notice.PostedBy != null && !notice.PostedBy.ProfileImage.StartsWith(Configuration.Assets))
-                        notice.PostedBy.ProfileImage = $"{Configuration.Assets}{notice.PostedBy.ProfileImage}";
-                }
-
                 OnPropertyChanged(nameof(this.News));
             }
             catch (UnauthorizedException) 
@@ -140,12 +135,13 @@ namespace Guadalupe.Conexao.App.ViewModel
             }
             catch (Exception ex)
             {
+                Log.Warning(nameof(HomeViewModel), ex.Message);
+
                 this.Message = ConexaoHttpClient.PrettyMessage;
                 OnPropertyChanged(nameof(this.Message));
             }
         }
 
         #endregion
-
     }
 }

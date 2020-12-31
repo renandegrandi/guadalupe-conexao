@@ -21,7 +21,7 @@ namespace Guadalupe.Conexao.App.Repository
         {
             //TODO : Implementar configuração para a url da aplicação.
 
-            Timeout = TimeSpan.FromSeconds(30),
+            Timeout = TimeSpan.FromSeconds(3),
             BaseAddress = new Uri(Configuration.ConexaoApi)
         };
 

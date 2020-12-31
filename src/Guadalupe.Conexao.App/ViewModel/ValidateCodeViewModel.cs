@@ -6,6 +6,7 @@ using Guadalupe.Conexao.App.Validation;
 using Guadalupe.Conexao.App.View;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace Guadalupe.Conexao.App.ViewModel
 {
@@ -99,6 +100,8 @@ namespace Guadalupe.Conexao.App.ViewModel
             }
             catch (System.Exception ex)
             {
+                Log.Warning(nameof(ValidateCodeViewModel), ex.Message);
+
                 Message = ConexaoHttpClient.PrettyMessage;
 
                 OnPropertyChanged(nameof(Message));

@@ -25,6 +25,14 @@ namespace Guadalupe.Conexao.App.Model
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<Notice> Notices { get; set; }
 
+        [Ignore]
+        public string PathProfileImage {
+            get 
+            {
+                return $"{Configuration.Assets}{ProfileImage}";
+            } 
+        }
+
         #endregion
 
         #region Constructor

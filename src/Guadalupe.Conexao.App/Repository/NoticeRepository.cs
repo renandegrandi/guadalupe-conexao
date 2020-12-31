@@ -51,6 +51,12 @@ namespace Guadalupe.Conexao.App.Repository
                 .ToListAsync();
         }
 
+        public Task<Notice> GetAsync(Guid id)
+        {
+            return Database.DB.Table<Notice>()
+                .FirstOrDefaultAsync((n) => n.Id == id);
+        }
+
         public async Task InsertAsync(List<Notice> notices)
         {
             var persons = notices.Select((p) => p.PostedBy).ToArray();
