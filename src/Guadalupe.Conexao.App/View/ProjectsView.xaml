@@ -8,15 +8,15 @@
         <CollectionView x:Name="CollectionView" ItemsSource="{Binding Projects}" ItemsLayout="VerticalGrid, 2">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10">
+                    <Grid Padding="5" RowDefinitions="200, Auto">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Path=BindingContext.ProjectTapCommandAsync, Source={x:Reference CollectionView}}"
                                                   CommandParameter="{Binding Id}"/>
                         </Grid.GestureRecognizers>
-                        <ffimageloading:CachedImage Source="{Binding Image}" HeightRequest="200"
-                                                            IsOpaque="True"
+                        <ffimageloading:CachedImage Grid.Row="0" Source="{Binding Image}" HeightRequest="200"
                                                             FadeAnimationEnabled="False" 
                                                             TransformPlaceholders="False"/>
+                        <Label Grid.Row="1" Text="{Binding Name}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" ></Label>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

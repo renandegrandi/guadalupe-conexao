@@ -11,6 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resource\Image\abraco_de_mae_300x300.webp" />
+    <None Remove="Resource\Image\abraco_de_mae_without_border_300x300.webp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\Image\abraco_de_mae_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\abraco_de_mae_without_border_300x300.webp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Plugin.FacebookClient" Version="2.2.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />

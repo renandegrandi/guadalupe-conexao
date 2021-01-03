@@ -81,21 +81,6 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
-    <AndroidResource Include="Resources\drawable\projeto_colo_de_maria_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\casa_de_acolhida_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\abraco_de_mae_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\projeto_capelinha_guadalupe_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\missao_guadalupe_orante_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\jovens_em_missao_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\sos_familias_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\pequeninos_da_missao_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\post_dependentes_quimicos_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\projeto_intercessao_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\projeto_morador_de_rua_novo_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\projeto_os_bartimeus_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\projeto_saude_e_vida_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\projeto_vicentinos_1000x1000.webp" />
-    <AndroidResource Include="Resources\drawable\conexao_guadalupe.webp" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
@@ -134,7 +119,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

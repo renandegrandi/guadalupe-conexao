@@ -1,4 +1,5 @@
-﻿using Guadalupe.Conexao.App.ViewModel;
+﻿using Guadalupe.Conexao.App.Service;
+using Guadalupe.Conexao.App.ViewModel;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +12,8 @@ namespace Guadalupe.Conexao.App.View
         public ProjectView(Guid project)
         {
             InitializeComponent();
-            BindingContext = new ProjectViewModel(Navigation, App.ProjectRepository, project);
+            BindingContext = new ProjectViewModel(Navigation, App.ProjectRepository, new WhatsappService(), project);
         }
+
     }
 }

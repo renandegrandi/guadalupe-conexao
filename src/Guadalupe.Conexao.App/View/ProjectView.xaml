@@ -2,16 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Guadalupe.Conexao.App.View.ProjectView"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             >
     <ContentPage.Content>
         <StackLayout>
-            <ffimageloading:CachedImage Source="{Binding Project.Image}" HeightRequest="300" Aspect="AspectFill"
+            <ffimageloading:CachedImage Source="{Binding Project.Logo}" 
+                    HeightRequest="200" 
+                    Aspect="AspectFill"
                     IsOpaque="True"
                     FadeAnimationEnabled="False" 
                     TransformPlaceholders="False"/>
+            <Label Text="{Binding Project.Name}" FontAttributes="Bold" FontSize="25" VerticalOptions="Start" Padding="10" ></Label>
             <ScrollView Padding="10">
-                <Label Text="{Binding Project.Description}"></Label>
+                <Label Text="{Binding Project.Description}" TextType="Html" ></Label>
             </ScrollView>
+            <Button
+                    Text="Quero Participar" 
+                    VerticalOptions="CenterAndExpand"
+                    HeightRequest="45"
+                    TextColor="White"
+                    BackgroundColor="Orange" 
+                    Command="{Binding WantParticipateCommandAsync}" ></Button>
         </StackLayout>
+        
+        <!--<Grid RowDefinitions="300, Auto, Auto, Auto" ColumnDefinitions="*">
+
+        </Grid>-->
     </ContentPage.Content>
 </ContentPage>

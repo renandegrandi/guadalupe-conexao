@@ -10,6 +10,8 @@ using Android.Gms.Common;
 using Firebase.Messaging;
 using Firebase.Iid;
 using Android.Util;
+using FFImageLoading;
+using System;
 
 namespace Guadalupe.Conexao.App.Droid
 {
@@ -29,6 +31,10 @@ namespace Guadalupe.Conexao.App.Droid
                 .GetResult();
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
+
+            var config = FFImageLoading.Config.Configuration.Default;
+            config.ClearMemoryCacheOnOutOfMemory = true;
+            ImageService.Instance.Initialize(config);
 
             base.OnCreate(savedInstanceState);
 
