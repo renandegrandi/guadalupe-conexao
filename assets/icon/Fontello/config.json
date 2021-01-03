@@ -35,6 +35,18 @@
       "css": "newspaper",
       "code": 59392,
       "src": "entypo"
+    },
+    {
+      "uid": "f978da58836f23373882916f05fb70b4",
+      "css": "doc",
+      "code": 59395,
+      "src": "linecons"
+    },
+    {
+      "uid": "8573943a49ed6dd8f7819070445baa46",
+      "css": "photo",
+      "code": 59396,
+      "src": "linecons"
     }
   ]
 }

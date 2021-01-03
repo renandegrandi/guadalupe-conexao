@@ -11,4 +11,6 @@
     <x:String x:Key="icon-facebook-official">&#xF230;</x:String>
     <x:String x:Key="icon-bell">&#x2302;</x:String>
     <x:String x:Key="icon-edit">&#xE802;</x:String>
+    <x:String x:Key="icon-doc">&#xE803;</x:String>
+    <x:String x:Key="icon-photo">&#xE804;</x:String>
 </ResourceDictionary>

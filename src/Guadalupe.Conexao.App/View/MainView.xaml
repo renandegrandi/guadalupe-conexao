@@ -15,7 +15,7 @@
         <pages:HomeView.IconImageSource>
             <FontImageSource 
                 FontFamily="{StaticResource Icon}"
-                Glyph="{StaticResource icon-newspaper}"
+                Glyph="{StaticResource icon-doc}"
                 Size="16"/>
         </pages:HomeView.IconImageSource>
     </pages:HomeView>
@@ -29,12 +29,21 @@
         </pages:NotificationView.IconImageSource>
     </pages:NotificationView>-->
 
-    <pages:ProfileNavView Title="Perfil" >
+    <!--<pages:ProfileNavView Title="Perfil" >
         <pages:ProfileNavView.IconImageSource>
             <FontImageSource 
                 FontFamily="{StaticResource Icon}"
                 Glyph="{StaticResource icon-user}"
                 Size="16"/>
         </pages:ProfileNavView.IconImageSource>
-    </pages:ProfileNavView>
+    </pages:ProfileNavView>-->
+
+    <pages:ProjectsView Title="Projetos" >
+        <pages:ProjectsView.IconImageSource>
+            <FontImageSource 
+                FontFamily="{StaticResource Icon}"
+                Glyph="{StaticResource icon-photo}"
+                Size="16"/>
+        </pages:ProjectsView.IconImageSource>
+    </pages:ProjectsView>
 </TabbedPage>

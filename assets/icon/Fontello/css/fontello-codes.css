@@ -3,4 +3,6 @@
 .icon-newspaper:before { content: '\e800'; } /* '' */
 .icon-user:before { content: '\e801'; } /* '' */
 .icon-edit:before { content: '\e802'; } /* '' */
+.icon-doc:before { content: '\e803'; } /* '' */
+.icon-photo:before { content: '\e804'; } /* '' */
 .icon-facebook-official:before { content: '\f230'; } /* '' */

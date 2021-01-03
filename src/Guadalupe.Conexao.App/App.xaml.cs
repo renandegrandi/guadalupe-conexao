@@ -8,6 +8,7 @@ namespace Guadalupe.Conexao.App
     {
         public static readonly IUserRepository UserRepository = new UserRepository();
         public static readonly INoticeRepository NoticeRepository = new NoticeRepository();
+        public static readonly IProjectRepository ProjectRepository = new ProjectRepository();
         public static readonly ISessionService SessionService = new SessionService(UserRepository);
 
         public App()
