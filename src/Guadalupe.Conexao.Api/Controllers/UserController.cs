@@ -175,7 +175,8 @@ namespace Guadalupe.Conexao.Api.Controllers
 
                     break;
                 case GrantTypes.refresh_token:
-                    user = await _userRepository.GetByRefreshTokenAsync(authentication.RefreshToken, HttpContext.RequestAborted);
+                    user = await _userRepository.GetByRefreshTokenAsync(authentication.RefreshToken, HttpContext.RequestAborted)
+                        .ConfigureAwait(false);
 
                     if (user == null)
                     {
