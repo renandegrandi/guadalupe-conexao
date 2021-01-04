@@ -1,10 +1,17 @@
 ﻿using Guadalupe.Conexao.Api.Core.DomainObject;
 using System;
+using System.Linq;
 
 namespace Guadalupe.Conexao.Api.Domain
 {
     public class User : Entity, IAggregateRoot
     {
+        #region Constants
+
+        private const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        #endregion
+
         #region Propriedades
 
         public Guid IdPerson { get; set; }
@@ -22,16 +29,22 @@ namespace Guadalupe.Conexao.Api.Domain
         {
             Person = person;
             IdPerson = person.Id;
-            CodeAccess = "AAAA";
+            CodeAccess = GenerateCodeAccess();
         }
 
         #endregion
+
+        private string GenerateCodeAccess() 
+        {
+            return new string(Enumerable.Repeat(chars, 4)
+              .Select(s => s[new Random().Next(s.Length)]).ToArray());
+        }
 
         #region Public Method
 
         public User RegenerateCodeAccess() 
         {
-            CodeAccess = "AAAB";
+            CodeAccess = GenerateCodeAccess();
 
             return this;
         }

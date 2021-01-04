@@ -22,9 +22,9 @@ namespace Guadalupe.Conexao.Api.Extensions
             service.AddScoped<IIdentityService, IdentityService>();
             service.AddScoped<IUserRepository, UserRepository>();
             service.AddScoped<INoticeRepository, NoticeRepository>();
+            service.AddSingleton<ISmtpService, SmtpService>();
 
             ConexaoSeedData.Initialize(service.BuildServiceProvider());
-
         }
     }
 }

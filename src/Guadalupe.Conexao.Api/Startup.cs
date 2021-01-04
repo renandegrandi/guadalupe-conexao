@@ -30,6 +30,7 @@ namespace Guadalupe.Conexao.Api
             services.AddHttpContextAccessor();
             services.AddControllers();
 
+            services.Configure<SmtpConfig>(Configuration.GetSection(SmtpConfig.Key));
             services.Configure<AuthenticationConfig>(Configuration.GetSection(AuthenticationConfig.Key));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

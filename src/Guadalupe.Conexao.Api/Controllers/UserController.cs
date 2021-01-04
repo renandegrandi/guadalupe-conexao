@@ -2,6 +2,7 @@
 using Guadalupe.Conexao.Api.Config;
 using Guadalupe.Conexao.Api.Domain;
 using Guadalupe.Conexao.Api.Models.V1;
+using Guadalupe.Conexao.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -23,6 +24,7 @@ namespace Guadalupe.Conexao.Api.Controllers
         private readonly IUserRepository _userRepository;
         private readonly AuthenticationConfig _authentication;
         private readonly IMapper _mapper;
+        private readonly ISmtpService _smtpService;
 
         #endregion
 
@@ -30,18 +32,20 @@ namespace Guadalupe.Conexao.Api.Controllers
 
         public UserController(IUserRepository userRepository,
             IOptions<AuthenticationConfig> autenticationConfig,
-            IMapper mapper)
+            IMapper mapper,
+            ISmtpService smtpService)
         {
             _userRepository = userRepository;
             _authentication = autenticationConfig.Value;
             _mapper = mapper;
+            _smtpService = smtpService;
         }
 
         #endregion
 
         #region Private Methods
 
-        public string GenerateToken(User user, DateTime date)
+        private string GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_authentication.Jwt.SymmetricKey);
@@ -60,7 +64,33 @@ namespace Guadalupe.Conexao.Api.Controllers
             return tokenHandler.WriteToken(token);
         }
 
+        private Task SendAuthenticationCodeByEmailAsync(User user) 
+        {
+            //TODO: Implementar pattern para templates de e-mail na aplicação.
+
+            var template = @"<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf - 8' />
+    <title>{ASSUNTO_EMAIL}</title>
+</head>
+<body>
+    <p> Seu código de acesso é: {CODIGO_ACESSO}.</p>
+</body>
+</html>";
+
+            var body = template;
+
+            var subject = "[Guadalupe.Conexão] Código de Acesso.";
+
+            body = body.Replace("{ASSUNTO_EMAIL}", subject);
+            body = body.Replace("{CODIGO_ACESSO}", user.CodeAccess);
+
+            return _smtpService.SendAsync(user.Person.Email, subject, body);
+        }
+
         #endregion
+
 
         /// <summary>
         /// Responsável por gerar um novo código de acesso e enviar para o e-mail que foi solicitado.
@@ -70,7 +100,8 @@ namespace Guadalupe.Conexao.Api.Controllers
         [HttpPut("{email}/send_code")]
         public async Task<IActionResult> SendNewCodeByEmailAsync([FromRoute(Name = "email"), EmailAddress] string email)
         {
-            var user = await _userRepository.GetByEmailAsync(email, HttpContext.RequestAborted);
+            var user = await _userRepository.GetByEmailAsync(email, HttpContext.RequestAborted)
+                .ConfigureAwait(false);
 
             var newUser = user == null;
 
@@ -78,7 +109,8 @@ namespace Guadalupe.Conexao.Api.Controllers
 
             if (newUser)
             {
-                var person = await _userRepository.GetPersonByEmailAsync(email, HttpContext.RequestAborted);
+                var person = await _userRepository.GetPersonByEmailAsync(email, HttpContext.RequestAborted)
+                    .ConfigureAwait(false);
 
                 if (person == null)
                     person = new Person(email);
@@ -95,9 +127,11 @@ namespace Guadalupe.Conexao.Api.Controllers
                 user.RegenerateCodeAccess();
             }
 
-            await unitOfWork.CommitAsync(HttpContext.RequestAborted);
+            await unitOfWork.CommitAsync(HttpContext.RequestAborted)
+                .ConfigureAwait(false);
 
-            //TODO: Realizar a implementação do envio de e-mail.
+            await SendAuthenticationCodeByEmailAsync(user)
+                .ConfigureAwait(false);
 
             return NoContent();
         }
@@ -161,15 +195,13 @@ namespace Guadalupe.Conexao.Api.Controllers
                     });
             }
 
-            var now = DateTime.Now;
-
-            var accessToken = GenerateToken(user, now);
+            var accessToken = GenerateToken(user);
 
             var refreshToken = Guid.NewGuid().ToString();
 
             await _userRepository.SaveRefreshTokenAsync(user.Id, refreshToken, HttpContext.RequestAborted);
 
-            var expiresIn = now.AddHours(2).Millisecond.ToString();
+            var expiresIn = DateTime.Now.AddHours(2).Millisecond.ToString();
 
             var personMapping = _mapper.Map<PersonDto>(user.Person);
 
