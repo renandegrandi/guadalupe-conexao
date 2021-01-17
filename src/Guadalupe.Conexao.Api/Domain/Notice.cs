@@ -19,6 +19,8 @@ namespace Guadalupe.Conexao.Api.Domain
 
         private Notice() : base() { }
 
+        private Notice(Guid id) : base(id) { }
+
         public Notice(string title, string message) : this()
         {
             Title = title;
@@ -27,6 +29,13 @@ namespace Guadalupe.Conexao.Api.Domain
 
         public Notice(string title, string message, string image)  : this(title, message)
         {
+            Image = image;
+        }
+
+        public Notice(Guid id, string title, string message, string image) : this(id)
+        {
+            Title = title;
+            Message = message;
             Image = image;
         }
 

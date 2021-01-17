@@ -1,4 +1,5 @@
 ﻿using Guadalupe.Conexao.Api.Core.DomainObject;
+using System;
 
 namespace Guadalupe.Conexao.Api.Domain
 {
@@ -16,18 +17,24 @@ namespace Guadalupe.Conexao.Api.Domain
 
         private Person() : base() { }
 
+        private Person(Guid id) : base(id) { }
+
         public Person(string email) : this()
         {
             Email = email;
         }
-
 
         public Person(string email, string name) : this()
         {
             Email = email;
             Name = name;
         }
-        
+
+        public Person(Guid id, string email, string name) : this(id) 
+        {
+            Email = email;
+            Name = name;
+        }
 
         #endregion
 

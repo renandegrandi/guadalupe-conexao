@@ -15,9 +15,14 @@ namespace Guadalupe.Conexao.Api.Core.DomainObject
 
         #region Constructor
 
-        protected Entity()
+        protected Entity() : this (Guid.NewGuid())
         {
-            Id = Guid.NewGuid();
+
+        }
+
+        protected Entity(Guid id) 
+        {
+            Id = id;
             Registration = DateTime.Now;
         }
 
