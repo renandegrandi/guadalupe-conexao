@@ -1,6 +1,7 @@
 using AutoMapper;
 using Guadalupe.Conexao.Api.Config;
 using Guadalupe.Conexao.Api.Extensions;
+using Microsoft.ApplicationInsights.DependencyCollector;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,6 +53,13 @@ namespace Guadalupe.Conexao.Api
 
             services
                 .AddAutoMapper(typeof(Startup));
+
+            services.AddApplicationInsightsTelemetry(Configuration.GetSection("ApplicationInsights"))
+                .ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) =>
+                {
+                    module.EnableSqlCommandTextInstrumentation = true;
+                    o.EnableAdaptiveSampling = false;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
