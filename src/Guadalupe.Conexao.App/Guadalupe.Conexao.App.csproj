@@ -13,11 +13,27 @@
   <ItemGroup>
     <None Remove="Resource\Image\abraco_de_mae_300x300.webp" />
     <None Remove="Resource\Image\abraco_de_mae_without_border_300x300.webp" />
+    <None Remove="Resource\Image\jovens_em_missão_300x300.webp" />
+    <None Remove="Resource\Image\jovens_em_missão_without_border_300x300.webp" />
+    <None Remove="Resource\Image\missao_guadalupe_orante_300x300.webp" />
+    <None Remove="Resource\Image\missao_guadalupe_orante_without_border_300x300.webp" />
+    <None Remove="Resource\Image\pequeninos_da_missao_300x300.webp" />
+    <None Remove="Resource\Image\pequeninos_da_missao_without_border_300x300.webp" />
+    <None Remove="Resource\Image\post_dependentes_quimicos_300x300.webp" />
+    <None Remove="Resource\Image\post_dependentes_quimicos_without_border_300x300.webp" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resource\Image\abraco_de_mae_300x300.webp" />
     <EmbeddedResource Include="Resource\Image\abraco_de_mae_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\jovens_em_missão_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\jovens_em_missão_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\missao_guadalupe_orante_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\missao_guadalupe_orante_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\pequeninos_da_missao_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\pequeninos_da_missao_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\post_dependentes_quimicos_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\post_dependentes_quimicos_without_border_300x300.webp" />
   </ItemGroup>
 
   <ItemGroup>
