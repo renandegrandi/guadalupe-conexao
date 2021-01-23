@@ -17,6 +17,12 @@ namespace Guadalupe.Conexao.App.ViewModel
 {
     sealed class HomeViewModel : ViewModel, IDisposable
     {
+        #region Fields
+
+        private bool _isRefreshing;
+
+        #endregion
+
         #region Dependencies
 
         private readonly INoticeRepository _noticeRepository;
@@ -26,16 +32,22 @@ namespace Guadalupe.Conexao.App.ViewModel
         #endregion
 
         #region Properties
-        public string Message { get; private set; }
-        public bool IsRefreshing { get; private set; }
+        public bool IsRefreshing { 
+            get 
+            { 
+                return _isRefreshing; 
+            } 
+            private set 
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
         public IReadOnlyCollection<Notice> News { get; private set; }
         public ICommand RefreshNewsCommandAsync => new Command(async () =>
         {
             await UpdateAndRefreshViewCommandAsync()
                 .ConfigureAwait(false);
-
-            IsRefreshing = false;
-            this.OnPropertyChanged(nameof(IsRefreshing));
         });
         public ICommand ImageTappedCommandAsync => new Command<Guid>(async (Guid notice) =>
         {
@@ -54,7 +66,8 @@ namespace Guadalupe.Conexao.App.ViewModel
         public HomeViewModel(INavigation navigation, 
             INoticeRepository noticeRepository,
             ISessionService sessionService,
-            IUserRepository userRepository) : base(navigation)
+            IUserRepository userRepository,
+            IPopupService popupService) : base(navigation, popupService)
         {
             _noticeRepository = noticeRepository;
             _sessionService = sessionService;
@@ -81,6 +94,8 @@ namespace Guadalupe.Conexao.App.ViewModel
         {
             try
             {
+                IsRefreshing = true;
+
                 var user = _sessionService.GetUser();
 
                 var newsUpdated = await ConexaoHttpClient.GetByDateAsync(user.NoticeLastUpdate, _cancellationToken);
@@ -137,9 +152,10 @@ namespace Guadalupe.Conexao.App.ViewModel
             {
                 Log.Warning(nameof(HomeViewModel), ex.Message);
 
-                this.Message = ConexaoHttpClient.PrettyMessage;
-                OnPropertyChanged(nameof(this.Message));
+                await _popupService.ShowErrorMessageAsync(ConexaoHttpClient.PrettyMessage);
             }
+
+            IsRefreshing = false;
         }
 
         #endregion

@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:Components="clr-namespace:Guadalupe.Conexao.App.Components"
              xmlns:Converter="clr-namespace:Guadalupe.Conexao.App.Converters"
              xmlns:Behaviors="clr-namespace:Guadalupe.Conexao.App.Behaviors"
              x:Class="Guadalupe.Conexao.App.View.AutenticationView"
@@ -18,7 +19,7 @@
         <StackLayout Padding="20" 
                      VerticalOptions="CenterAndExpand" >
 
-            <Image Source="conexao_300x300.png" />
+            <Image Source="conexao_300x300.png" HeightRequest="200" />
 
             <Entry Text="{Binding Email.Value}" 
                    Placeholder="Digite seu e-mail" 
@@ -31,21 +32,11 @@
 
             <Label Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                    IsVisible="{Binding Email.ShowError}" />
-            
-            <Button Text="Entrar com o E-mail" 
-                    Command="{Binding OnLoginEmailCommand }"
-                    HeightRequest="45"
-                    TextColor="White"
-                    BackgroundColor="Orange" 
-                    IsEnabled="{Binding Email.IsValid}"/>
 
-            <!--<Button Text="Entrar com Facebook"
-                        Command="{Binding OnLoginFacebookCommand}"
-                        FontFamily="{StaticResource Icon}"
-                        HeightRequest="45"
-                        TextColor="White"
-                        BackgroundColor="#4768AD"
-                        />-->
+            <Components:ButtonWithSpinner Text="Entrar com o E-mail" 
+                                          Command="{Binding OnLoginEmailCommand}" 
+                                          IsBusy="{Binding IsLoading}" 
+                                          IsEnabled="{Binding Email.IsValid}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

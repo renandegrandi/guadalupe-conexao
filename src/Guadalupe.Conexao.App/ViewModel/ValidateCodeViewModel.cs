@@ -22,8 +22,9 @@ namespace Guadalupe.Conexao.App.ViewModel
         #region Constructor
         public ValidateCodeViewModel(INavigation navigation, 
             IUserRepository userRepository, 
-            ISessionService sessionService, 
-            string email) : base(navigation)
+            ISessionService sessionService,
+            IPopupService popupService,
+            string email) : base(navigation, popupService)
         {
             _userRepository = userRepository;
             _sessionService = sessionService;
@@ -33,15 +34,24 @@ namespace Guadalupe.Conexao.App.ViewModel
         }
         #endregion
 
+        #region Fields
+
+        private bool _isLoading;
+
+        #endregion
+
         #region Properties
         public string Email { get; private set; }
         public ValidatableObject<string> Code { get; set; }
-        public string Message { get; set; }
-        public bool HasMessage
-        {
+        public bool IsLoading {
             get
             {
-                return !string.IsNullOrWhiteSpace(Message);
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
             }
         }
 
@@ -53,24 +63,20 @@ namespace Guadalupe.Conexao.App.ViewModel
         {
             try
             {
+
                 await ConexaoHttpClient.SendNewCodeByEmailAsync(Email, _cancellationToken)
                     .ConfigureAwait(false);
             }
             catch (System.Exception)
             {
-                Message = ConexaoHttpClient.PrettyMessage;
-
-                OnPropertyChanged(nameof(Message));
-                OnPropertyChanged(nameof(HasMessage));
+                await this._popupService.ShowErrorMessageAsync(ConexaoHttpClient.PrettyMessage);
             }
         });
         public ICommand OnValidateCodeCommand => new Command(async () =>
         {
             try
             {
-                Message = string.Empty;
-
-                OnPropertyChanged(nameof(Message));
+                IsLoading = true;
 
                 var apiAuth = await ConexaoHttpClient.AuthenticationAsync(new AuthenticationDto
                 {
@@ -93,20 +99,17 @@ namespace Guadalupe.Conexao.App.ViewModel
             }
             catch (UnauthorizedException ex)
             {
-                Message = ex.Message;
-
-                OnPropertyChanged(nameof(Message));
-                OnPropertyChanged(nameof(HasMessage));
+                await this._popupService.ShowErrorMessageAsync(ex.Message);
             }
             catch (System.Exception ex)
             {
                 Log.Warning(nameof(ValidateCodeViewModel), ex.Message);
 
-                Message = ConexaoHttpClient.PrettyMessage;
-
-                OnPropertyChanged(nameof(Message));
-                OnPropertyChanged(nameof(HasMessage));
+                await this._popupService.ShowErrorMessageAsync(ConexaoHttpClient.PrettyMessage);
             }
+
+            IsLoading = false;
+
         }, () => {
             return Code.IsValid;
         });

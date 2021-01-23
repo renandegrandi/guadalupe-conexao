@@ -2,12 +2,14 @@
 using Guadalupe.Conexao.App.Model;
 using Guadalupe.Conexao.App.Repository;
 using Guadalupe.Conexao.App.Repository.DTO;
+using Guadalupe.Conexao.App.Service;
 using Guadalupe.Conexao.App.Validation;
 using Guadalupe.Conexao.App.View;
 using Newtonsoft.Json;
 using Plugin.FacebookClient;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -16,9 +18,15 @@ namespace Guadalupe.Conexao.App.ViewModel
 {
     sealed class AutenticationViewModel: FormViewModel, IDisposable
     {
+        #region Fields
+
+        private bool _isLoading;
+
+        #endregion
+
         #region Constructor
 
-        public AutenticationViewModel(INavigation navigation) : base(navigation)
+        public AutenticationViewModel(INavigation navigation, IPopupService popupService) : base(navigation, popupService)
         {
             CrossFacebookClient.Current.OnUserData += FacebookOnUserData;
 
@@ -36,8 +44,19 @@ namespace Guadalupe.Conexao.App.ViewModel
                 return Email.Validate();
             }
         }
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
         public ValidatableObject<string> Email { get; set; }
-        public string MessageError { get; set; }
 
         #endregion
 
@@ -56,16 +75,22 @@ namespace Guadalupe.Conexao.App.ViewModel
         {
             try
             {
-                await ConexaoHttpClient.SendNewCodeByEmailAsync(this.Email.Value, this._cancellationToken);
+                IsLoading = true;
+
+                await Task.Delay(200);
+
+                //await ConexaoHttpClient.SendNewCodeByEmailAsync(this.Email.Value, this._cancellationToken);
 
                 await _navigation.PushAsync(new ValidateCodeView(this.Email.Value));
             }
             catch (Exception ex)
             {
                 Log.Warning("Exception", ex.Message);
-                MessageError = ConexaoHttpClient.PrettyMessage;
-                OnPropertyChanged(nameof(MessageError));
+
+                await _popupService.ShowErrorMessageAsync(ConexaoHttpClient.PrettyMessage);
             }
+
+            IsLoading = false;
 
         }, () => {
             return Email.IsValid;

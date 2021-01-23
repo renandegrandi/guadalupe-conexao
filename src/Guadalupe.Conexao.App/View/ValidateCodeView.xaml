@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:Components="clr-namespace:Guadalupe.Conexao.App.Components"
              xmlns:Converter="clr-namespace:Guadalupe.Conexao.App.Converters"
              xmlns:Behaviors="clr-namespace:Guadalupe.Conexao.App.Behaviors"
              x:Class="Guadalupe.Conexao.App.View.ValidateCodeView"
@@ -18,13 +19,13 @@
         
         <StackLayout Padding="20" 
                      VerticalOptions="CenterAndExpand">
-            
-            <Label Text="{Binding Message}" 
-                   IsVisible="{Binding HasMessage} " />
+
+            <Image Source="conexao_300x300.png" HeightRequest="200" />
 
             <Entry Text="{Binding Code.Value}" 
                    Placeholder="Digite seu código de acesso"
                    Keyboard="Text"
+                   TextTransform="Uppercase"
                    HorizontalTextAlignment="Center" >
                 <Entry.Behaviors>
                     <Behaviors:EntryValidatorBehavior IsTouched="{Binding Code.IsTouched }"></Behaviors:EntryValidatorBehavior>
@@ -34,14 +35,17 @@
             <Label Text="{Binding Code.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                    IsVisible="{Binding Code.ShowError}" />
 
-            <Button Text="Validar e Entrar" 
-                    Command="{Binding OnValidateCodeCommand}"
-                    TextColor="White"
-                    BackgroundColor="Orange" 
-                    IsEnabled="{Binding Code.IsValid}"/>
+            <Components:ButtonWithSpinner Text="Validar e Entrar" 
+                                          Command="{Binding OnValidateCodeCommand}" 
+                                          IsBusy="{Binding IsLoading}" />
 
             <Button Text="Não lembra seu código? clique para reenviar!"
-                Command="{Binding OnSendNewCodeCommand}" >
+                    Command="{Binding OnSendNewCodeCommand}"
+                    HeightRequest="50"
+                    TextColor="White"
+                    BorderWidth="1"
+                    FontSize="Micro"
+                    CornerRadius="25">
             </Button>
             
 

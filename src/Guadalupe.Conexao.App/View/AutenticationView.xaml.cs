@@ -11,7 +11,7 @@ namespace Guadalupe.Conexao.App.View
         public AutenticationView()
         {
             InitializeComponent();
-            BindingContext = new AutenticationViewModel(Navigation);
+            BindingContext = new AutenticationViewModel(Navigation, App.PopupService);
         }
     }
 }

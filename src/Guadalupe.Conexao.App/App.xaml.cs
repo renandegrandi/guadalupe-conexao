@@ -1,6 +1,7 @@
 ﻿using Guadalupe.Conexao.App.Repository;
 using Guadalupe.Conexao.App.Service;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Guadalupe.Conexao.App
 {
@@ -10,6 +11,7 @@ namespace Guadalupe.Conexao.App
         public static readonly INoticeRepository NoticeRepository = new NoticeRepository();
         public static readonly IProjectRepository ProjectRepository = new ProjectRepository();
         public static readonly ISessionService SessionService = new SessionService(UserRepository);
+        public static readonly IPopupService PopupService = new PopupService();
 
         public App()
         {

@@ -4,7 +4,7 @@ namespace Guadalupe.Conexao.App.Validation
 {
     public class EmailRule : IValidationRule<string>
     {
-        const string pattern = "@hotmail.com";
+        const string pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
         public string ValidationMessage { get; private set; }
 
