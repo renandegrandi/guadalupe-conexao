@@ -24,14 +24,16 @@
             <Entry Text="{Binding Email.Value}" 
                    Placeholder="Digite seu e-mail" 
                    Keyboard="Email" 
-                   HorizontalTextAlignment="Center" >
+                   HorizontalTextAlignment="Center"
+                   >
                 <Entry.Behaviors>
                     <Behaviors:EntryValidatorBehavior IsTouched="{Binding Email.IsTouched }"></Behaviors:EntryValidatorBehavior>
                 </Entry.Behaviors>
             </Entry>
 
             <Label Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                   IsVisible="{Binding Email.ShowError}" />
+                   IsVisible="{Binding Email.ShowError}"
+                   TextColor="Red"/>
 
             <Components:ButtonWithSpinner Text="Entrar com o E-mail" 
                                           Command="{Binding OnLoginEmailCommand}" 

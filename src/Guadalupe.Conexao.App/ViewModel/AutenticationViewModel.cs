@@ -77,9 +77,9 @@ namespace Guadalupe.Conexao.App.ViewModel
             {
                 IsLoading = true;
 
-                await Task.Delay(200);
+                await ConexaoHttpClient.SendNewCodeByEmailAsync(this.Email.Value, this._cancellationToken);
 
-                //await ConexaoHttpClient.SendNewCodeByEmailAsync(this.Email.Value, this._cancellationToken);
+                await _popupService.ShowAsync("Código de acesso", $"Enviamos o código de acesso para: {this.Email.Value}, consulte sua caixa de e-mail, caso não encontrar verifique os spans!", "Continuar");
 
                 await _navigation.PushAsync(new ValidateCodeView(this.Email.Value));
             }

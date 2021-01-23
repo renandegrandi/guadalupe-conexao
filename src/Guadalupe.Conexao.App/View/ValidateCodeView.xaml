@@ -33,7 +33,8 @@
             </Entry>
 
             <Label Text="{Binding Code.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                   IsVisible="{Binding Code.ShowError}" />
+                   IsVisible="{Binding Code.ShowError}" 
+                   TextColor="Red"/>
 
             <Components:ButtonWithSpinner Text="Validar e Entrar" 
                                           Command="{Binding OnValidateCodeCommand}" 
