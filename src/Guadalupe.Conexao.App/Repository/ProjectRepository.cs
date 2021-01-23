@@ -19,8 +19,8 @@ namespace Guadalupe.Conexao.App.Repository
     <li>A Missão providenciará, através da mãe deste projeto, a capelinha e todas as orações, com os mistérios, orações de devoção e as especiais;</li>
     <li>Cabe à equipe determinar o cronograma das visitas, ou seja, dia, hora e local, sempre com muito amor, pois a Virgem promete-lhes, como ao seu primeiro mensageiro, São Juan Diego: “Eu os farei muito felizes em recompensa das fadigas que tiverem para me servir”.</li>
 </ul>",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_capelinha_guadalupe_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_capelinha_guadalupe_without_border_300x300.webp"
             },
             new Project 
             {
@@ -31,8 +31,8 @@ namespace Guadalupe.Conexao.App.Repository
                     Venha conosco dar um colo para aqueles que, muitas vezes, ainda nem nasceram e sim, merecem uma chance!
                     Vem ...
                     Mãe do projeto",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_colo_de_maria_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_colo_de_maria_without_border_300x300.webp"
             },
             new Project
             {
@@ -43,25 +43,25 @@ namespace Guadalupe.Conexao.App.Repository
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
             },
-            new Project
-            {
-                Id = Guid.NewGuid(),
-                Name = "Casas de Acolhida",
-                Description = @"Este projeto tem por objetivo estabelecer e sustentar casas de acolhida para pessoas adultas, as mais desamparadas da rua, sobretudo os anciãos e andarilhos sem família. Já está em funcionamento uma delas, fundada pelo casal Santa Selma e José Carlos no ano de 2003, na cidade de Cacoal – RO. Abriga cerca de 100 carentes, prestando-lhes a mais carinhosa assistência sócio-caritativa, na estimativa das entidades de saúde do estado.
-                    Este casal, em conhecimento dos Mensageiros de Nossa Senhora de Guadalupe, na qualidade de pessoas “consagradas” e fundadoras da Missão Guadalupe, ficou de tal forma atraído, que quis, de imediato, iniciar a formação para se juntarem a eles, como consagrados e aliados nas obras da Missão. Tal consagração se deu após um ano de preparação, pelo Natal do ano de 2018, no mês de dezembro. A união das duas entidades foi selada juridicamente em 2019, por meio de um documento aceito e assinado por ambas as partes. Nele, declara-se que a Casa de Acolhida São Camilo passa a ser administrada pela Associação Mensageiros de Guadalupe, entidade jurídica a serviço do “Instituto Missionário dos Mensageiros de Nossa Senhora de Guadalupe”. Na ocasião, também foi anexada, a obra do projeto “Abraço de Mãe”, apenas iniciada pelo mesmo casal.
-                    Esse é mais um projeto da Missão Guadalupe que visa acolher, dar atenção carinho, amor e alegria às pessoas menos favorecidas e sem famílias, sobretudo andarilhos e afins. Venha conosco acolher e cuidar desses que tanto necessitam!
-                ",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
-            },
+            //new Project
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Name = "Casas de Acolhida",
+            //    Description = @"Este projeto tem por objetivo estabelecer e sustentar casas de acolhida para pessoas adultas, as mais desamparadas da rua, sobretudo os anciãos e andarilhos sem família. Já está em funcionamento uma delas, fundada pelo casal Santa Selma e José Carlos no ano de 2003, na cidade de Cacoal – RO. Abriga cerca de 100 carentes, prestando-lhes a mais carinhosa assistência sócio-caritativa, na estimativa das entidades de saúde do estado.
+            //        Este casal, em conhecimento dos Mensageiros de Nossa Senhora de Guadalupe, na qualidade de pessoas “consagradas” e fundadoras da Missão Guadalupe, ficou de tal forma atraído, que quis, de imediato, iniciar a formação para se juntarem a eles, como consagrados e aliados nas obras da Missão. Tal consagração se deu após um ano de preparação, pelo Natal do ano de 2018, no mês de dezembro. A união das duas entidades foi selada juridicamente em 2019, por meio de um documento aceito e assinado por ambas as partes. Nele, declara-se que a Casa de Acolhida São Camilo passa a ser administrada pela Associação Mensageiros de Guadalupe, entidade jurídica a serviço do “Instituto Missionário dos Mensageiros de Nossa Senhora de Guadalupe”. Na ocasião, também foi anexada, a obra do projeto “Abraço de Mãe”, apenas iniciada pelo mesmo casal.
+            //        Esse é mais um projeto da Missão Guadalupe que visa acolher, dar atenção carinho, amor e alegria às pessoas menos favorecidas e sem famílias, sobretudo andarilhos e afins. Venha conosco acolher e cuidar desses que tanto necessitam!
+            //    ",
+            //    Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
+            //    Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+            //},
             new Project
             {
                 Id = Guid.NewGuid(),
                 Name = "Jovens em Missão",
                 Description = @"É a força jovem na Missão Guadalupe. Este projeto tem por objetivo cuidar dos nossos jovens, às vezes mal entendidos pela sociedade ou ainda pela família. Composto por adolescentes e jovens, campistas ou não, o projeto propõem a divulgação de absolutamente tudo dessa Senhora, da Sua missão e da Missão Guadalupe. Tais cuidados vão muito além da tão somente divulgação e com este intuito acaba por evangelizar, formar, catequisar e trazêlos de volta para Nosso Senhor Jesus Cristo e à Igreja. Trazendo-os para os ensinamentos da palavra de Deus, acaba por desenvolver atividades do universo jovem católico, afastando, assim, dos vícios das drogas, bebidas, cigarros e vida desregrada. Os acampamentos FAC (Formação do Adolescente Católico) e Acampamento JUVENIL são bons exemplos de conduta onde os jovens se unem em preparação e/ou formação propriamente dita, para cuidar de tantos outros, por ora perdidos, esquecidos ou ainda simplesmente distantes. Outro bom exemplo é o grupo de oração para os jovens no sábado ao final da tarde. Muito embora a data e horário pareçam pouco lógicos, é, de fato, proposital, a fim de que esses jovens se organizem para o final de semana, muitas vezes porta de entrada para os males do mundo.
                     Como dizia São Francisco de Assis, se Deus é por nós, quem será contra nós? Vamos juntos viver intensamente tudo aquilo que Deus tem nos preparado!",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.jovens_em_missão_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.jovens_em_missão_without_border_300x300.webp"
             },
             new Project
             {
@@ -77,8 +77,8 @@ namespace Guadalupe.Conexao.App.Repository
                     - Contínua formação de intercessores.
                     Aliste-se neste exército, sabendo ou não rezar.
                     DEUS NÃO ESCOLHE OS CAPACITADOS, ELE CAPACITA OS ESCOLHIDOS",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.missao_guadalupe_orante_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.missao_guadalupe_orante_without_border_300x300.webp"
             },
             new Project
             {
@@ -88,8 +88,8 @@ namespace Guadalupe.Conexao.App.Repository
                     Consegue imaginar a grandeza que é isto?
                     Nós, da Missão Guadalupe, convidamos você a participar do nosso Ministério de Intercessão.
                     Com o amor de Nossa Senhora de Guadalupe, participe dessa experiência, venha rezar conosco!",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.pequeninos_da_missao_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.pequeninos_da_missao_without_border_300x300.webp"
             },
             new Project
             {
@@ -104,8 +104,8 @@ namespace Guadalupe.Conexao.App.Repository
                     É com esse pequeno trecho do evangelho de São Marcos que os convidamos para participar desse nosso lindo projeto! Talvez você pense mas eu não sei pregar, não sei evangelizar, não sei falar em público”... Deus nos pede apenas um coração disponível, portanto, se você pode, venha conosco levar um abraço, fazer uma oração, tocar algum instrumento ou até mesmo um simples olhar de carinho a esses irmãos que tanto precisam!
                     Vamos juntos levar esse amor de Deus e cada vez mais evangelizar como Jesus fazia:
                     Com boas ações, afinal palavras convencem, mas o exemplo arrasta!",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.post_dependentes_quimicos_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.post_dependentes_quimicos_without_border_300x300.webp"
             },
             new Project
             {
@@ -115,8 +115,8 @@ namespace Guadalupe.Conexao.App.Repository
                     Consegue imaginar a grandeza que é isto?
                     Nós, da Missão Guadalupe, convidamos você a participar do nosso Ministério de Intercessão.
                     Com o amor de Nossa Senhora de Guadalupe, participe dessa experiência, venha rezar conosco!",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_intercessao_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_intercessao_without_border_300x300.webp"
             },
             new Project
             {
@@ -130,8 +130,8 @@ namespace Guadalupe.Conexao.App.Repository
 
                     - Encaminha ao projeto “Dependentes Químicos” da própria Missão Guadalupe, aqueles que se encontram em qualquer situação de dependência, seja ela química, alcoólica ou qualquer outra e que estejam abertos a essa mudança de vida, pensamento e caráter (metanóia). Ali, tentamos o encaminhamento às clínicas especializadas parceiras.
                     Este projeto consiste em encontrar maneiras de amenizar o sofrimento de pessoas nessa situação. Fazemos também a reintegração social e familiar, com a ajuda de outras entidades parceiras, realizamos outros projetos, tais como os acampamentos, tratamentos de dependências, grupo de oração, reuniões específicas para partilhas, etc.",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_morador_de_rua_novo_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_morador_de_rua_novo_without_border_300x300.webp"
             },
             new Project
             {
@@ -141,8 +141,8 @@ namespace Guadalupe.Conexao.App.Repository
                     O projeto refere-se ao cuidado que se deve prestar aos idosos e aos doentes mais solitários, que gritam por socorro, como o pobre e cego Bartimeu (último milagre de Jesus):
                     “Filho de Davi, tem piedade de mim”! Dessa forma, esse projeto conta com uma equipe comunitária, integrada por pessoas com disponibilidade, interesse, vocação ou ainda um chamado para visitar, alegrar e ajudar, de alguma forma essas pessoas tão necessitadas.
                     Esse é mais um projeto da Missão Guadalupe que visa dar atenção carinho, amor e alegria às pessoas nos asilos, lares especializados e hospitais. Venha conosco fazer sorrir e dar amor a quem muito já nos fez!",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_os_bartimeus_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_os_bartimeus_without_border_300x300.webp"
             },
             new Project
             {
@@ -154,25 +154,25 @@ namespace Guadalupe.Conexao.App.Repository
                     - Divulgar as cartilhas da saúde;
                     - Capacitar pessoas e promover ações para tanto, entre outros.
                     Saúde não é só a ausência de doença, mas um completo bem estar físico, mental, social e, sobretudo espiritual! Vem fazer parte desse time! A partir de pequenas ações podemos transformar vidas",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_saude_e_vida_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_saude_e_vida_without_border_300x300.webp"
             },
-            new Project
-            {
-                Id = Guid.NewGuid(),
-                Name = "Vicentinos",
-                Description = @"Este projeto consiste em organizar conferências vicentinas nas comunidades onde são necessárias ou revitalizá-las nos locais onde já existem e são “fracas”, ou seja, fortalecer onde já existem, criar e dar suporte onde ainda não existem. Nos parece bastante razoável buscar conhecimento onde os vicentinos atuam de forma estruturada e eficaz, difundir os acertos, bem como prevenir quanto aos erros. Dessa forma, toda a comunidade vicentina ganha, assim podemos fazer do serviço aos pobres, nossos Mestres e Senhores, fazendo com que os vicentinos sejam um só rosto e uma só força a viver o amor e a caridade. Os pobres, nós Os enxergamos com os olhos da carne. Eles estão aí, podemos tocar o dedo em suas chagas. Aqui a incredulidade não é mais possível, é preciso cair de joelhos aos seus pés e gritar: MEU SENHOR E MEU DEUS! Vocês são nossos Mestres e seremos Seus servos. Vocês são para nós imagens sagradas do Deus que não enxergamos. Não podendo amá-Lo de outro jeito, nós O amaremos em vocês. Aqueles que não abrem mão de viver o Carisma Vicentino serão sempre pessoas livres, desapegadas, renovadas, rejuvenescidas e inseridas. Pessoas que por onde passam transbordam alegria, vida e fraternidade.
-                    Saúde não é só a ausência de doença, mas um completo bem estar físico, mental, social e, sobretudo, espiritual! Vem fazer parte desse time! A partir de pequenas ações podemos transformar vidas!",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
-            },
+            //new Project
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Name = "Vicentinos",
+            //    Description = @"Este projeto consiste em organizar conferências vicentinas nas comunidades onde são necessárias ou revitalizá-las nos locais onde já existem e são “fracas”, ou seja, fortalecer onde já existem, criar e dar suporte onde ainda não existem. Nos parece bastante razoável buscar conhecimento onde os vicentinos atuam de forma estruturada e eficaz, difundir os acertos, bem como prevenir quanto aos erros. Dessa forma, toda a comunidade vicentina ganha, assim podemos fazer do serviço aos pobres, nossos Mestres e Senhores, fazendo com que os vicentinos sejam um só rosto e uma só força a viver o amor e a caridade. Os pobres, nós Os enxergamos com os olhos da carne. Eles estão aí, podemos tocar o dedo em suas chagas. Aqui a incredulidade não é mais possível, é preciso cair de joelhos aos seus pés e gritar: MEU SENHOR E MEU DEUS! Vocês são nossos Mestres e seremos Seus servos. Vocês são para nós imagens sagradas do Deus que não enxergamos. Não podendo amá-Lo de outro jeito, nós O amaremos em vocês. Aqueles que não abrem mão de viver o Carisma Vicentino serão sempre pessoas livres, desapegadas, renovadas, rejuvenescidas e inseridas. Pessoas que por onde passam transbordam alegria, vida e fraternidade.
+            //        Saúde não é só a ausência de doença, mas um completo bem estar físico, mental, social e, sobretudo, espiritual! Vem fazer parte desse time! A partir de pequenas ações podemos transformar vidas!",
+            //    Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
+            //    Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+            //},
             new Project
             {
                 Id = Guid.NewGuid(),
                 Name = "S.O.S. Familia",
                 Description = @"Tem entre seus objetivos, visitar as famílias mais carentes a fim de identificar quais as maiores necessidades e buscar ajuda, e, quando necessário, encaminhar a alguma pastoral ou projeto específico. Além do mais importante, rezar junto com estas famílias, promovendo entre eles a oração e a busca pelo Senhor.",
-                Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Image = "resource://Guadalupe.Conexao.App.Resource.Image.sos_familias_300x300.webp",
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.sos_familias_without_border_300x300.webp"
             }
         };
 
