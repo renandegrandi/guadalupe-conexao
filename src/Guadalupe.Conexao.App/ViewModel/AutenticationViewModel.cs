@@ -10,6 +10,7 @@ using System;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace Guadalupe.Conexao.App.ViewModel
 {
@@ -59,8 +60,9 @@ namespace Guadalupe.Conexao.App.ViewModel
 
                 await _navigation.PushAsync(new ValidateCodeView(this.Email.Value));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Warning("Exception", ex.Message);
                 MessageError = ConexaoHttpClient.PrettyMessage;
                 OnPropertyChanged(nameof(MessageError));
             }

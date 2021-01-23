@@ -20,7 +20,9 @@ namespace Guadalupe.Conexao.App.Repository
     <li>Cabe à equipe determinar o cronograma das visitas, ou seja, dia, hora e local, sempre com muito amor, pois a Virgem promete-lhes, como ao seu primeiro mensageiro, São Juan Diego: “Eu os farei muito felizes em recompensa das fadigas que tiverem para me servir”.</li>
 </ul>",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_capelinha_guadalupe_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_capelinha_guadalupe_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_capelinha_guadalupe_without_border_300x300.webp",
+                Contact = "17991328424"
+                 
             },
             new Project 
             {
@@ -32,7 +34,8 @@ namespace Guadalupe.Conexao.App.Repository
                     Vem ...
                     Mãe do projeto",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_colo_de_maria_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_colo_de_maria_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_colo_de_maria_without_border_300x300.webp",
+                Contact = "17996582983"
             },
             new Project
             {
@@ -41,7 +44,8 @@ namespace Guadalupe.Conexao.App.Repository
                 Description = @"Projeto muito parecido a “Casas de Acolhida”, mas para as nossas crianças e jovens desamparados também, de 0 a 18 anos de idade, onde cuidamos, tratamos, ressignificamos e restauramos essas vidas através do amor, atenção e carinho, que somente nossa mãezinha do céu pode conceder. Sediado em Cacoal – RO, é mais uma obra que necessita e merece muito amor, ajuda e carinho por parte da comunidade e, sobretudo, dos amigos e benfeitores da Missão.
                     Venha conosco levar esperança para aqueles que talvez o mundo tenha esquecido. Nesse caso, vidas tão jovens!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp",
+                Contact = "69992073056"
             },
             //new Project
             //{
@@ -61,7 +65,8 @@ namespace Guadalupe.Conexao.App.Repository
                 Description = @"É a força jovem na Missão Guadalupe. Este projeto tem por objetivo cuidar dos nossos jovens, às vezes mal entendidos pela sociedade ou ainda pela família. Composto por adolescentes e jovens, campistas ou não, o projeto propõem a divulgação de absolutamente tudo dessa Senhora, da Sua missão e da Missão Guadalupe. Tais cuidados vão muito além da tão somente divulgação e com este intuito acaba por evangelizar, formar, catequisar e trazêlos de volta para Nosso Senhor Jesus Cristo e à Igreja. Trazendo-os para os ensinamentos da palavra de Deus, acaba por desenvolver atividades do universo jovem católico, afastando, assim, dos vícios das drogas, bebidas, cigarros e vida desregrada. Os acampamentos FAC (Formação do Adolescente Católico) e Acampamento JUVENIL são bons exemplos de conduta onde os jovens se unem em preparação e/ou formação propriamente dita, para cuidar de tantos outros, por ora perdidos, esquecidos ou ainda simplesmente distantes. Outro bom exemplo é o grupo de oração para os jovens no sábado ao final da tarde. Muito embora a data e horário pareçam pouco lógicos, é, de fato, proposital, a fim de que esses jovens se organizem para o final de semana, muitas vezes porta de entrada para os males do mundo.
                     Como dizia São Francisco de Assis, se Deus é por nós, quem será contra nós? Vamos juntos viver intensamente tudo aquilo que Deus tem nos preparado!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.jovens_em_missão_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.jovens_em_missão_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.jovens_em_missão_without_border_300x300.webp",
+                Contact = "17991089924"
             },
             new Project
             {
@@ -78,7 +83,8 @@ namespace Guadalupe.Conexao.App.Repository
                     Aliste-se neste exército, sabendo ou não rezar.
                     DEUS NÃO ESCOLHE OS CAPACITADOS, ELE CAPACITA OS ESCOLHIDOS",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.missao_guadalupe_orante_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.missao_guadalupe_orante_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.missao_guadalupe_orante_without_border_300x300.webp",
+                Contact = "17997781004"
             },
             new Project
             {
@@ -89,7 +95,8 @@ namespace Guadalupe.Conexao.App.Repository
                     Nós, da Missão Guadalupe, convidamos você a participar do nosso Ministério de Intercessão.
                     Com o amor de Nossa Senhora de Guadalupe, participe dessa experiência, venha rezar conosco!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.pequeninos_da_missao_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.pequeninos_da_missao_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.pequeninos_da_missao_without_border_300x300.webp",
+                Contact = "17996761981"
             },
             new Project
             {
@@ -105,7 +112,8 @@ namespace Guadalupe.Conexao.App.Repository
                     Vamos juntos levar esse amor de Deus e cada vez mais evangelizar como Jesus fazia:
                     Com boas ações, afinal palavras convencem, mas o exemplo arrasta!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.post_dependentes_quimicos_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.post_dependentes_quimicos_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.post_dependentes_quimicos_without_border_300x300.webp",
+                Contact = "17991465831"
             },
             new Project
             {
@@ -116,7 +124,8 @@ namespace Guadalupe.Conexao.App.Repository
                     Nós, da Missão Guadalupe, convidamos você a participar do nosso Ministério de Intercessão.
                     Com o amor de Nossa Senhora de Guadalupe, participe dessa experiência, venha rezar conosco!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_intercessao_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_intercessao_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_intercessao_without_border_300x300.webp",
+                Contact = "17997018368"
             },
             new Project
             {
@@ -131,7 +140,8 @@ namespace Guadalupe.Conexao.App.Repository
                     - Encaminha ao projeto “Dependentes Químicos” da própria Missão Guadalupe, aqueles que se encontram em qualquer situação de dependência, seja ela química, alcoólica ou qualquer outra e que estejam abertos a essa mudança de vida, pensamento e caráter (metanóia). Ali, tentamos o encaminhamento às clínicas especializadas parceiras.
                     Este projeto consiste em encontrar maneiras de amenizar o sofrimento de pessoas nessa situação. Fazemos também a reintegração social e familiar, com a ajuda de outras entidades parceiras, realizamos outros projetos, tais como os acampamentos, tratamentos de dependências, grupo de oração, reuniões específicas para partilhas, etc.",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_morador_de_rua_novo_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_morador_de_rua_novo_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_morador_de_rua_novo_without_border_300x300.webp",
+                Contact = "17997772681"
             },
             new Project
             {
@@ -142,7 +152,8 @@ namespace Guadalupe.Conexao.App.Repository
                     “Filho de Davi, tem piedade de mim”! Dessa forma, esse projeto conta com uma equipe comunitária, integrada por pessoas com disponibilidade, interesse, vocação ou ainda um chamado para visitar, alegrar e ajudar, de alguma forma essas pessoas tão necessitadas.
                     Esse é mais um projeto da Missão Guadalupe que visa dar atenção carinho, amor e alegria às pessoas nos asilos, lares especializados e hospitais. Venha conosco fazer sorrir e dar amor a quem muito já nos fez!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_os_bartimeus_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_os_bartimeus_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_os_bartimeus_without_border_300x300.webp",
+                Contact = "17992195151"
             },
             new Project
             {
@@ -155,7 +166,8 @@ namespace Guadalupe.Conexao.App.Repository
                     - Capacitar pessoas e promover ações para tanto, entre outros.
                     Saúde não é só a ausência de doença, mas um completo bem estar físico, mental, social e, sobretudo espiritual! Vem fazer parte desse time! A partir de pequenas ações podemos transformar vidas",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_saude_e_vida_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_saude_e_vida_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_saude_e_vida_without_border_300x300.webp",
+                Contact = "17997134352"
             },
             //new Project
             //{
@@ -172,7 +184,8 @@ namespace Guadalupe.Conexao.App.Repository
                 Name = "S.O.S. Familia",
                 Description = @"Tem entre seus objetivos, visitar as famílias mais carentes a fim de identificar quais as maiores necessidades e buscar ajuda, e, quando necessário, encaminhar a alguma pastoral ou projeto específico. Além do mais importante, rezar junto com estas famílias, promovendo entre eles a oração e a busca pelo Senhor.",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.sos_familias_300x300.webp",
-                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.sos_familias_without_border_300x300.webp"
+                Logo ="resource://Guadalupe.Conexao.App.Resource.Image.sos_familias_without_border_300x300.webp",
+                Contact = "17997440365"
             }
         };
 

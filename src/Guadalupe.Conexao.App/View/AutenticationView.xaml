@@ -18,7 +18,7 @@
         <StackLayout Padding="20" 
                      VerticalOptions="CenterAndExpand" >
 
-            <Image Source="conexao_guadalupe.webp" />
+            <Image Source="conexao_300x300.png" />
 
             <Entry Text="{Binding Email.Value}" 
                    Placeholder="Digite seu e-mail" 

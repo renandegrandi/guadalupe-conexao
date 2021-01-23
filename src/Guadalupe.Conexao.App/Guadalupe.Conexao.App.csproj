@@ -21,6 +21,20 @@
     <None Remove="Resource\Image\pequeninos_da_missao_without_border_300x300.webp" />
     <None Remove="Resource\Image\post_dependentes_quimicos_300x300.webp" />
     <None Remove="Resource\Image\post_dependentes_quimicos_without_border_300x300.webp" />
+    <None Remove="Resource\Image\projeto_capelinha_guadalupe_300x300.webp" />
+    <None Remove="Resource\Image\projeto_capelinha_guadalupe_without_border_300x300.webp" />
+    <None Remove="Resource\Image\projeto_colo_de_maria_300x300.webp" />
+    <None Remove="Resource\Image\projeto_colo_de_maria_without_border_300x300.webp" />
+    <None Remove="Resource\Image\projeto_intercessao_300x300.webp" />
+    <None Remove="Resource\Image\projeto_intercessao_without_border_300x300.webp" />
+    <None Remove="Resource\Image\projeto_morador_de_rua_novo_300x300.webp" />
+    <None Remove="Resource\Image\projeto_morador_de_rua_novo_without_border_300x300.webp" />
+    <None Remove="Resource\Image\projeto_os_bartimeus_300x300.webp" />
+    <None Remove="Resource\Image\projeto_os_bartimeus_without_border_300x300.webp" />
+    <None Remove="Resource\Image\projeto_saude_e_vida_300x300.webp" />
+    <None Remove="Resource\Image\projeto_saude_e_vida_without_border_300x300.webp" />
+    <None Remove="Resource\Image\sos_familias_300x300.webp" />
+    <None Remove="Resource\Image\sos_familias_without_border_300x300.webp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +48,20 @@
     <EmbeddedResource Include="Resource\Image\pequeninos_da_missao_without_border_300x300.webp" />
     <EmbeddedResource Include="Resource\Image\post_dependentes_quimicos_300x300.webp" />
     <EmbeddedResource Include="Resource\Image\post_dependentes_quimicos_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_capelinha_guadalupe_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_capelinha_guadalupe_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_colo_de_maria_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_colo_de_maria_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_intercessao_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_intercessao_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_morador_de_rua_novo_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_morador_de_rua_novo_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_os_bartimeus_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_os_bartimeus_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_saude_e_vida_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\projeto_saude_e_vida_without_border_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\sos_familias_300x300.webp" />
+    <EmbeddedResource Include="Resource\Image\sos_familias_without_border_300x300.webp" />
   </ItemGroup>
 
   <ItemGroup>

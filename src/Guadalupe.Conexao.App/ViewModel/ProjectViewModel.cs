@@ -21,7 +21,7 @@ namespace Guadalupe.Conexao.App.ViewModel
 
         public ICommand WantParticipateCommandAsync => new Command(async () =>
         {
-            await _whatsappService.OpenAsync(Project.Contact, "Olá quero participar do projeto");
+            await _whatsappService.OpenAsync(Project.Contact, $"Oi, acabei de ler sobre o projeto: {Project.Name}, no APP da missão guadalupe e gostaria de participar!");
         });
 
         #endregion
