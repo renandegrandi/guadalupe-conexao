@@ -52,6 +52,9 @@ namespace Guadalupe.Conexao.App.Repository
             if (!DB.TableMappings.Any(m => m.MappedType.Name == typeof(Notice).Name))
                 tables.Add(DB.CreateTableAsync<Notice>());
 
+            if (!DB.TableMappings.Any(m => m.MappedType.Name == typeof(MobileInfo).Name))
+                tables.Add(DB.CreateTableAsync<MobileInfo>());
+
             return Task.WhenAll(tables);
         }
     }

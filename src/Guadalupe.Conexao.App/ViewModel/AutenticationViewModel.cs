@@ -75,6 +75,7 @@ namespace Guadalupe.Conexao.App.ViewModel
         {
             try
             {
+
                 IsLoading = true;
 
                 await ConexaoHttpClient.SendNewCodeByEmailAsync(this.Email.Value, this._cancellationToken);

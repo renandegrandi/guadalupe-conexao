@@ -25,6 +25,29 @@ namespace Guadalupe.Conexao.App.Repository
 
             return user;
         }
+        public async Task RegisterFCMTokenAsync(string token)
+        {
+            var mobileinfoTable = Database.DB.Table<MobileInfo>();
+
+            if (await mobileinfoTable
+                .CountAsync()
+                .ConfigureAwait(false) == 0)
+            {
+                await Database.DB.InsertAsync(new MobileInfo(token))
+                    .ConfigureAwait(false);
+            }
+            else 
+            {
+                var mobileinfo = await mobileinfoTable
+                    .FirstAsync()
+                    .ConfigureAwait(false);
+
+                mobileinfo.FCMToken = token;
+
+                await Database.DB.UpdateAsync(mobileinfo)
+                    .ConfigureAwait(false);
+            }
+        }
         public async Task SaveAsync(User user)
         {
             await Database

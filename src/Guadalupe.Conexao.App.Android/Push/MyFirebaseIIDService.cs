@@ -1,7 +1,8 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Util;
 using Firebase.Iid;
+using Firebase.Messaging;
+using Guadalupe.Conexao.App.Repository;
 
 namespace Guadalupe.Conexao.App.Droid.Push
 {
@@ -13,12 +14,17 @@ namespace Guadalupe.Conexao.App.Droid.Push
         public override void OnTokenRefresh()
         {
             var refreshedToken = FirebaseInstanceId.Instance.Token;
-            Log.Debug(TAG, "Refreshed token: " + refreshedToken);
+
+            FirebaseMessaging.Instance.SubscribeToTopic("notices");
+
             SendRegistrationToServer(refreshedToken);
         }
         void SendRegistrationToServer(string token)
         {
-            // Add custom implementation, as needed.
+            new UserRepository().RegisterFCMTokenAsync(token)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
     }
 }
