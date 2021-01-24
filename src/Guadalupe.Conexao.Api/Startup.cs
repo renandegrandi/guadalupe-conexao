@@ -1,4 +1,5 @@
 using AutoMapper;
+using Google.Apis.Auth.OAuth2;
 using Guadalupe.Conexao.Api.Config;
 using Guadalupe.Conexao.Api.Extensions;
 using Microsoft.ApplicationInsights.DependencyCollector;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IO;
 using System.Text;
 
@@ -53,6 +55,11 @@ namespace Guadalupe.Conexao.Api
 
             services
                 .AddAutoMapper(typeof(Startup));
+
+            FirebaseAdmin.FirebaseApp.Create(new FirebaseAdmin.AppOptions
+            {
+                Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "firebase.json")),
+            });
 
             services.AddApplicationInsightsTelemetry(Configuration.GetSection("ApplicationInsights"))
                 .ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) =>

@@ -11,5 +11,6 @@ namespace Guadalupe.Conexao.Api.Models.V1
         public string Message { get; set; }
         [Required]
         public string Image { get; set; }
+        public bool SendNotification { get; set; }
     }
 }

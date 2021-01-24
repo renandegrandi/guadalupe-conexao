@@ -22,6 +22,7 @@ namespace Guadalupe.Conexao.Api.Controllers
         private readonly INoticeRepository _noticeRepository;
         private readonly IIdentityService _identityService;
         private readonly IMapper _mapper;
+        private readonly INotificationService _notificationService;
 
         #endregion
 
@@ -30,12 +31,14 @@ namespace Guadalupe.Conexao.Api.Controllers
         public NoticeController(ILogger<NoticeController> logger,
             INoticeRepository noticeRepository,
             IIdentityService identityService,
-            IMapper mapper)
+            IMapper mapper,
+            INotificationService notificationService)
         {
             _logger = logger;
             _noticeRepository = noticeRepository;
             _identityService = identityService;
             _mapper = mapper;
+            _notificationService = notificationService;
         }
 
         #endregion
@@ -70,6 +73,17 @@ namespace Guadalupe.Conexao.Api.Controllers
             _noticeRepository.Add(notice);
 
             await _noticeRepository.UnitOfWork.CommitAsync(HttpContext.RequestAborted);
+
+            if (noticeCreate.SendNotification) 
+            {
+                var data = new Dictionary<string, string>();
+                data.Add("Notice", notice.Id.ToString());
+
+                var image = $"https://guadalupestorage.blob.core.windows.net/assets/" + notice.Image;
+
+                await _notificationService.SendByTopicAsync(notice.Title, notice.Message, image, "notices", data, HttpContext.RequestAborted)
+                    .ConfigureAwait(false);
+            }
 
             return Created($"api/notice/{notice.Id}", notice.Id);
         }
@@ -117,3 +131,4 @@ namespace Guadalupe.Conexao.Api.Controllers
         }
     }
 }
+ 
