@@ -65,8 +65,7 @@ namespace Guadalupe.Conexao.Api.Controllers
             var autenticated = await _identityService.GetAutenticatedPersonAsync(HttpContext.RequestAborted);
 
             notice
-                .AddPostedBy(autenticated)
-                .AddImage("Imagens/notice.jpg");
+                .AddPostedBy(autenticated);
 
             _noticeRepository.Add(notice);
 

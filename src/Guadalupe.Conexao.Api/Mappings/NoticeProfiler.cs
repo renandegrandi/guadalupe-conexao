@@ -14,10 +14,8 @@ namespace Guadalupe.Conexao.Api.Mappings
                 .ForMember((dto) => dto.Posted, opt => opt.MapFrom((domain) => domain.Registration))
                 .ForMember((dto) => dto.State, opt => opt.MapFrom<StateResolver>());
 
-
             CreateMap<Dto.NoticeCreateDto, Domain.Notice>()
-                .ConstructUsing((dto) => new Notice(dto.Title, dto.Message));
-
+                .ConstructUsing((dto) => new Notice(dto.Title, dto.Message, dto.Image));
         }
     }
 
