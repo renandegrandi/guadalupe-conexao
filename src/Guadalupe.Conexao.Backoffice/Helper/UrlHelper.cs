@@ -4,7 +4,7 @@
     {
         public static string GetImagePath(string image) 
         {
-            return $"{Startup.ApiUrl}{image}";
+            return $"https://guadalupestorage.blob.core.windows.net/assets/" + image;
         }
     }
 }

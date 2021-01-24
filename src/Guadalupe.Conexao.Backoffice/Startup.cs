@@ -18,10 +18,9 @@ namespace Guadalupe.Conexao.Backoffice
         public static readonly AuthenticationDto authentication = new AuthenticationDto
         {
             GrantType = GrantTypes.password,
-            Username = "missaoguadalupe@hotmail.com",
-            Password = "AAAA"
+            Username = "guadalupe.conexao@gmail.com",
+            Password = "MM2J"
         };
-        public const string ApiUrl = "http://localhost:49981/";
 
         public Startup(IConfiguration configuration)
         {
@@ -39,9 +38,14 @@ namespace Guadalupe.Conexao.Backoffice
             services.AddScoped<INoticeService, NoticeService>();
             services.AddScoped<IUserService, UserService>();
 
+            services.Configure<Config>(Configuration.GetSection(Config.Key));
+
+            var config = Configuration.GetSection(Config.Key).Get<Config>();
+
             services.AddHttpClient("guadalupe-conexao-api", (c) =>
             {
-                c.BaseAddress = new Uri(ApiUrl);
+                c.BaseAddress = new Uri(config.ConexaoApi);
+                c.Timeout = TimeSpan.FromSeconds(3);
             });
 
             services
