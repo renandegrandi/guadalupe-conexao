@@ -19,8 +19,6 @@ namespace Guadalupe.Conexao.App.Repository
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "Está pendente a implementação de um arquivo de configuração.")]
         private static readonly HttpClient HttpClient = new HttpClient
         {
-            //TODO : Implementar configuração para a url da aplicação.
-
             Timeout = TimeSpan.FromSeconds(3),
             BaseAddress = new Uri(Configuration.ConexaoApi)
         };
@@ -48,6 +46,29 @@ namespace Guadalupe.Conexao.App.Repository
 
             using (var request = new HttpRequestMessage(HttpMethod.Put, url)) 
             {
+                var result = await HttpClient.SendAsync(request, cancellationToken)
+                    .ConfigureAwait(false);
+
+                await result.GetResultAsync<int>()
+                    .ConfigureAwait(false);
+            }
+        }
+        public static async Task RegisterFirebaseTokenAsync(string token, CancellationToken cancellationToken)
+        {
+            var url = $"user/fcm_token";
+
+            var user = App.SessionService.GetUser();
+
+            using (var request = new HttpRequestMessage(HttpMethod.Put, url)) 
+            {
+                var json = JsonConvert.SerializeObject(new { 
+                    token = token
+                });
+
+                request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                request.Headers.Authorization = new AuthenticationHeaderValue("bearer", user.ConexaoToken);
+
                 var result = await HttpClient.SendAsync(request, cancellationToken)
                     .ConfigureAwait(false);
 

@@ -21,6 +21,11 @@ namespace Guadalupe.Conexao.App.Repository
                     .Where((p) => p.Id == user.IdPerson)
                     .FirstOrDefaultAsync()
                     .ConfigureAwait(false);
+
+                user.MobileInfo = await Database
+                    .DB
+                    .Table<MobileInfo>()
+                    .FirstOrDefaultAsync();
             }
 
             return user;

@@ -8,9 +8,9 @@ namespace Guadalupe.Conexao.App.Droid.Push
 {
     [Service]
     [IntentFilter(new[] { "com.google.firebase.INSTANCE_ID_EVENT" })]
-    public class MyFirebaseIIDService : FirebaseInstanceIdService
+    public class FirebaseRegisterService : FirebaseInstanceIdService
     {
-        const string TAG = "MyFirebaseIIDService";
+        private const string TAG = "FirebaseRegisterService";
         public override void OnTokenRefresh()
         {
             var refreshedToken = FirebaseInstanceId.Instance.Token;

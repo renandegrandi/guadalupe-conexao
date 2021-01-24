@@ -1,4 +1,5 @@
-﻿using Guadalupe.Conexao.App.Model;
+﻿using Guadalupe.Conexao.App.Extensions;
+using Guadalupe.Conexao.App.Model;
 using Guadalupe.Conexao.App.Repository;
 using Guadalupe.Conexao.App.Repository.DTO;
 using Guadalupe.Conexao.App.Service;
@@ -93,7 +94,16 @@ namespace Guadalupe.Conexao.App.ViewModel
 
                 await _userRepository.SaveAsync(user);
 
+                // é necessário atualizar, para vincular com as informações da mobile-info.
+                user = await _userRepository.GetAsync();
+
                 _sessionService.SetUser(user);
+
+                if (!string.IsNullOrWhiteSpace(user.MobileInfo.FCMToken)) 
+                {
+                    ConexaoHttpClient.RegisterFirebaseTokenAsync(user.MobileInfo.FCMToken, _cancellationToken)
+                        .SafeFireAndForget(false);
+                }
 
                 await _navigation.PushAsync(new MainView());
             }

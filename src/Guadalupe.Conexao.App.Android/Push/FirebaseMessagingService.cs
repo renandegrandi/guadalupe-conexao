@@ -8,9 +8,9 @@ namespace Guadalupe.Conexao.App.Droid.Push
 {
     [Service]
     [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]
-    public class MyFirebaseMessagingService : FirebaseMessagingService
+    public class FirebaseMessagingService : Firebase.Messaging.FirebaseMessagingService
     {
-        const string TAG = "MyFirebaseMsgService";
+        const string TAG = "FirebaseMessagingService";
 
         public override void OnMessageReceived(RemoteMessage message)
         {

@@ -27,6 +27,9 @@ namespace Guadalupe.Conexao.App.Model
         [OneToOne]
         public Person Person { get; set; }
 
+        [Ignore]
+        public MobileInfo MobileInfo { get; set; }
+
         #endregion
 
         public User()

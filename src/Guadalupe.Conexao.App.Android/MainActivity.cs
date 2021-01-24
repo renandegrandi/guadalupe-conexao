@@ -12,6 +12,7 @@ using Firebase.Iid;
 using Android.Util;
 using FFImageLoading;
 using System;
+using System.Linq;
 
 namespace Guadalupe.Conexao.App.Droid
 {
@@ -45,20 +46,13 @@ namespace Guadalupe.Conexao.App.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            if (Intent.Extras != null)
-            {
-                foreach (var key in Intent.Extras.KeySet())
-                {
-                    var value = Intent.Extras.GetString(key);
-                    Log.Debug(TAG, "Key: {0} Value: {1}", key, value);
-                }
-            }
+            Initialize initApp = GetInitiliazeApp();
 
             IsPlayServicesAvailable();
 
             CreateNotificationChannel();
 
-            LoadApplication(new App());
+            LoadApplication(new App(initApp));
         }
 
         protected override void OnResume()
@@ -118,6 +112,36 @@ namespace Guadalupe.Conexao.App.Droid
 
             var notificationManager = (NotificationManager)GetSystemService(Android.Content.Context.NotificationService);
             notificationManager.CreateNotificationChannel(channel);
+        }
+
+        public Initialize GetInitiliazeApp() 
+        {
+            try
+            {
+                if (Intent.Extras != null)
+                {
+                    var firstKey = Intent.Extras.KeySet().FirstOrDefault();
+
+                    if (firstKey != null) 
+                    {
+                        var value = Intent.Extras.GetString(firstKey);
+
+                        var id = new Guid(value);
+
+                        Initialize.Pages page;
+
+                        Enum.TryParse(firstKey, out page);
+
+                        return new Initialize(page, id);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception", $"Falha para carregar a inicialização por notificação: ({ex.Message})");
+            }
+
+            return null;
         }
     }
 }
