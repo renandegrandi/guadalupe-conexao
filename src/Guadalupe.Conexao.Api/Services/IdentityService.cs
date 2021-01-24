@@ -15,7 +15,8 @@ namespace Guadalupe.Conexao.Api.Services
         private readonly IUserRepository _userRepository;
         #endregion
 
-        public Person Autenticated { get; private set; }
+        public Person PersonAutenticated { get; private set; }
+        public User UserAutenticated { get; private set; }
 
         public IdentityService(IHttpContextAccessor httpContextAccessor,
             IUserRepository userRepository)
@@ -24,20 +25,31 @@ namespace Guadalupe.Conexao.Api.Services
             _userRepository = userRepository;
         }
 
-        public async Task<Person> GetAutenticated(CancellationToken cancellationToken)
+        public async Task<Person> GetAutenticatedPersonAsync(CancellationToken cancellationToken)
         {
-            if (Autenticated != null) return Autenticated;
+            if (PersonAutenticated != null) return PersonAutenticated;
 
             var id = Guid.Parse(_httpContextAccessor.HttpContext.User
                 .Claims
                 .First((c) => c.Type == "userid")
                 .Value);
 
-            Autenticated = await _userRepository.GetByIdAsync(id, cancellationToken);
+            PersonAutenticated = await _userRepository.GetByIdAsync(id, cancellationToken);
 
-            _userRepository.UnitOfWork.Attach(Autenticated);
+            _userRepository.UnitOfWork.Attach(PersonAutenticated);
 
-            return Autenticated;
+            return PersonAutenticated;
+        }
+
+        public async Task<User> GetAutenticatedUserAsync(CancellationToken cancellationToken)
+        {
+            if (UserAutenticated != null) return UserAutenticated;
+
+            var person = await GetAutenticatedPersonAsync(cancellationToken);
+
+            UserAutenticated = await _userRepository.GetByPersonIdAsync(person.Id, cancellationToken);
+
+            return UserAutenticated;
         }
     }
 }

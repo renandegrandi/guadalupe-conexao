@@ -27,6 +27,10 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Configurations
                 .HasMaxLength(255)
                 .HasColumnName("refresh_token");
 
+            builder.Property((b) => b.FCMToken)
+                .IsUnicode(false)
+                .HasColumnName("fcm_token");
+
             builder.Property((b) => b.Registration)
                 .IsRequired()
                 .HasDefaultValueSql("getdate()")

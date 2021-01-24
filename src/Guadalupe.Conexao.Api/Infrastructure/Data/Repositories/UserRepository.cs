@@ -84,5 +84,10 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cancellationToken);
         }
+
+        public Task<User> GetByPersonIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return _context.User.FirstOrDefaultAsync((u) => u.Person.Id == id, cancellationToken);
+        }
     }
 }

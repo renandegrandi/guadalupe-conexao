@@ -18,6 +18,7 @@ namespace Guadalupe.Conexao.Api.Domain
         public Person Person { get; private set; }
         public string CodeAccess { get; private set; }
         public string RefreshToken { get; private set; }
+        public string FCMToken { get; private set; }
 
         #endregion
 
@@ -46,6 +47,11 @@ namespace Guadalupe.Conexao.Api.Domain
         {
             CodeAccess = GenerateCodeAccess();
 
+            return this;
+        }
+        public User ChangeFcmToken(string token) 
+        {
+            FCMToken = token;
             return this;
         }
 

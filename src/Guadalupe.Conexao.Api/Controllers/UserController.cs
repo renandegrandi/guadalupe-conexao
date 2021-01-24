@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Guadalupe.Conexao.Api.Config;
 using Guadalupe.Conexao.Api.Domain;
+using Guadalupe.Conexao.Api.Infrastructure.Data;
 using Guadalupe.Conexao.Api.Models.V1;
 using Guadalupe.Conexao.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -25,6 +27,7 @@ namespace Guadalupe.Conexao.Api.Controllers
         private readonly AuthenticationConfig _authentication;
         private readonly IMapper _mapper;
         private readonly ISmtpService _smtpService;
+        private readonly IIdentityService _identityService;
 
         #endregion
 
@@ -33,12 +36,14 @@ namespace Guadalupe.Conexao.Api.Controllers
         public UserController(IUserRepository userRepository,
             IOptions<AuthenticationConfig> autenticationConfig,
             IMapper mapper,
-            ISmtpService smtpService)
+            ISmtpService smtpService,
+            IIdentityService identityService)
         {
             _userRepository = userRepository;
             _authentication = autenticationConfig.Value;
             _mapper = mapper;
             _smtpService = smtpService;
+            _identityService = identityService;
         }
 
         #endregion
@@ -213,6 +218,26 @@ namespace Guadalupe.Conexao.Api.Controllers
                 RefreshToken = refreshToken,
                 UserInfo = personMapping
             });
+        }
+
+        /// <summary>
+        /// Método reponsável por registrar e/ou alterar o token do fcm.
+        /// </summary>
+        [HttpPatch("fcm_token")]
+        [Authorize]
+        public async Task<IActionResult> RegisterFirebaseTokenAsync([FromBody] FirebaseTokenDto fcmToken) 
+        {
+            var user = await _identityService.GetAutenticatedUserAsync(HttpContext.RequestAborted);
+
+            user.ChangeFcmToken(fcmToken.Token);
+
+            var unitOfWork = ((ConexaoContext)_userRepository.UnitOfWork);
+
+            unitOfWork.Attach(user);
+
+            await _userRepository.UnitOfWork.CommitAsync(HttpContext.RequestAborted);
+
+            return NoContent();
         }
     }
 }

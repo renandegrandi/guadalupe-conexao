@@ -62,7 +62,7 @@ namespace Guadalupe.Conexao.Api.Controllers
         {
             var notice = _mapper.Map<Notice>(noticeCreate);
 
-            var autenticated = await _identityService.GetAutenticated(HttpContext.RequestAborted);
+            var autenticated = await _identityService.GetAutenticatedPersonAsync(HttpContext.RequestAborted);
 
             notice
                 .AddPostedBy(autenticated)

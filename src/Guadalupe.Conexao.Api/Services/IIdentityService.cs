@@ -6,6 +6,7 @@ namespace Guadalupe.Conexao.Api.Services
 {
     public interface IIdentityService
     {
-        Task<Person> GetAutenticated(CancellationToken cancellationToken);
+        Task<Person> GetAutenticatedPersonAsync(CancellationToken cancellationToken);
+        Task<User> GetAutenticatedUserAsync(CancellationToken cancellationToken);
     }
 }
