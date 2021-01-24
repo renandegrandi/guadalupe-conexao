@@ -223,7 +223,7 @@ namespace Guadalupe.Conexao.Api.Controllers
         /// <summary>
         /// Método reponsável por registrar e/ou alterar o token do fcm.
         /// </summary>
-        [HttpPatch("fcm_token")]
+        [HttpPut("fcm_token")]
         [Authorize]
         public async Task<IActionResult> RegisterFirebaseTokenAsync([FromBody] FirebaseTokenDto fcmToken) 
         {
