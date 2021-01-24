@@ -99,7 +99,7 @@ namespace Guadalupe.Conexao.App.ViewModel
 
                 _sessionService.SetUser(user);
 
-                if (!string.IsNullOrWhiteSpace(user.MobileInfo.FCMToken)) 
+                if (!string.IsNullOrWhiteSpace(user.MobileInfo?.FCMToken))
                 {
                     ConexaoHttpClient.RegisterFirebaseTokenAsync(user.MobileInfo.FCMToken, _cancellationToken)
                         .SafeFireAndForget(false);
