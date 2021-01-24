@@ -14,7 +14,7 @@ namespace Guadalupe.Conexao.Api.Services
             throw new NotImplementedException();
         }
 
-        public async Task SendByTopicAsync(string title, string body, string image, string topic, Dictionary<string, string> data, CancellationToken cancellationToken)
+        public Task SendByTopicAsync(string title, string body, string image, string topic, Dictionary<string, string> data, CancellationToken cancellationToken)
         {
             var message = new Message
             {
