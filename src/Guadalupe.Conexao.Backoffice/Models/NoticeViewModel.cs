@@ -16,6 +16,8 @@ namespace Guadalupe.Conexao.Backoffice.Models
         
         public string Image { get; set; }
 
+        public bool SendNotification { get; set; }
+
         [Required(ErrorMessage = "É obrigatório vincular uma imagem!")]
         public IFormFile ImageFile { get; set; }
         

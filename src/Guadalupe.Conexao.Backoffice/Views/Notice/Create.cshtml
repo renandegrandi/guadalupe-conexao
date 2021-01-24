@@ -20,6 +20,13 @@
                 <textarea class="form-control" asp-for="Message" rows="3"></textarea>
                 <span asp-validation-for="Message"></span>
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="SendNotification" asp-for="SendNotification">
+                <label class="form-check-label" for="SendNotification">
+                    Enviar Notificação
+                </label>
+                <span asp-validation-for="SendNotification"></span>
+            </div>
         </div>
         <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="custom-file-upload" layout="col">
@@ -29,7 +36,7 @@
                         Arraste e solte o arquivo aqui ou clique para selecionar.
                     </p>
                     <ul>
-                        <li><b>500px</b> x <b>500px</b></li>
+                        <li><b>300px</b> x <b>300px</b></li>
                         <li><b>JPG</b> ou <b>PNG</b></li>
                         <li><b>Fundo Branco</b></li>
                     </ul>
