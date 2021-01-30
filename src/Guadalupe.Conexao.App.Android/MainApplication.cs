@@ -15,7 +15,7 @@ namespace Guadalupe.Conexao.App.Droid
 #if DEBUG
     [Application(Debuggable = true, UsesCleartextTraffic = true)]
 #else
-    [Application(Debuggable=false)]
+    [Application(Debuggable=false, UsesCleartextTraffic = true)]
 #endif
     public class MainApplication : Application
     {
