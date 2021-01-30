@@ -30,8 +30,3 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
 
 
-#if DEBUG
-[assembly: Application(Debuggable = true, UsesCleartextTraffic = true)]
-#else
-[assembly: Application(Debuggable=false)]
-#endif
