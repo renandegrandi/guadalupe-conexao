@@ -10,11 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace Guadalupe.Conexao.App.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainView : TabbedPage
+    public partial class MainView : MasterDetailPage
     {
         public MainView()
         {
             InitializeComponent();
+            Detail = new NavigationPage(new HomeView()) {
+                BarBackgroundColor = Color.Tomato
+            };
         }
     }
 }
