@@ -21,7 +21,7 @@ namespace Guadalupe.Conexao.App.Repository
 </ul>",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_capelinha_guadalupe_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_capelinha_guadalupe_without_border_300x300.webp",
-                Contact = "17991328424"
+                Contact = "5517991328424"
                  
             },
             new Project 
@@ -35,7 +35,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Mãe do projeto",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_colo_de_maria_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_colo_de_maria_without_border_300x300.webp",
-                Contact = "17996582983"
+                Contact = "5517996582983"
             },
             new Project
             {
@@ -45,7 +45,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Venha conosco levar esperança para aqueles que talvez o mundo tenha esquecido. Nesse caso, vidas tão jovens!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.abraco_de_mae_without_border_300x300.webp",
-                Contact = "69992073056"
+                Contact = "5569992073056"
             },
             //new Project
             //{
@@ -66,7 +66,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Como dizia São Francisco de Assis, se Deus é por nós, quem será contra nós? Vamos juntos viver intensamente tudo aquilo que Deus tem nos preparado!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.jovens_em_missão_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.jovens_em_missão_without_border_300x300.webp",
-                Contact = "17991089924"
+                Contact = "5517991089924"
             },
             new Project
             {
@@ -84,7 +84,7 @@ namespace Guadalupe.Conexao.App.Repository
                     DEUS NÃO ESCOLHE OS CAPACITADOS, ELE CAPACITA OS ESCOLHIDOS",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.missao_guadalupe_orante_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.missao_guadalupe_orante_without_border_300x300.webp",
-                Contact = "17997781004"
+                Contact = "5517997781004"
             },
             new Project
             {
@@ -96,7 +96,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Com o amor de Nossa Senhora de Guadalupe, participe dessa experiência, venha rezar conosco!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.pequeninos_da_missao_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.pequeninos_da_missao_without_border_300x300.webp",
-                Contact = "17996761981"
+                Contact = "5517996761981"
             },
             new Project
             {
@@ -113,7 +113,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Com boas ações, afinal palavras convencem, mas o exemplo arrasta!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.post_dependentes_quimicos_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.post_dependentes_quimicos_without_border_300x300.webp",
-                Contact = "17991465831"
+                Contact = "5517991465831"
             },
             new Project
             {
@@ -125,7 +125,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Com o amor de Nossa Senhora de Guadalupe, participe dessa experiência, venha rezar conosco!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_intercessao_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_intercessao_without_border_300x300.webp",
-                Contact = "17997018368"
+                Contact = "5517997018368"
             },
             new Project
             {
@@ -141,7 +141,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Este projeto consiste em encontrar maneiras de amenizar o sofrimento de pessoas nessa situação. Fazemos também a reintegração social e familiar, com a ajuda de outras entidades parceiras, realizamos outros projetos, tais como os acampamentos, tratamentos de dependências, grupo de oração, reuniões específicas para partilhas, etc.",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_morador_de_rua_novo_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_morador_de_rua_novo_without_border_300x300.webp",
-                Contact = "17997772681"
+                Contact = "5517997772681"
             },
             new Project
             {
@@ -153,7 +153,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Esse é mais um projeto da Missão Guadalupe que visa dar atenção carinho, amor e alegria às pessoas nos asilos, lares especializados e hospitais. Venha conosco fazer sorrir e dar amor a quem muito já nos fez!",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_os_bartimeus_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_os_bartimeus_without_border_300x300.webp",
-                Contact = "17992195151"
+                Contact = "5517992195151"
             },
             new Project
             {
@@ -167,7 +167,7 @@ namespace Guadalupe.Conexao.App.Repository
                     Saúde não é só a ausência de doença, mas um completo bem estar físico, mental, social e, sobretudo espiritual! Vem fazer parte desse time! A partir de pequenas ações podemos transformar vidas",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.projeto_saude_e_vida_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.projeto_saude_e_vida_without_border_300x300.webp",
-                Contact = "17997134352"
+                Contact = "5517997134352"
             },
             //new Project
             //{
@@ -185,7 +185,7 @@ namespace Guadalupe.Conexao.App.Repository
                 Description = @"Tem entre seus objetivos, visitar as famílias mais carentes a fim de identificar quais as maiores necessidades e buscar ajuda, e, quando necessário, encaminhar a alguma pastoral ou projeto específico. Além do mais importante, rezar junto com estas famílias, promovendo entre eles a oração e a busca pelo Senhor.",
                 Image = "resource://Guadalupe.Conexao.App.Resource.Image.sos_familias_300x300.webp",
                 Logo ="resource://Guadalupe.Conexao.App.Resource.Image.sos_familias_without_border_300x300.webp",
-                Contact = "17997440365"
+                Contact = "5517997440365"
             }
         };
 

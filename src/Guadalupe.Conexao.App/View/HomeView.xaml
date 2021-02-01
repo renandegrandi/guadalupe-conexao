@@ -6,7 +6,8 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              mc:Ignorable="d"
-             x:Class="Guadalupe.Conexao.App.View.HomeView">
+             x:Class="Guadalupe.Conexao.App.View.HomeView"
+             Title="Últimas Notícias">
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}" 
                      Command="{Binding RefreshNewsCommandAsync}">

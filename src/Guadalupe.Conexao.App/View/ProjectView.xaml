@@ -18,15 +18,11 @@
             </ScrollView>
             <Button
                     Text="Quero Participar" 
-                    VerticalOptions="CenterAndExpand"
+                    VerticalOptions="EndAndExpand"
                     HeightRequest="45"
                     TextColor="White"
-                    BackgroundColor="Orange" 
+                    BackgroundColor="Tomato" 
                     Command="{Binding WantParticipateCommandAsync}" ></Button>
         </StackLayout>
-        
-        <!--<Grid RowDefinitions="300, Auto, Auto, Auto" ColumnDefinitions="*">
-
-        </Grid>-->
     </ContentPage.Content>
 </ContentPage>

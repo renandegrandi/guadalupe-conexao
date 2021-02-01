@@ -4,12 +4,84 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Guadalupe.Conexao.App.View.ProfileNavView">
+             x:Class="Guadalupe.Conexao.App.View.ProfileNavView"
+             xmlns:Components="clr-namespace:Guadalupe.Conexao.App.Components"
+             x:Name="Page">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{OnPlatform Android=130, iOS=200}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <FlexLayout Grid.Row="0"
+                Direction="Row"
+                AlignItems="Center"
+                BackgroundColor="Tomato"
+                Padding="{OnPlatform Android='20,0', iOS='20,40,20,0'}">
+
+                <Frame
+                    HeightRequest="{OnPlatform Android=80, iOS=100}"
+                    WidthRequest="{OnPlatform Android=80, iOS=100}"
+                    Padding="0"
+                    CornerRadius="{OnPlatform Android=40, iOS=50}"
+                    IsClippedToBounds="true">
+                    <Image Source="{Binding Person.ProfileImage}" />
+                </Frame>
+
+                <StackLayout
+                    Spacing="0"
+                    Padding="10,0,0,0" >
+                    <Label 
+                        Text="{Binding Person.Name}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        TextColor="White"/>
+                    <Label 
+                        FontSize="10"
+                        Text="{Binding Person.Email}"
+                        TextColor="White"
+                    />
+                </StackLayout>
+            </FlexLayout>
+            <StackLayout Grid.Row="1">
+                <FlexLayout HeightRequest="{OnPlatform Android=50, iOS=70}"
+                            AlignItems="Center"
+                            Padding="10,0" >
+                    <FlexLayout.GestureRecognizers>
+                        <TapGestureRecognizer 
+                                    Command="{Binding Path=BindingContext.OnNavigateToHome, Source={x:Reference Page}}"/>
+                    </FlexLayout.GestureRecognizers>
+                    <Label Text="{StaticResource icon-doc}" 
+                        FontFamily="{StaticResource Icon}" 
+                        FontSize="{OnPlatform Android=20, iOS=25}" 
+                        VerticalTextAlignment="Start" />
+                    <Label Text="Últimas Notícias" Padding="10" />
+                </FlexLayout>
+                <FlexLayout HeightRequest="{OnPlatform Android=50, iOS=70}"
+                            AlignItems="Center"
+                            Padding="10,0" >
+                    <FlexLayout.GestureRecognizers>
+                        <TapGestureRecognizer 
+                                    Command="{Binding Path=BindingContext.OnNavigateToProject, Source={x:Reference Page}}" />
+                    </FlexLayout.GestureRecognizers>
+                    <Label Text="{StaticResource icon-newspaper}" 
+                        FontFamily="{StaticResource Icon}" 
+                        FontSize="{OnPlatform Android=20, iOS=25}" 
+                        VerticalTextAlignment="Start" />
+                    <Label Text="Projetos" Padding="10" />
+                </FlexLayout>
+            </StackLayout>
+            <!--<StackLayout Grid.Row="2" 
+                         VerticalOptions="End" 
+                         HorizontalOptions="CenterAndExpand"
+                         Padding="10">
+                <Components:ButtonWithSpinner Text="Sair" 
+                                        VerticalOptions="Center"
+                                          Command="{Binding OnSairCommand}" 
+                                          IsBusy="{Binding IsLoading}" 
+                                          IsEnabled="{Binding Email.IsValid}" />
+            </StackLayout>-->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

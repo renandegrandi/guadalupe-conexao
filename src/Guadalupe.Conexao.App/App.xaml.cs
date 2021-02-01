@@ -23,7 +23,7 @@ namespace Guadalupe.Conexao.App
 
             if (SessionService.IsAutenticated)
             {
-                MainPage = new NavigationPage(new View.MainView());
+                MainPage = new View.MainView();
 
                 if (init != null)
                 {

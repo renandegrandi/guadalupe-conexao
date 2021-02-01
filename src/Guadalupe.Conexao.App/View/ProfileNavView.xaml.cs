@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guadalupe.Conexao.App.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Guadalupe.Conexao.App.View
         public ProfileNavView()
         {
             InitializeComponent();
+            BindingContext = new ProfileNavViewModel(Navigation, App.SessionService);
         }
     }
 }
