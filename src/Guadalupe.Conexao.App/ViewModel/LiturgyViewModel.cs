@@ -48,7 +48,7 @@ namespace Guadalupe.Conexao.App.ViewModel
         }
         private void hideSecondReadingIfNeeded(TabbedPage page) 
         {
-            if (!HideSecondReading)
+            if (HideSecondReading)
                 page.Children.RemoveAt(SecondReading);
         }
     }
