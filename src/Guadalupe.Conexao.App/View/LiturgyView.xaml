@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="Guadalupe.Conexao.App.View.LiturgyView"
+            xmlns:Pages="clr-namespace:Guadalupe.Conexao.App.View"
+            BarBackground="Tomato"
+            x:Name="Page">
+    <Pages:ReadingView Title="1ª Leitura" BindingContext="{Binding FirstReadingViewModel}"  />
+    <Pages:ReadingView Title="2ª Leitura" BindingContext="{Binding SecondReadingViewModel}" />
+    <Pages:ReadingView Title="Salmo" BindingContext="{Binding PsalmViewModel}" />
+    <Pages:ReadingView Title="Evangelho" BindingContext="{Binding GospelViewModel}" />
+</TabbedPage>

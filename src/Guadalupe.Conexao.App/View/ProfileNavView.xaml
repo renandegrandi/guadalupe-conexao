@@ -50,7 +50,7 @@
                             Padding="10,0" >
                     <FlexLayout.GestureRecognizers>
                         <TapGestureRecognizer 
-                                    Command="{Binding Path=BindingContext.OnNavigateToHome, Source={x:Reference Page}}"/>
+                                    Command="{Binding Path=BindingContext.OnNavigateToHomeCommand, Source={x:Reference Page}}"/>
                     </FlexLayout.GestureRecognizers>
                     <Label Text="{StaticResource icon-doc}" 
                         FontFamily="{StaticResource Icon}" 
@@ -63,13 +63,26 @@
                             Padding="10,0" >
                     <FlexLayout.GestureRecognizers>
                         <TapGestureRecognizer 
-                                    Command="{Binding Path=BindingContext.OnNavigateToProject, Source={x:Reference Page}}" />
+                                    Command="{Binding Path=BindingContext.OnNavigateToProjectCommand, Source={x:Reference Page}}" />
                     </FlexLayout.GestureRecognizers>
                     <Label Text="{StaticResource icon-newspaper}" 
                         FontFamily="{StaticResource Icon}" 
                         FontSize="{OnPlatform Android=20, iOS=25}" 
                         VerticalTextAlignment="Start" />
                     <Label Text="Projetos" Padding="10" />
+                </FlexLayout>
+                <FlexLayout HeightRequest="{OnPlatform Android=50, iOS=70}"
+                            AlignItems="Center"
+                            Padding="10,0" >
+                    <FlexLayout.GestureRecognizers>
+                        <TapGestureRecognizer 
+                                    Command="{Binding Path=BindingContext.OnNavigateToLiturgyCommand, Source={x:Reference Page}}" />
+                    </FlexLayout.GestureRecognizers>
+                    <Label Text="{StaticResource icon-newspaper}" 
+                        FontFamily="{StaticResource Icon}" 
+                        FontSize="{OnPlatform Android=20, iOS=25}" 
+                        VerticalTextAlignment="Start" />
+                    <Label Text="Liturgia diária" Padding="10" />
                 </FlexLayout>
             </StackLayout>
             <!--<StackLayout Grid.Row="2" 

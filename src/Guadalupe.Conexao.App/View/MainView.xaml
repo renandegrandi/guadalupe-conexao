@@ -6,8 +6,7 @@
              mc:Ignorable="d"
              x:Class="Guadalupe.Conexao.App.View.MainView"
             xmlns:pages="clr-namespace:Guadalupe.Conexao.App.View"
-            NavigationPage.HasNavigationBar="False">
-
+            NavigationPage.HasNavigationBar="False" >
     <MasterDetailPage.Master>
         <pages:ProfileNavView Title="Menu" />
     </MasterDetailPage.Master>

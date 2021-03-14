@@ -30,7 +30,7 @@ namespace Guadalupe.Conexao.App.ViewModel
 
         #region Commands
 
-        public Command OnNavigateToHome => new Command(() =>
+        public Command OnNavigateToHomeCommand => new Command(() =>
         {
             var masterDetail = Application.Current.MainPage as MasterDetailPage;
             masterDetail.IsPresented = false;
@@ -41,11 +41,20 @@ namespace Guadalupe.Conexao.App.ViewModel
 
         });
 
-        public Command OnNavigateToProject => new Command(() =>
+        public Command OnNavigateToProjectCommand => new Command(() =>
         {
             var masterDetail = Application.Current.MainPage as MasterDetailPage;
             masterDetail.IsPresented = false;
             masterDetail.Detail = new NavigationPage(new ProjectsView());
+
+            ((NavigationPage)masterDetail.Detail).BarBackgroundColor = Color.Tomato;
+        });
+
+        public Command OnNavigateToLiturgyCommand => new Command(() =>
+        {
+            var masterDetail = Application.Current.MainPage as MasterDetailPage;
+            masterDetail.IsPresented = false;
+            masterDetail.Detail = new NavigationPage(new LiturgyView());
 
             ((NavigationPage)masterDetail.Detail).BarBackgroundColor = Color.Tomato;
         });
