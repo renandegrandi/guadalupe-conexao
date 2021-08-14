@@ -1,10 +1,6 @@
 ﻿using Guadalupe.Conexao.App.Model;
 using Guadalupe.Conexao.App.Service;
 using Guadalupe.Conexao.App.View;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -12,23 +8,12 @@ namespace Guadalupe.Conexao.App.ViewModel
 {
     public class ProfileNavViewModel : ViewModel
     {
-
-        #region Properties
-
         public Person Person { get; private set; }
-
-        #endregion
-
-        #region Constructor
 
         public ProfileNavViewModel(INavigation navigation, ISessionService sessionService) : base(navigation)
         {
             Person = sessionService.GetUser().Person;
         }
-
-        #endregion
-
-        #region Commands
 
         public Command OnNavigateToHomeCommand => new Command(() =>
         {
@@ -50,15 +35,26 @@ namespace Guadalupe.Conexao.App.ViewModel
             ((NavigationPage)masterDetail.Detail).BarBackgroundColor = Color.Tomato;
         });
 
-        public Command OnNavigateToLiturgyCommand => new Command(() =>
+        public Command OnNavigateToLiturgyCommand => new Command(async () =>
         {
             var masterDetail = Application.Current.MainPage as MasterDetailPage;
             masterDetail.IsPresented = false;
-            masterDetail.Detail = new NavigationPage(new LiturgyView());
 
-            ((NavigationPage)masterDetail.Detail).BarBackgroundColor = Color.Tomato;
+            await Task.Run(() =>
+            {
+                var Liturgy = new Liturgy
+                {
+                    FirstReading = new Reading().SetMock(),
+                    SecondReading = null,
+                    Gospel = new Reading().SetMock(),
+                    Psalm = new Reading().SetMock()
+                };
+
+                masterDetail.Detail = new NavigationPage(new LiturgyView(Liturgy));
+
+                ((NavigationPage)masterDetail.Detail).BarBackgroundColor = Color.Tomato;
+            });
         });
 
-        #endregion
     }
 }

@@ -9,9 +9,11 @@ namespace Guadalupe.Conexao.App.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReadingView : ContentPage
     {
-        public ReadingView()
+        public ReadingView(Reading reading)
         {
             InitializeComponent();
+
+            BindingContext = new ReadingViewModel(Navigation, reading);
         }
     }
 }

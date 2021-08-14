@@ -4,9 +4,6 @@
             x:Class="Guadalupe.Conexao.App.View.LiturgyView"
             xmlns:Pages="clr-namespace:Guadalupe.Conexao.App.View"
             BarBackground="Tomato"
-            x:Name="Page">
-    <Pages:ReadingView Title="1ª Leitura" BindingContext="{Binding FirstReadingViewModel}"  />
-    <Pages:ReadingView Title="2ª Leitura" BindingContext="{Binding SecondReadingViewModel}" />
-    <Pages:ReadingView Title="Salmo" BindingContext="{Binding PsalmViewModel}" />
-    <Pages:ReadingView Title="Evangelho" BindingContext="{Binding GospelViewModel}" />
+            x:Name="Page"
+            Title="Liturgia diária">
 </TabbedPage>

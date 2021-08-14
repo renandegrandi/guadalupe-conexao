@@ -1,5 +1,6 @@
 ﻿using Guadalupe.Conexao.App.Model;
 using Guadalupe.Conexao.App.Repository;
+using System;
 
 namespace Guadalupe.Conexao.App.Service
 {
@@ -15,10 +16,12 @@ namespace Guadalupe.Conexao.App.Service
 
         public SessionService(IUserRepository userRepository)
         {
-            Autenticated = userRepository.GetAsync()
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            Autenticated = new User(new Person(Guid.NewGuid(), "renandegrandi@hotmail.com.br", "", "Renan"), "", "");
+
+            //Autenticated = userRepository.GetAsync()
+            //    .ConfigureAwait(false)
+            //    .GetAwaiter()
+            //    .GetResult();
         }
 
         public User GetUser()
