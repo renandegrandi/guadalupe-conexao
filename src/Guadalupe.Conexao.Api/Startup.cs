@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -56,10 +55,10 @@ namespace Guadalupe.Conexao.Api
             services
                 .AddAutoMapper(typeof(Startup));
 
-            FirebaseAdmin.FirebaseApp.Create(new FirebaseAdmin.AppOptions
-            {
-                Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "firebase.json")),
-            });
+            //FirebaseAdmin.FirebaseApp.Create(new FirebaseAdmin.AppOptions
+            //{
+            //    Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "firebase.json")),
+            //});
 
             services.AddApplicationInsightsTelemetry(Configuration.GetSection("ApplicationInsights"))
                 .ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) =>
@@ -77,7 +76,7 @@ namespace Guadalupe.Conexao.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             //app.UseStaticFiles(new StaticFileOptions
             //{

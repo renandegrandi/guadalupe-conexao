@@ -10,7 +10,7 @@ namespace Guadalupe.Conexao.Api
         {
             CreateHostBuilder(args)
                 .Build()
-                .MigrateDatabase()
+                //.MigrateDatabase()
                 .Run();
         }
 

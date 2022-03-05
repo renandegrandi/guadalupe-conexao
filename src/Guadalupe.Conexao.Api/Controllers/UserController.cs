@@ -96,7 +96,6 @@ namespace Guadalupe.Conexao.Api.Controllers
 
         #endregion
 
-
         /// <summary>
         /// Responsável por gerar um novo código de acesso e enviar para o e-mail que foi solicitado.
         /// A função irá verificar se o email já está cadastrado na nossa base de dados se não encontrar irá gerar um novo registro de usuário e pessoa, disparando um novo código a cada requisição para o e-mail do solicitante.

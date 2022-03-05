@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Guadalupe.Conexao.Backoffice.Repository.ConexaoApi.Resource
 {
-    public class NoticeService: INoticeService
+    sealed class NoticeService: INoticeService
     {
-        public const string Controller = "api/notice";
+        const string Controller = "api/notice";
 
         #region Dependecies
 
@@ -29,7 +29,7 @@ namespace Guadalupe.Conexao.Backoffice.Repository.ConexaoApi.Resource
             _userService = userService;
         }
 
-        public async Task<Guid> AdicionarAsync(NoticeCreateDto notice, CancellationToken cancellationToken) 
+        public async Task<Guid> AddAsync(NoticeCreateDto notice, CancellationToken cancellationToken) 
         {
             var token = await _userService.AuthenticationAsync(Startup.authentication, cancellationToken)
                 .ConfigureAwait(false);

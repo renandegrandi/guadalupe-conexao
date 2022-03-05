@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Guadalupe.Conexao.Backoffice.Repository.ConexaoApi.Resource
 {
-    public class UserService: IUserService
+    sealed class UserService: IUserService
     {
         public const string Controller = "api/user";
 

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Guadalupe.Conexao.Backoffice.Repository
 {
-    public class NoticeRepository : INoticeRepository
+    sealed class NoticeRepository : INoticeRepository
     {
         #region Dependencies
 
@@ -37,7 +37,7 @@ namespace Guadalupe.Conexao.Backoffice.Repository
         {
             var noticeCreateDto = _mapper.Map<NoticeCreateDto>(notice);
 
-            return _noticeService.AdicionarAsync(noticeCreateDto, cancellationToken);
+            return _noticeService.AddAsync(noticeCreateDto, cancellationToken);
         }
 
         public async Task<PaginatorViewModel<NoticeViewModel>> GetPaginatedAsync(string title, int index, CancellationToken cancellationToken)
