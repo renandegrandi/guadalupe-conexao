@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30320.27
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guadalupe.Conexao.App", "src\Guadalupe.Conexao.App\Guadalupe.Conexao.App.csproj", "{5C3A0997-868A-41FF-85C9-5B0C257C1495}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guadalupe.Conexao.Api", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backoffice", "Backoffice", "{7B03FB3B-CB77-433C-B80C-2F2DAD850F2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guadalupe.Conexao.Backoffice", "src\Guadalupe.Conexao.Backoffice\Guadalupe.Conexao.Backoffice.csproj", "{275505B6-196C-4133-9FC5-3D1EDEC84121}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guadalupe.Conexao.Backoffice", "src\Guadalupe.Conexao.Backoffice\Guadalupe.Conexao.Backoffice.csproj", "{275505B6-196C-4133-9FC5-3D1EDEC84121}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,7 +30,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5C3A0997-868A-41FF-85C9-5B0C257C1495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C3A0997-868A-41FF-85C9-5B0C257C1495}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C3A0997-868A-41FF-85C9-5B0C257C1495}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{5C3A0997-868A-41FF-85C9-5B0C257C1495}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{5C3A0997-868A-41FF-85C9-5B0C257C1495}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
@@ -42,7 +41,6 @@ Global
 		{5C3A0997-868A-41FF-85C9-5B0C257C1495}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{5C3A0997-868A-41FF-85C9-5B0C257C1495}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{7CDFAD2D-4D7E-4652-93D4-ACBF6AFDE375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7CDFAD2D-4D7E-4652-93D4-ACBF6AFDE375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CDFAD2D-4D7E-4652-93D4-ACBF6AFDE375}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{7CDFAD2D-4D7E-4652-93D4-ACBF6AFDE375}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{7CDFAD2D-4D7E-4652-93D4-ACBF6AFDE375}.Debug|iPhone.Build.0 = Debug|Any CPU
@@ -70,7 +68,6 @@ Global
 		{388001BE-6676-40E3-B50E-4E462190A6C9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{388001BE-6676-40E3-B50E-4E462190A6C9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{3E23F4F2-6F14-4D42-A1A7-7D953FAA8D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E23F4F2-6F14-4D42-A1A7-7D953FAA8D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E23F4F2-6F14-4D42-A1A7-7D953FAA8D1A}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{3E23F4F2-6F14-4D42-A1A7-7D953FAA8D1A}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{3E23F4F2-6F14-4D42-A1A7-7D953FAA8D1A}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
@@ -82,7 +79,6 @@ Global
 		{3E23F4F2-6F14-4D42-A1A7-7D953FAA8D1A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{3E23F4F2-6F14-4D42-A1A7-7D953FAA8D1A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{275505B6-196C-4133-9FC5-3D1EDEC84121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{275505B6-196C-4133-9FC5-3D1EDEC84121}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{275505B6-196C-4133-9FC5-3D1EDEC84121}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{275505B6-196C-4133-9FC5-3D1EDEC84121}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{275505B6-196C-4133-9FC5-3D1EDEC84121}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
