@@ -73,16 +73,17 @@ namespace Guadalupe.Conexao.Api.Controllers
         {
             //TODO: Implementar pattern para templates de e-mail na aplicação.
 
-            var template = @"<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf - 8' />
-    <title>{ASSUNTO_EMAIL}</title>
-</head>
-<body>
-    <p> Seu código de acesso é: {CODIGO_ACESSO}.</p>
-</body>
-</html>";
+            var template = @"
+                            <!DOCTYPE html>
+                            <html>
+                                <head>
+                                    <meta charset='utf - 8' />
+                                    <title>{ASSUNTO_EMAIL}</title>
+                                </head>
+                                <body>
+                                    <p> Seu código de acesso é: {CODIGO_ACESSO}.</p>
+                                </body>
+                            </html>";
 
             var body = template;
 
@@ -146,7 +147,7 @@ namespace Guadalupe.Conexao.Api.Controllers
         [HttpPost("token")]
         public async Task<IActionResult> AuthenticationAsync([FromBody] AuthenticationDto authentication)
         {
-            User user = null;
+            User user;
 
             switch (authentication.GrantType)
             {
@@ -159,18 +160,18 @@ namespace Guadalupe.Conexao.Api.Controllers
                         return Unauthorized(new AuthenticationErroDto
                         {
                             Erro = OAuthError.invalid_client,
-                            Descricao = $"O Email: {authentication.Username}, não está cadastrado!"
+                            Descricao = $"O email: {authentication.Username} não está cadastrado."
                         });
                     }
 
-                    var codigoInvalido = !user.CodeAccess.Equals(authentication.Password.ToUpper());
+                    var invalidCode = !user.CodeAccess.Equals(authentication.Password.ToUpper());
 
-                    if (codigoInvalido)
+                    if (invalidCode)
                     {
                         return Unauthorized(new AuthenticationErroDto
                         {
                             Erro = OAuthError.invalid_client,
-                            Descricao = $"O Código informado está invalido!"
+                            Descricao = $"O código informado está inválido."
                         });
                     }
 
@@ -187,7 +188,7 @@ namespace Guadalupe.Conexao.Api.Controllers
                         return Unauthorized(new AuthenticationErroDto
                         {
                             Erro = OAuthError.invalid_request,
-                            Descricao = "Código de autenticação invalido!"
+                            Descricao = "Código de autenticação inválido."
                         });
                     }
 
@@ -196,7 +197,7 @@ namespace Guadalupe.Conexao.Api.Controllers
                     return Unauthorized(new AuthenticationErroDto
                     {
                         Erro = OAuthError.unsupported_grant_type,
-                        Descricao = "grant_type não permitido pela aplicação!"
+                        Descricao = "Este grant_type não é permitido pela aplicação."
                     });
             }
 
