@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Guadalupe.Conexao.Api.Config
+namespace Guadalupe.Conexao.Api.Infrastructure.Config
 {
     public class SmtpConfig
     {

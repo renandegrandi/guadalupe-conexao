@@ -9,25 +9,23 @@ using System.Threading.Tasks;
 
 namespace Guadalupe.Conexao.Api.Infrastructure.Data
 {
-    public class ConexaoContext: DbContext, IUnitOfWork
+    sealed class ConexaoContext: DbContext, IUnitOfWork
     {
-        #region Constructor
+        public DbSet<Person> Person { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Notice> Notice { get; set; }
 
         public ConexaoContext(DbContextOptions<ConexaoContext> options) : base(options)
         {
 
         }
 
-        #endregion
-
-        #region Properties
-
-        public virtual DbSet<Person> Person { get; set; }
-        public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Notice> Notice { get; set; }
-
-        #endregion
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new Configurations.Person());
+            modelBuilder.ApplyConfiguration(new Configurations.User());
+            modelBuilder.ApplyConfiguration(new Configurations.Notice());
+        }
         private void SetModifiedPropertiesOnCommit() 
         {
             var entries = ChangeTracker.Entries();
@@ -48,18 +46,11 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data
             foreach (var item in uniqueIdModificado)
                 item.Property(nameof(Entity.Id)).IsModified = false;
         }
-
         public Task<int> CommitAsync(CancellationToken cancellationToken)
         {
             SetModifiedPropertiesOnCommit();
 
             return base.SaveChangesAsync(cancellationToken);
-        }
-        public Task<int> CommitAsync()
-        {
-            SetModifiedPropertiesOnCommit();
-
-            return base.SaveChangesAsync();
         }
         void IUnitOfWork.Attach(object input)
         {
@@ -69,15 +60,6 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data
         {
             this.Add(input);
         }
-
         
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
-        {
-            modelBuilder.ApplyConfiguration(new Configurations.Person());
-            modelBuilder.ApplyConfiguration(new Configurations.User());
-            modelBuilder.ApplyConfiguration(new Configurations.Notice());
-        }
-
-
     }
 }

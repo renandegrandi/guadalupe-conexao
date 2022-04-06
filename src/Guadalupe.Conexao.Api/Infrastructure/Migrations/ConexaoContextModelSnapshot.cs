@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace Guadalupe.Conexao.Api.Infrastructure.Migrations
 {
     [DbContext(typeof(ConexaoContext))]
@@ -15,148 +17,149 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Guadalupe.Conexao.Api.Domain.Notice", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnName("id")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                        .HasColumnType("UNIQUEIDENTIFIER")
+                        .HasColumnName("id");
 
                     b.Property<Guid>("IdPostedBy")
-                        .HasColumnName("id_posted_by")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                        .HasColumnType("UNIQUEIDENTIFIER")
+                        .HasColumnName("id_posted_by");
 
                     b.Property<string>("Image")
-                        .HasColumnName("image_url")
+                        .IsUnicode(false)
                         .HasColumnType("varchar(max)")
-                        .IsUnicode(false);
+                        .HasColumnName("image_url");
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasColumnName("message")
+                        .IsUnicode(false)
                         .HasColumnType("varchar(max)")
-                        .IsUnicode(false);
+                        .HasColumnName("message");
 
                     b.Property<DateTime?>("Modification")
-                        .HasColumnName("modification_date")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime")
+                        .HasColumnName("modification_date");
 
                     b.Property<DateTime>("Registration")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("registration_date")
                         .HasColumnType("datetime")
+                        .HasColumnName("registration_date")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<DateTime?>("Removal")
-                        .HasColumnName("removal_date")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime")
+                        .HasColumnName("removal_date");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnName("title")
+                        .IsUnicode(false)
                         .HasColumnType("varchar(max)")
-                        .IsUnicode(false);
+                        .HasColumnName("title");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IdPostedBy");
 
-                    b.ToTable("notice");
+                    b.ToTable("notice", (string)null);
                 });
 
             modelBuilder.Entity("Guadalupe.Conexao.Api.Domain.Person", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnName("id")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                        .HasColumnType("UNIQUEIDENTIFIER")
+                        .HasColumnName("id");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnName("email")
-                        .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
-                        .IsUnicode(false);
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("email");
 
                     b.Property<DateTime?>("Modification")
-                        .HasColumnName("modification_date")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime")
+                        .HasColumnName("modification_date");
 
                     b.Property<string>("Name")
-                        .HasColumnName("nome")
-                        .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
-                        .IsUnicode(false);
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("nome");
 
                     b.Property<string>("ProfileImage")
-                        .HasColumnName("profile_image")
+                        .IsUnicode(false)
                         .HasColumnType("varchar(max)")
-                        .IsUnicode(false);
+                        .HasColumnName("profile_image");
 
                     b.Property<DateTime>("Registration")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("registration_date")
                         .HasColumnType("datetime")
+                        .HasColumnName("registration_date")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<DateTime?>("Removal")
-                        .HasColumnName("removal_date")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime")
+                        .HasColumnName("removal_date");
 
                     b.HasKey("Id");
 
-                    b.ToTable("person");
+                    b.ToTable("person", (string)null);
                 });
 
             modelBuilder.Entity("Guadalupe.Conexao.Api.Domain.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnName("id")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                        .HasColumnType("UNIQUEIDENTIFIER")
+                        .HasColumnName("id");
 
                     b.Property<string>("CodeAccess")
-                        .HasColumnName("code_access")
-                        .HasColumnType("varchar(100)")
                         .HasMaxLength(100)
-                        .IsUnicode(false);
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("code_access");
 
                     b.Property<string>("FCMToken")
-                        .HasColumnName("fcm_token")
+                        .IsUnicode(false)
                         .HasColumnType("varchar(max)")
-                        .IsUnicode(false);
+                        .HasColumnName("fcm_token");
 
                     b.Property<Guid>("IdPerson")
-                        .HasColumnName("id_person")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                        .HasColumnType("UNIQUEIDENTIFIER")
+                        .HasColumnName("id_person");
 
                     b.Property<DateTime?>("Modification")
-                        .HasColumnName("modification_date")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime")
+                        .HasColumnName("modification_date");
 
                     b.Property<string>("RefreshToken")
-                        .HasColumnName("refresh_token")
-                        .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
-                        .IsUnicode(false);
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("refresh_token");
 
                     b.Property<DateTime>("Registration")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("registration_date")
                         .HasColumnType("datetime")
+                        .HasColumnName("registration_date")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<DateTime?>("Removal")
-                        .HasColumnName("removal_date")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime")
+                        .HasColumnName("removal_date");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IdPerson")
                         .IsUnique();
 
-                    b.ToTable("user");
+                    b.ToTable("user", (string)null);
                 });
 
             modelBuilder.Entity("Guadalupe.Conexao.Api.Domain.Notice", b =>
@@ -166,6 +169,8 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Migrations
                         .HasForeignKey("IdPostedBy")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("PostedBy");
                 });
 
             modelBuilder.Entity("Guadalupe.Conexao.Api.Domain.User", b =>
@@ -175,6 +180,8 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Migrations
                         .HasForeignKey("Guadalupe.Conexao.Api.Domain.User", "IdPerson")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Person");
                 });
 #pragma warning restore 612, 618
         }

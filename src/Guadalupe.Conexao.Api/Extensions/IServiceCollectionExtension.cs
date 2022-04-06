@@ -10,13 +10,16 @@ namespace Guadalupe.Conexao.Api.Extensions
 {
     public static class IServiceCollectionExtension
     {
-        public static void AddRepositories(this IServiceCollection service, IConfiguration configuration) 
+        public static void AddRepositories(this IServiceCollection service, IConfiguration configuration, bool isDevelopEnvironment) 
         {
             service.AddDbContextPool<ConexaoContext>((contextOptions) =>
             {
-                //TODO: Filtrar para habilitar somente em DEV.
-                contextOptions.EnableSensitiveDataLogging();
-                contextOptions.UseSqlServer(configuration.GetConnectionString("ConexaoDatabase"));
+                if(isDevelopEnvironment) 
+                {
+                    contextOptions.EnableSensitiveDataLogging();
+                }
+                
+                contextOptions.UseSqlServer(configuration.GetConnectionString("RelationalDB"));
             });
 
             service.AddScoped<IIdentityService, IdentityService>();

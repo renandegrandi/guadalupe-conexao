@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Guadalupe.Conexao.Api.Config;
 using Guadalupe.Conexao.Api.Domain;
+using Guadalupe.Conexao.Api.Infrastructure.Config;
 using Guadalupe.Conexao.Api.Infrastructure.Data;
 using Guadalupe.Conexao.Api.Models.V1;
 using Guadalupe.Conexao.Api.Services;

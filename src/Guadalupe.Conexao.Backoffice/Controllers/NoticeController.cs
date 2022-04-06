@@ -3,6 +3,7 @@ using Guadalupe.Conexao.Backoffice.Models;
 using Guadalupe.Conexao.Backoffice.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Linq;
@@ -13,41 +14,55 @@ namespace Guadalupe.Conexao.Backoffice.Controllers
 {
     public class NoticeController : Controller
     {
-        #region Dependencies
-
         public static readonly string[] MimetypesAllowed = new string[] { "image/jpeg", "image/png", "image/webp"};
         public static readonly string[] MimetypesToConvert = new string[] { "image/jpeg", "image/png" };
 
-        #endregion
-
-        #region Dependencies
-
+        private readonly ILogger<NoticeController> _logger;
         private readonly INoticeRepository _noticeRepository;
 
-        #endregion
+        //TODO: é necessário tratar os erros da API.
 
         #region Constructor
 
-        public NoticeController(INoticeRepository noticeRepository)
+        public NoticeController(INoticeRepository noticeRepository,
+            ILogger<NoticeController> logger)
         {
             _noticeRepository = noticeRepository;
+            _logger = logger;
         }
 
         #endregion
 
         public async Task<ActionResult> Index(string search, int index = 1, CancellationToken cancellationToken = default)
         {
-            var result = await _noticeRepository.GetPaginatedAsync(search, index, cancellationToken);
+            var result = new Core.PaginatorViewModel<NoticeViewModel>();
+
+            try
+            {
+                result = await _noticeRepository.GetPaginatedAsync(search, index, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+            }
 
             return View(result);
         }
 
-
         public async Task<ActionResult> Detail(Guid id, CancellationToken cancellationToken)
         {
-            var result = await _noticeRepository.GetByIdAsync(id, cancellationToken);
+            try
+            {
+                var result = await _noticeRepository.GetByIdAsync(id, cancellationToken);
 
-            return View(result);
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         public ActionResult Create()
@@ -124,8 +139,10 @@ namespace Guadalupe.Conexao.Backoffice.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return View();
             }
         }

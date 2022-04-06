@@ -1,6 +1,6 @@
 using AutoMapper;
-using Guadalupe.Conexao.Api.Config;
 using Guadalupe.Conexao.Api.Extensions;
+using Guadalupe.Conexao.Api.Infrastructure.Config;
 using Microsoft.ApplicationInsights.DependencyCollector;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -25,7 +25,10 @@ namespace Guadalupe.Conexao.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRepositories(Configuration);
+            //TODO: adicionar validação de environment.
+            var isDevelopment = true;
+
+            services.AddRepositories(Configuration, isDevelopment);
             services.AddHttpContextAccessor();
             services.AddControllers();
 
@@ -73,15 +76,7 @@ namespace Guadalupe.Conexao.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseHttpsRedirection();
-
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Assets"))
-            //});
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
