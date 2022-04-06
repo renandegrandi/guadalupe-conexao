@@ -1,5 +1,4 @@
 using AutoMapper;
-using Google.Apis.Auth.OAuth2;
 using Guadalupe.Conexao.Api.Config;
 using Guadalupe.Conexao.Api.Extensions;
 using Microsoft.ApplicationInsights.DependencyCollector;
@@ -10,8 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.IO;
 using System.Text;
 
 namespace Guadalupe.Conexao.Api
