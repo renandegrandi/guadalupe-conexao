@@ -1,4 +1,3 @@
-using AutoMapper;
 using Guadalupe.Conexao.Backoffice.Mappings;
 using Guadalupe.Conexao.Backoffice.Repository;
 using Guadalupe.Conexao.Backoffice.Repository.ConexaoApi.Models;
@@ -15,6 +14,7 @@ namespace Guadalupe.Conexao.Backoffice
 {
     public class Startup
     {
+        //TODO: Workarround até ter a tela de autenticação do back-office.
         public static readonly AuthenticationDto authentication = new AuthenticationDto
         {
             GrantType = GrantTypes.password,

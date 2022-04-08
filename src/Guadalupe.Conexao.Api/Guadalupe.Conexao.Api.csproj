@@ -7,9 +7,13 @@
 
   <ItemGroup>
     <Compile Remove="Assets\**" />
+    <Compile Remove="Params\**" />
     <Content Remove="Assets\**" />
+    <Content Remove="Params\**" />
     <EmbeddedResource Remove="Assets\**" />
+    <EmbeddedResource Remove="Params\**" />
     <None Remove="Assets\**" />
+    <None Remove="Params\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Params\" />
+    <Folder Include="Infrastructure\Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

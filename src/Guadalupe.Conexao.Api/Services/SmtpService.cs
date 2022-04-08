@@ -1,4 +1,4 @@
-﻿using Guadalupe.Conexao.Api.Config;
+﻿using Guadalupe.Conexao.Api.Infrastructure.Config;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;

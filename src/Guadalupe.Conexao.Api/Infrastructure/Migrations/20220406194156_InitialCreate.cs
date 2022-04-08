@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Guadalupe.Conexao.Api.Infrastructure.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,12 +14,12 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
+                    nome = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    email = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false),
+                    profile_image = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     registration_date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
                     modification_date = table.Column<DateTime>(type: "datetime", nullable: true),
-                    removal_date = table.Column<DateTime>(type: "datetime", nullable: true),
-                    nome = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
-                    email = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
-                    profile_image = table.Column<string>(unicode: false, nullable: true)
+                    removal_date = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,13 +31,13 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
+                    title = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
+                    message = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
+                    image_url = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
+                    id_posted_by = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
                     registration_date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
                     modification_date = table.Column<DateTime>(type: "datetime", nullable: true),
-                    removal_date = table.Column<DateTime>(type: "datetime", nullable: true),
-                    title = table.Column<string>(unicode: false, nullable: false),
-                    message = table.Column<string>(unicode: false, nullable: false),
-                    image_url = table.Column<string>(unicode: false, nullable: true),
-                    id_posted_by = table.Column<Guid>(nullable: false)
+                    removal_date = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -53,12 +55,13 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
+                    id_person = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
+                    code_access = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    refresh_token = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    fcm_token = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     registration_date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
                     modification_date = table.Column<DateTime>(type: "datetime", nullable: true),
-                    removal_date = table.Column<DateTime>(type: "datetime", nullable: true),
-                    id_person = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
-                    code_access = table.Column<string>(unicode: false, maxLength: 100, nullable: true),
-                    refresh_token = table.Column<string>(unicode: false, maxLength: 255, nullable: true)
+                    removal_date = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {

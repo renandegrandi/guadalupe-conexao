@@ -1,14 +1,12 @@
 ﻿using Guadalupe.Conexao.Api.Core;
 using Guadalupe.Conexao.Api.Domain;
-using Guadalupe.Conexao.Api.Validation;
+using Guadalupe.Conexao.Api.Domain.Validation;
 using System.Text.Json.Serialization;
 
 namespace Guadalupe.Conexao.Api.Models.V1
 {
     public class AuthenticationDto: IDto
     {
-        #region Properties
-
         [JsonPropertyName("username")]
         public string Username { get; set; }
 
@@ -22,7 +20,5 @@ namespace Guadalupe.Conexao.Api.Models.V1
 
         [JsonPropertyName("refresh_token")]
         public string RefreshToken { get; set; }
-
-        #endregion
     }
 }

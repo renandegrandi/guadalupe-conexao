@@ -22,18 +22,25 @@ namespace Guadalupe.Conexao.Api.Domain
 
         #endregion
 
-        #region Constructor
-
-        private User() : base() { }
-
-        public User(Person person) : this()
+        private User() { }
+        
+        public User(Person person) : this ()
         {
             Person = person;
             IdPerson = person.Id;
-            CodeAccess = GenerateCodeAccess();
+            SetCodeAccessIfNecessary();
         }
 
-        #endregion
+        public User(Person person, string codeAcess) : this(person)
+        {
+            CodeAccess = codeAcess;
+        }
+
+        private void SetCodeAccessIfNecessary() 
+        {
+            if (string.IsNullOrWhiteSpace(CodeAccess))
+                CodeAccess = GenerateCodeAccess();
+        }
 
         private string GenerateCodeAccess() 
         {

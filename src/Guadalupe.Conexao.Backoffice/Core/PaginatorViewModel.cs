@@ -4,6 +4,11 @@ namespace Guadalupe.Conexao.Backoffice.Core
 {
     public class PaginatorViewModel<T>
     {
+        public PaginatorViewModel()
+        {
+            Registers = new List<T>();
+        }
+
         public string Search { get; set; }
         public int Total { get; set; }
         public IEnumerable<T> Registers { get; set; }

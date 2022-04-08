@@ -1,7 +1,6 @@
-﻿using Guadalupe.Conexao.Api.Domain;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Guadalupe.Conexao.Api.Validation
+namespace Guadalupe.Conexao.Api.Domain.Validation
 {
     public class GrantTypeValidationAttribute: ValidationAttribute
     {

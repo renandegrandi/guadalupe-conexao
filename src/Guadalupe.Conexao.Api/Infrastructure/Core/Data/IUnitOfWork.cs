@@ -8,6 +8,5 @@ namespace Guadalupe.Conexao.Api.Core.Data
         void Attach(object input);
         void Add(object input);
         Task<int> CommitAsync(CancellationToken cancellationToken);
-        Task<int> CommitAsync();
     }
 }

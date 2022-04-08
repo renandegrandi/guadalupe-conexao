@@ -13,6 +13,7 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data
             var noticeThree = new Guid("6972fdbe-35e8-41d6-a216-49c20bc173ac");
             var noticeFour = new Guid("32371a18-b9d3-45f2-8cdb-a7f24f7943e6");
             var noticeFive = new Guid("f6a89841-f9fd-4a11-8849-02dc53afb952");
+            var defaultCodeAccess = "MM2J";
 
             using (var scope = service.CreateScope())
             {
@@ -25,7 +26,7 @@ namespace Guadalupe.Conexao.Api.Infrastructure.Data
                         context.Person.Add(missaoPerson);
 
                     if (!context.User.Any((b) => b.Person.Id == missaoPerson.Id))
-                        context.User.Add(new Domain.User(missaoPerson));
+                        context.User.Add(new Domain.User(missaoPerson, defaultCodeAccess));
 
                     //if (!context.Notice.Any((q) => q.Id == noticeOne))
                     //    context.Notice.Add(new Domain.Notice(noticeOne, "O bom samaritano", "O Bom Samaritano \nHomenagem aos 90 anos do nosso amado Padre Carlos", "Images/Notice/imagem21.jpg")

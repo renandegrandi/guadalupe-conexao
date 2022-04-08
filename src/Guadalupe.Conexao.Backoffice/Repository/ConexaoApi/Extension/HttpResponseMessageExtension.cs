@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guadalupe.Conexao.Backoffice.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -75,11 +76,8 @@ namespace Guadalupe.Conexao.Backoffice.Repository.ConexaoApi.Extension
                     var id = response.Headers.GetIdByLocation();
                     return (T)Convert.ChangeType(id, typeof(T));
                 case HttpStatusCode.Unauthorized:
-                    throw new NotImplementedException();
-                //throw new UnauthorizedException();
                 case HttpStatusCode.Forbidden:
-                    throw new NotImplementedException();
-                //throw new ForbiddenException();
+                    throw new UnauthorizedException();
                 case HttpStatusCode.BadRequest:
 
                     var erros = JsonSerializer.Deserialize<IDictionary<string, string[]>>(content);
