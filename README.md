@@ -20,6 +20,10 @@ Habitar um formulário para captar algumas informações da comunidade.
 |  API | https://localhost:4001   | http://localhost:4000  | Sim |
 |  BackOffice | https://localhost:5001   | http://localhost:5000  | Não |
 
+### Usuário para testes:
+|  Login | Password   |
+| ------------ | ------------ |
+| guadalupe.conexao@gmail.com | MM2J |
 
 ### Icones
 Para gerar e manter os icónes está sendo utilizando o portal do: [Fontello](https://fontello.com/)
